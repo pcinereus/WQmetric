@@ -1,0 +1,87 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Compile with                                  %%
+%% xelatex -interaction=nonstopmode WEreport.tex %%
+%% or via the Makefile with                      %%
+%% make pdf -i                                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Prior to running this, make sure that WQreport_aux.R has been run %%
+%% this will generate all the dynamic tables                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,8pt]{AIMSreport}
+\input{AIMStitlepage}
+
+\begin{document}
+
+\section{Executive Summary}
+
+\section{Introduction}
+
+\section{Data sources}
+
+Report cards are typically compiled and communicated annually.
+However, the time window that constitutes a year differs from report card to report card.
+Many environmental report cards communicate on data collected within a financial year.
+This schedule provides a reporting window that is consistent with other management and governmental
+considerations.  Others use a time window that naturally aligns with the cycle of some major underlying environmental
+gradient - such as wet/dry season. For this project, we are adopting using the same water year (1st Oct -- 31 Sept) definition as the AIMS inshore Water
+Quality Marine Monitoring Program \citep{Lonborg-MMP-2015}.
+
+\subsection{Indicators}
+\subsection{AIMS insitu samples}
+\subsection{AIMS FLNTU samples}
+\subsection{Remote sensing (BOM satellite)}
+\subsection{eReefs}
+\subsection{eReefs926}
+\subsection{Thresholds}
+\section{Exploratory data analysis}
+\subsection{All data}
+\subsection{Annual data}
+\subsection{Monthly data}
+\subsection{Spatial data}
+\subsection{Comparison of data sources}
+
+\section{Index metrics}
+
+\subsection{Theoretical framework}
+\subsection{Multivariate health indicators}
+\subsection{Thresholds}
+\subsection{Unifying indices}
+\subsection{Hierarchical indices}
+\subsection{Summary of adopted methodologies}
+\subsection{Index sensitivity}
+\subsection{Index explorations}
+\subsection{Indices}
+
+\subsection{Sources}
+\subsection{Exploration of Measures}
+\subsection{Measure/Site}
+\subsection{Summary of recommendations}
+
+\section{Hierarchical aggregations}
+\subsection{Theoretical framework}
+\subsection{Bootstrap aggregation}                   
+\subsection{Beta approximation}
+\subsection{Weights}           
+\subsection{Expert interventions}
+\subsection{Scores and Grades}
+\subsection{Certainty rating}
+\subsection{Confidence intervals}
+
+\subsection{Summary of adopted methodologies}
+\subsection{Aggregation summaries}
+\subsubsection{Measure/Zone}
+\subsubsection{Indicator/Site}
+\subsubsection{Indicator/Zone}
+
+\subsection{Summary of recommendations}
+ 
+~\\[2em]\addcontentsline{toc}{section}{References}
+\bibliographystyle{ecology}
+\bibliography{References}
+
+\clearpage
+
+\end{document}  
