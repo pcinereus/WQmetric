@@ -1,13 +1,14 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{exampleclass}[2014/08/16 Example LaTeX class]
+\ProvidesClass{AIMSreport}[2014/08/16 Example LaTeX class]
 
-\LoadClass[11pt]{article}
+\LoadClass[10pt]{extarticle}
 
 \usepackage{fancyhdr}
 \usepackage{xcolor}
 \usepackage{color,colortbl}
 \usepackage{etoolbox}
-\usepackage{grffile}
+\usepackage{graphicx}
+\usepackage[space]{grffile}
 \usepackage{fontspec}
 \usepackage[explicit]{titlesec}
 \usepackage{eso-pic}
@@ -30,6 +31,7 @@
 \usepackage{lscape}
 \usepackage{setspace}
 \usepackage{lastpage}
+\usepackage{graphbox}
 
 %%-----Define Provision for bibliography-----------
 \usepackage{natbib}
@@ -40,6 +42,27 @@
 \newcommand\VRule[1][\arrayrulewidth]{\vrule width #1}
 \newcommand\whiteHeader[1]{\color{white}{\textbf{\textsc{\normalsize #1}}}}
 \definecolor{shade}{HTML}{D4D7FE}		%light blue shade
+
+----------------------------------------------------------------------------------------
+\usepackage{etoolbox} % to allow control of the linespacing in the table of contents
+\makeatletter
+\pretocmd{\section}{\addtocontents{toc}{\protect\addvspace{5\ex}}}{}{}
+\pretocmd{\subsection}{\addtocontents{toc}{\protect\addvspace{-5\ex}}}{}{}
+\pretocmd{\subsubsection}{\addtocontents{toc}{\protect\addvspace{-5\ex}}}{}{}
+\makeatother
+% ----------------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------------------
+%fix an issue with xelatex and grffile for spaces and dots in includegraphics filenames
+\makeatletter
+\def\Gread@@xetex#1{%
+  \IfFileExists{"\Gin@base".bb}%
+  {\Gread@eps{\Gin@base.bb}}%
+  {\Gread@@xetex@aux#1}%
+}
+\makeatother
+% -----------------------------------------------------------------------------------------
+
 
 %----------------------------------------------------------------------------------------
 %   Define fonts
@@ -79,13 +102,17 @@
 }
 \pagestyle{fancy}
 \fancyhf{} % clear all header and footer fields
-\renewcommand{\headrulewidth}{0pt}%
+\renewcommand{\headrulewidth}{1.5pt}%
+\renewcommand{\headrule}{\hbox to\headwidth{%
+    \color{blue!70}\leaders\hrule height \headrulewidth\hfill}}
+\fancyhead[C]{}
+\fancyhead[L]{\raisebox{-.5\baselineskip}[0pt][0pt]{\parbox{0.4\textwidth}{\leftmark}}}
+\fancyhead[R]{\raisebox{-.5\baselineskip}[0pt][0pt]{\parbox{0.4\textwidth}{\hfill\rightmark}}}
 \fancyfoot[C]{}
-\fancyfoot[L]{\parbox{0.8\textwidth}{Murray Logan}}
+\fancyfoot[L]{\parbox{0.8\textwidth}{Water Quality Report Card Metrics}}
 \fancyfoot[R]{Page~\thepage}
 \renewcommand{\footrulewidth}{1.5pt}%
 \headrulecolor{blue!70}%
-
 
 %% %-Redefine the section title formats--------------
 \setcounter{secnumdepth}{4}
@@ -94,42 +121,74 @@
             {\fontsize{20}{15}\raggedright\bfseries\chapterfont\color{blue}\thechapter~}% section number
             {1ex}% separator space
             {\MakeUppercase{#1}} %before code
+% \titleformat{\section}% which section
+%             {\fontsize{20}{15}\bfseries\sectionfont\raggedright\color{blue}}% section label
+%             {\fontsize{20}{15}\raggedright\bfseries\sectionfont\color{blue}\thesection~}% section number
+%             {1ex}% separator space
+%             {\MakeUppercase{#1}} %before code
 \titleformat{\section}% which section
-            {\fontsize{20}{15}\bfseries\sectionfont\raggedright\color{blue}}% section label
-            {\fontsize{20}{15}\raggedright\bfseries\sectionfont\color{blue}\thesection~}% section number
+            {\Large\bfseries\sectionfont\raggedright\color{blue}}% section label
+            {\Large\raggedright\bfseries\sectionfont\color{blue}\thesection.~}% section number
             {1ex}% separator space
-            {\MakeUppercase{#1}} %before code
+            {\MakeUppercase{#1}} %before code          
+% \titlespacing{\section}{0pt}%left
+%              {30pt}%before
+%              {30pt}%after
 \titlespacing{\section}{0pt}%left
-             {30pt}%before
-             {30pt}%after
+             {1.5ex}%before
+             {1.0ex}%after             
 
+% \titleformat{\subsection}% which section
+%             {\fontsize{14}{14}\raggedright\subsectionfont\color{black}}% section label
+%             {\fontsize{14}{14}\raggedright\subsectionfont\color{black}\thesubsection~}% section number
+%             {1ex}% separator space
+%             {#1} %before code
+% \titlespacing{\subsection}{0pt}%left
+%              {18pt}%before
+%              {12pt}%after
 \titleformat{\subsection}% which section
-            {\fontsize{14}{14}\raggedright\subsectionfont\color{black}}% section label
-            {\fontsize{14}{14}\raggedright\subsectionfont\color{black}\thesubsection~}% section number
+            {\large\raggedright\subsectionfont\color{black}}% section label
+            {\large\raggedright\subsectionfont\color{black}\thesubsection~}% section number
             {1ex}% separator space
             {#1} %before code
 \titlespacing{\subsection}{0pt}%left
-             {18pt}%before
-             {12pt}%after
+             {1.5ex}%before
+             {1.0ex}%after             
 
+% \titleformat{\subsubsection}% which section
+%             {\fontsize{11}{11}\raggedright\subsectionfont\color{black}}% section label
+%             {\fontsize{11}{11}\raggedright\subsectionfont\color{black}\thesubsubsection~}% section number
+%             {1ex}% separator space
+%             {#1} %before code
+% \titlespacing{\subsubsection}{0pt}%left
+%              {10pt}%before
+%              {6pt}%after
 \titleformat{\subsubsection}% which section
-            {\fontsize{11}{11}\raggedright\subsectionfont\color{black}}% section label
-            {\fontsize{11}{11}\raggedright\subsectionfont\color{black}\thesubsubsection~}% section number
+            {\normalsize\raggedright\subsectionfont\color{black}}% section label
+            {\normalsize\raggedright\subsectionfont\color{black}\thesubsubsection~}% section number
             {1ex}% separator space
             {#1} %before code
 \titlespacing{\subsubsection}{0pt}%left
-             {10pt}%before
-             {6pt}%after
+             {1.1ex}%before
+             {1.0ex}%after             
 
+% \titleformat{\paragraph}% which section
+%             {\fontsize{11}{11}\raggedright\paragraphfont\itseries\color{black}}% section label
+%             {\fontsize{11}{11}\raggedright\paragraphfont\color{black}\theparagraph~}% section number
+%             {1ex}% separator space
+%             {#1} %before code
+% \titlespacing{\paragraph}{0pt}%left
+%              {10pt}%before
+%              {6pt}%after
 \titleformat{\paragraph}% which section
-            {\fontsize{11}{11}\raggedright\paragraphfont\itseries\color{black}}% section label
-            {\fontsize{11}{11}\raggedright\paragraphfont\color{black}\theparagraph~}% section number
+            {\normalsize\raggedright\paragraphfont\itseries\color{black}}% section label
+            {\normalsize\raggedright\paragraphfont\color{black}\theparagraph~}% section number
             {1ex}% separator space
             {#1} %before code
 \titlespacing{\paragraph}{0pt}%left
-             {10pt}%before
-             {6pt}%after
-
+             {1.1ex}%before
+             {1.0ex}%after
+             
 %\titleformat{\appendix}
 %            {\fontsize{20}{15}\bfseries\sectionfont\raggedright\color{blue}}% section label
 %            {\fontsize{20}{15}\raggedright\bfseries\sectionfont\color{blue}\thesection~}% section number
@@ -137,18 +196,20 @@
 %            {\MakeUppercase{#1}} %before code
 \setlength{\parindent}{0pt}
 
-\usepackage{apptools, etoolbox}
-\newcommand\appendix{\par   % line 581
-  \setcounter{section}{0}% 
-  \setcounter{subsection}{0}%
-  \gdef\@sectapp{\appendixname}%
-  \gdef\thesection{\@Alph\c@section}}
 
-\newcommand\appendixname{APPENDIX} % line 784
 
-\makeatletter
-\patchcmd{\@section}{\protect {SECTION }}{\ifappendix{APPENDIX }\else{SECTION }\fi}{}{}
-\makeatother
+%\usepackage{apptools, etoolbox}
+%\newcommand\appendix{\par   % line 581
+%  \setcounter{section}{0}% 
+%  \setcounter{subsection}{0}%
+%  \gdef\@sectapp{\appendixname}%
+%  \gdef\thesection{\@Alph\c@section}}
+
+%\newcommand\appendixname{APPENDIX} % line 784
+
+%\makeatletter
+%\patchcmd{\@section}{\protect {SECTION }}{\ifappendix{APPENDIX }\else{SECTION }\fi}{}{}
+%\makeatother
 
 
              

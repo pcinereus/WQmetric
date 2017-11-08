@@ -1,0 +1,29 @@
+  \arrayrulecolor[rgb]{0.06,0.25,0.49}
+ \LTcapwidth=\linewidth
+ \setlength\aboverulesep{0pt}\setlength\belowrulesep{0pt}
+ \setlength\cmidrulekern{1pt}\setlength\cmidrulewidth{1pt}
+ \renewcommand\arraystretch{1.2}\setlength\tabcolsep{5pt}
+ \begin{table}[h]\caption{Summary of used data sources.}\label{tab:sources}
+ %\begin{center}
+ \scriptsize
+ \begin{tabular}{
+ !{\color[rgb]{0.06,0.25,0.49}\VRule[1pt]} p{6em}
+ !{\color[rgb]{0.06,0.25,0.49}\vline} l
+ !{\color[rgb]{0.06,0.25,0.49}\vline} l
+ !{\color[rgb]{0.06,0.25,0.49}\VRule[1pt]}
+ }
+ \arrayrulecolor[rgb]{0.06,0.25,0.49}\specialrule{1pt}{0pt}{0pt} %top border
+ \rowcolor[rgb]{0.53,0.62,0.74} 
+ \multicolumn{1}{!{\color[rgb]{0.06,0.25,0.49}\VRule[1pt]}l}{\whiteHeader{{Source}}} & 
+ \multicolumn{1}{l}{\whiteHeader{{Custodian}}} & 
+ \whiteHeader{{Description}}\\ 
+ \cmidrule{1-3} 
+AIMS Insitu & AIMS & AIMS inshore monitoring program Niskin data \\ 
+   \cline{1-3}AIMS FLNTU & AIMS & AIMS inshore monitoring program FLNTU logger data \\ 
+   \cline{1-3}Satellite & BOM & BOM: Catalog http://ereeftds.bom.gov.au/ereefs/tds/catalog/ereef/mwq/P1D/2002/catalog.html \\ 
+   \cline{1-3}eReefs & eReefs & \textcolor{red}{provide a description in ../parameters/sources.csv} \\ 
+   \cline{1-3}eReefs926 & eReefs & eReefs: http://dapds00.nci.org.au/thredds/catalog/fx3/gbr4\_bgc\_926/catalog.html \\ 
+   \bottomrule
+ \end{tabular}
+ %\end{center}
+ \end{table}
