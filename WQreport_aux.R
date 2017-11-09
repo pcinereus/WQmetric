@@ -592,6 +592,13 @@ ggsave('figures/Exploratory_Data_Analysis/FLNTU/flntu_temporal.png',grid.arrange
 
 
 
+
+system("cp Tables/comp.all.sum_rmse.max.tex tables/comp.all.sum_rmse.max.tex")
+system("cp Tables/comp.all.sum_mae.max.tex tables/comp.all.sum_mae.max.tex")
+system("cp Tables/comp.all.sum_mpe.max.tex tables/comp.all.sum_mpe.max.tex")
+
+
+
 ## Copy figures to repo
 
 system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Maps/Map_region_waterbody_small.pdf" "figures/Maps/Map_region_waterbody.pdf"'))
@@ -615,3 +622,172 @@ for (s in 1:nrow(lookup)) {
         #system(paste0('convert -resize 900x "../data/eda/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.png" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small1.png"'))        
     }
 }
+
+#system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Analyses at AIMS niskin sites/Observations/Satellite_vs_Niskin_locations_5km_small.pdf" "Figures/Satellite_vs_Niskin_locations_5km.pdf"'))
+system(paste0('convert -resize 100% "Figures/Satellite_vs_Niskin_locations_5km.pdf" "figures/Analyses at AIMS niskin sites/Observations/Satellite_vs_Niskin_locations_5km_small.png"'))
+system(paste0('convert -resize 100% "Figures/eReefs_vs_Niskin_locations_5km.pdf" "figures/Analyses at AIMS niskin sites/Observations/eReefs_vs_Niskin_locations_5km_small.png"'))
+for (m in c('chl','nap','sd')) {
+    system(paste0('convert -resize 100% "Figures/',m,'_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural.pdf" "figures/Analyses at AIMS niskin sites/Observations/',m,'_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural_small.png"'))
+}
+
+
+for (i in c('GL_10.R_1000','GL_100.R_1000','GL_1.R_10','GL_10.R_10')) {
+    #system(paste0("cp 'Figures/sensitivity.Group_1.",i,".pdf' 'figures/Sensitivity of indices/sensitivity.Group_1.",i,"_small.pdf'"))
+    system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Sensitivity of indices/sensitivity.Group_1.',i,'_small.pdf"  "Figures/sensitivity.Group_1.',i,'.pdf"'))
+}
+
+
+
+for (idx in c('.idx_Binary_year','.idx.year','.idx_fsMAMP4_year')) {
+    print(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_natural.pdf"'))
+    #system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_log.pdf" "figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_log_small.png"'))
+    #system(paste0('cp "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_log.png" "figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_log.png"'))
+    system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_natural_small.pdf"  "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_natural.pdf"'))
+    system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/FLNTU/eda',idx,'.chl_Wet Tropics__Open Coastal_flntu_natural_small.pdf"  "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_flntu_natural.pdf"'))
+    system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/Satellite/eda',idx,'.chl_Wet Tropics__Open Coastal__natural_small.pdf"  "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal__natural.pdf"'))
+    system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/eReefs/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs_natural_small.pdf"  "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs_natural.pdf"'))
+    system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/eReefs926/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs926_natural_small.pdf"  "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs926_natural.pdf"'))
+
+}
+
+for (idx in c('.idx.spatial.year','.idx_Binary_spatial.year','.idx_fsMAMP4_spatial.year')) {
+    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_naturalA.pdf" "figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_naturalA_small.png"'))
+    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal__naturalA.pdf" "figures/Exploratory_Data_Analysis/Satellite/eda',idx,'.chl_Wet Tropics__Open Coastal__naturalA_small.png"'))
+    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs_naturalA.pdf" "figures/Exploratory_Data_Analysis/eReefs/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs_naturalA_small.png"'))
+    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs926_naturalA.pdf" "figures/Exploratory_Data_Analysis/eReefs926/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs926_naturalA_small.png"'))
+
+    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Dry Tropics__Midshelf_niskin_naturalA.pdf" "figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.chl_Dry Tropics__Midshelf_niskin_naturalA_small.png"'))
+    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Dry Tropics__Midshelf_flntu_naturalA.pdf" "figures/Exploratory_Data_Analysis/FLNTU/eda',idx,'.chl_Dry Tropics__Midshelf_flntu_naturalA_small.png"'))
+    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Dry Tropics__Midshelf__naturalA.pdf" "figures/Exploratory_Data_Analysis/Satellite/eda',idx,'.chl_Dry Tropics__Midshelf__naturalA_small.png"'))
+    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Dry Tropics__Midshelf_eReefs_naturalA.pdf" "figures/Exploratory_Data_Analysis/eReefs/eda',idx,'.chl_Dry Tropics__Midshelf_eReefs_naturalA_small.png"'))
+    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Dry Tropics__Midshelf_eReefs926_naturalA.pdf" "figures/Exploratory_Data_Analysis/eReefs926/eda',idx,'.chl_Dry Tropics__Midshelf_eReefs926_naturalA_small.png"'))
+}
+
+lookup = data.frame(src=c('niskin','flntu','','eReefs','eReefs926'),
+                    path=c('AIMS insitu','AIMS FLNTU','Satellite','eReefs','eReefs926'))
+for (s in 1:nrow(lookup)) {
+    #probably better to just copy the file
+    #system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Indices/Compare indices/All_sources_',lookup$path[s],'.Annual_measure.chl_zone_small.pdf" "Figures/All_sources_',lookup$path[s],'.Annual_measure.chl_zone.pdf"'))
+    system(paste0('cp "Figures/All_sources_',lookup$path[s],'.Annual_measure.chl_zone.pdf" "figures/Indices/Compare indices/All_sources_',lookup$path[s],'.Annual_measure.chl_zone_small.pdf"'))    
+}
+
+for (idx in c('fsMAMP')) {
+    for (m in c('chl','nap','sd','NOx')) {
+    #system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Indices/Compare sources/All_indicies_',idx,'.Annual_measure.chl_zone_small.pdf" "Figures/All_indicies_',idx,'.Annual_measure.chl_zone.pdf"'))
+        system(paste0('cp "Figures/All_indicies_',idx,'.Annual_measure.',m,'_zone.pdf" "figures/Indices/Compare sources/All_indicies_',idx,'.Annual_measure.',m,'_zone_small.pdf"'))    
+    }
+}
+
+
+system(paste0('cp "Figures/simple_eReefs_fsMAMP.Annual_measure.zone_Grade_Uniform.pdf" "figures/Indices/Compare measures/simple_eReefs_fsMAMP.Annual_measure.zone_Grade_Uniform_small.pdf"'))
+system(paste0('cp "Figures/All_excludes_index_fsMAMP_eReefs.Annual_indicator_zone_.pdf" "figures/Indices/Compare includes/All_excludes_index_fsMAMP_eReefs.Annual_indicator_zone_small.pdf"'))    
+
+for (m in c('chl','nap','sd','NOx')) {
+    system(paste0('convert -resize 150% "Figures/spatial_map__fsMAMP.Annual_measure.',m,'.site.pdf" "figures/Indices/Maps/Measurement level/Satellite/spatial_map__fsMAMP.Annual_measure.',m,'.site_small.png"'))
+    system(paste0('convert -resize 150% "Figures/spatial_map_eReefs_fsMAMP.Annual_measure.',m,'.site.pdf" "figures/Indices/Maps/Measurement level/eReefs/spatial_map_eReefs_fsMAMP.Annual_measure.',m,'.site_small.png"'))
+    system(paste0('convert -resize 150% "Figures/spatial_map_eReefs926_fsMAMP.Annual_measure.',m,'.site.pdf" "figures/Indices/Maps/Measurement level/eReefs926/spatial_map_eReefs_fsMAMP.Annual_measure.',m,'.site_small.png"'))
+}
+
+for (m in c('chl','nap','sd','NOx')) {
+    system(paste0('cp "Figures/spatial_map__fsMAMP.Annual_measure.',m,'.site.png" "figures/Indices/Maps/Measurement level/Satellite/spatial_map__fsMAMP.Annual_measure.',m,'.site.png"'))
+    system(paste0('cp "Figures/spatial_map_eReefs_fsMAMP.Annual_measure.',m,'.site.png" "figures/Indices/Maps/Measurement level/eReefs/spatial_map_eReefs_fsMAMP.Annual_measure.',m,'.site.png"'))
+    system(paste0('cp "Figures/spatial_map_eReefs926_fsMAMP.Annual_measure.',m,'.site.png" "figures/Indices/Maps/Measurement level/eReefs926/spatial_map_eReefs926_fsMAMP.Annual_measure.',m,'.site.png"'))
+                                        #system(paste0('cp "Figures/spatial_map__fsMAMP.Annual_measure.',m,'.site.pdf" "figures/Indices/Maps/Measurement level/Satellite/spatial_map__fsMAMP.Annual_measure.',m,'.site.pdf"'))
+                                        #system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Indices/Maps/Measurement level/Satellite/spatial_map__fsMAMP.Annual_measure.',m,'.site.pdf"  "Figures/spatial_map__fsMAMP.Annual_measure.',m,'.site.pdf"'))
+}
+
+
+## Beta distribution
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+x = seq(0,1,len=1000)
+b1 = dbeta(x, 0.5,0.5)
+b2 = dbeta(x, 5,1)
+b3 = dbeta(x, 1,3)
+b4 = dbeta(x, 2,2)
+b5 = dbeta(x, 2,5)
+dat = data.frame(x, b1,b2,b3,b4,b5) %>% gather(key='Shape', value='Value', b1,b2,b3,b4,b5) 
+
+g=ggplot(dat, aes(y=Value, x=x)) + geom_line(aes(color=Shape)) +ylim(c(0,5)) +
+theme_classic() + theme(legend.position=c(0.5,1),legend.justification=c(0.5,1), axis.title.x=element_blank()) +
+scale_y_continuous('Probability density function') +
+scale_color_manual(name='',values=c('red','blue','green','purple','orange'),
+labels=expression({alpha==0.5}*', '*{beta==0.5},
+{alpha==5}*', '*{beta==1},
+{alpha==1}*', '*{beta==3},
+{alpha==2}*', '*{beta==2},
+{alpha==2}*', '*{beta==5}
+))
+ggsave('figures/Diagrams/beta.pdf', g, width=4, height=3, units='in')
+
+
+## Control charts
+library(ggplot2)
+library(gridExtra)
+## Uniform
+trafficLightColors = colorRampPalette(c('#ED1C24','#F47721','#F0C918','#B0D235','#00734D'))
+
+dat = data.frame(Score = seq(0,1,length=1000))
+g1=ggplot(dat, aes(y=1, x=Score)) +
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0, xmax=0.2, fill=trafficLightColors(5)[1])+
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0.2, xmax=0.4, fill=trafficLightColors(5)[2])+
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0.4, xmax=0.6, fill=trafficLightColors(5)[3])+
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0.6, xmax=0.8, fill=trafficLightColors(5)[4])+
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0.8, xmax=1, fill=trafficLightColors(5)[5])+
+    annotate(geom='text', x=seq(0.1,0.9,by=0.2), y=0.5,label=rev(LETTERS[1:5]), size=20, color='white',fontface = "bold")+
+    scale_x_continuous('', breaks=seq(0,1,by=0.2),expand=c(0,0)) +
+    scale_y_continuous('', breaks=100,expand=c(0,0)) +
+    theme_classic(14) +
+    theme(axis.title.y=element_blank(),axis.text.y=element_blank(),
+          plot.margin=unit(c(0.1,1,0.5,1), 'lines')) +
+    ggtitle('a) Uniform')
+
+## MMP   
+g2=ggplot(dat, aes(y=1, x=Score)) +
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0, xmax=0.25, fill=trafficLightColors(5)[1])+
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0.25, xmax=0.5, fill=trafficLightColors(5)[2])+
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0.5, xmax=0.5 + 1/3*0.5, fill=trafficLightColors(5)[3])+
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0.5 + 1/3*0.5, xmax=0.5 + 2/3*0.5, fill=trafficLightColors(5)[4])+
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0.5 + 2/3*0.5, xmax=1, fill=trafficLightColors(5)[5])+
+    annotate(geom='text', x=c(0.25/2,0.5 - 0.25/2, 0.5 + 1/6*0.5, 0.5 + 3/6*0.5,0.5 + 5/6*0.5) , y=0.5,label=rev(LETTERS[1:5]), size=20, color='white',fontface = "bold")+
+    scale_x_continuous('', breaks=c(0.25,0.5, 0.5 + 1/3*0.5, 0.5 + 2/3*0.5, 1),expand=c(0,0)) +
+    scale_y_continuous('', breaks=100,expand=c(0,0)) +
+    theme_classic(14) +
+    theme(axis.title.y=element_blank(),axis.text.y=element_blank(),
+          plot.margin=unit(c(0.1,1,0.5,1), 'lines'))+
+    ggtitle('b) AIMS Marine Monitoring Water Quality and Coral Report Cards')
+
+## GHHP
+g3=ggplot(dat, aes(y=1, x=Score)) +
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0, xmax=0.25, fill=trafficLightColors(5)[1])+
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0.25, xmax=0.5, fill=trafficLightColors(5)[2])+
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0.5, xmax=0.65, fill=trafficLightColors(5)[3])+
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0.65, xmax=0.85, fill=trafficLightColors(5)[4])+
+    annotate(geom='rect',ymin=0, ymax=1,xmin=0.85, xmax=1, fill=trafficLightColors(5)[5])+
+    annotate(geom='text', x=c(0.25/2,0.5 - 0.25/2, mean(c(0.5,0.65)), mean(c(0.65,0.85)), mean(c(0.85,1))) , y=0.5,label=rev(LETTERS[1:5]), size=20, color='white',fontface = "bold")+
+    scale_x_continuous('', breaks=c(0.25,0.5, 0.65,0.85, 1),expand=c(0,0)) +
+    scale_y_continuous('', breaks=100,expand=c(0,0)) +
+    theme_classic(14) +
+    theme(axis.title.y=element_blank(),axis.text.y=element_blank(),
+          plot.margin=unit(c(0.1,1,0.5,1), 'lines'))+
+    ggtitle('c) Gladstone Healthy Harbour Partnership Environmental Report Card')
+
+## Great Lakes Council
+g4=ggplot(dat, aes(y=1, x=Score)) +
+    geom_segment(aes(yend=0, xend=Score, y=1-0.1, color=Score), show.legend=FALSE)+
+    scale_color_gradientn(colors=trafficLightColors(5)) +
+    annotate(geom='text', x=c(0.4/2,mean(c(0.4,0.56)), mean(c(0.56,0.73)), mean(c(0.73,0.93)), mean(c(0.93,1))) , y=0.45,label=rev(LETTERS[1:5]), size=18, color='white',fontface = "bold")+
+    annotate(geom='segment', x=c(0,0.4,0.56,0.73,0.93,1), xend=c(0,0.4,0.56,0.73,0.93,1), y=0, yend=1.2) +
+    annotate(geom='text', x=c(0.4/2,mean(c(0.4,0.56)), mean(c(0.56,0.73)), mean(c(0.73,0.93)), mean(c(0.93,1))), y=1.0, label=c('5%','15%','30%','30%','20%'),vjust=0) +
+    scale_x_continuous('', breaks=c(0,0.4,0.56,0.73,0.93,1),expand=c(0,0)) +
+    scale_y_continuous('', breaks=100,expand=c(0,0)) +
+    theme_classic(14) +
+    theme(axis.title.y=element_blank(),axis.text.y=element_blank(),
+          plot.margin=unit(c(0.1,1,0.5,1), 'lines'))+
+    ggtitle('d) MidCoast Council Waterway and Catchment Report')
+
+ggsave('figures/Diagrams/controlcharts.pdf', grid.arrange(g1,g2,g3,g4,ncol=1), width=10, height=7.5, units='in', device=cairo_pdf)
+
+
+system('cp Tables/GradeTypeComparison.tex tables/GradeTypeComparison.tex')

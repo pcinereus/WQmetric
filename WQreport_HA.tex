@@ -1,0 +1,443 @@
+\subsection{Theoretical framework} To facilitate the integration of additional input Measures into
+the report card scores (such as additional Physical or Chemical), or even additional Sub-indicators
+(such as sediment metals, aquaculture yields etc), we can defined a hierarchical structure in which
+Measures (such as Chlorpohyll-a, NOx, sediment aluminum and yield etc) are nested within appropriate
+Sub-indicators.  In turn, these Sub-indicators are nested within Indicators.
+
+By progressively abstracting away the details of the Measures and Sub-indicators, a more focused
+narrative can be formulated around each level of the hierarchy. For example, when discussing the
+current state (and trend in state) of the Water Quality Indicator, rather than needing to discuss
+each individual constituent of Water Quality, high-level Grades are available on which to base
+high-level interpretations.  More detailed explorations are thence revealed as required by exploring
+the Grades at progressively finer scales of the hierarchy.  Moreover, the hierarchical structure
+offers great redundancy and thus flexibility to add, remove and exchange individual measures.
+   
+Similar arguments can be made for a spatial hierarchy in which Sites are nested within Zones which
+in turn are nested within the Whole GBR.
+    
+The purpose of aggregation is to combine together multiple items of data.  For Nesp 3.2.5, the
+report card is informed by a triple hierarchical data structure in which Daily observations are
+nested within Seasonal and Annual aggregates, Measures are nested within Sub-indicators which are
+nested in Indicators and Sites are nested within Zones (see Figure \ref{fig:hierarchies}).
+
+
+\begin{figure}[h]
+\begin{center}\includegraphics[width=0.5\linewidth]{../Figures/Diagrams/hierarchies.pdf}}\end{center}
+\caption{Temporal, measure and spatial aggregation hierarchy}\label{fig:hierarchies}
+\end{figure}
+
+
+Although the triple hierarchy (temporal, Spatial and Measurement), does offer
+substantial redundancy and power advantages, it also introduce the
+complexity of how to combine the hierarchies into a single hierarchical
+aggregation schedule. Table \ref{tab:complexity} (a fabricated example),
+illustrates this complexity for aggregating across Spatial and Measure
+scales when data availability differs. This simple example demonstrates
+how different aggregation schedules can result in different Zone Indicator scores:
+
+
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item calculating Zone 1 Indicator Score as the average of the Site level Water Quality Scores
+prioritizes that the Zone 1 Indicator Score should reflect the average of the Water Quality
+Indicator Scores for the Site. This routine will bias the resulting Zone 1 Water Quality Indicator
+Score towards Sub-indicators represented in more Sites.  The current MMP sampling design is
+unbalanced (some Zones have more Sites than others and not all Measures are observed in all Sites),
+and there is no guarantee that the design will be maintained over time. If for example, Chemical
+Measures were not available for certain Zones, then the Whole GBR Water Quality Indicator Score will
+be biased towards Water Clarity Sub-indicators.
+\item calculating Zone 1 Water Quality Indicator Score as the average of the Zone 1 level
+Sub-indicator Scores prioritizes equal contributions of Sub-indicators to the Indicator Score at the
+expense of being able to relate Zone 1 Scores to the corresponding Site Scores.
+\end{itemize}
+
+The above becomes even more complex when the temporal dimension is include..
+
+\begin{table}[htb]
+\centering\scriptsize\scriptsize
+\begin{minipage}{0.57\linewidth}
+\caption{Fabricated illustration of the discrepancies between total means (i.e. Zone 1 Indicator Score) generated from row means (Site Sub-indicator Scores) and column means (Zone 1 Sub-indicator Scores).}\label{tab:complexity}
+\scriptsize
+\begin{tabular}{l|cc||c}
+\toprule
+&\multicolumn{2}{c}{\textbf{Sub-indicators}}&\\
+\cmidrule(rl){2-3}
+\textbf{Site}&\textbf{Water Clarity}&\textbf{Nutrients}&\textbf{Indicator}\\
+\midrule
+1&5&2&3.50\\
+2&6&&6.00\\
+3&6&4&5.00\\
+\midrule
+Zone 1&5.67&3.00&X\\
+\bottomrule
+\end{tabular}\\
+If X (mean) is calculated from the three row means = 4.83\\
+If X (mean) is calculated from the two column means = 4.33
+\end{minipage}
+\end{table}
+
+
+
+An additional complication is how the different hierarchies integrate together.  Specifically, what
+level of data should be aggregated first and at what point do the aggregations of one hierarchy feed
+into other hierarchies. For example, should observations first be aggregated from Daily to Seasonal
+or Annual, then aggregated from Site level to Zone level and then finally aggregated from Measure to
+Indicator?  Some possible configurations are presented in Figure \ref{fig:hier}.
+
+
+\begin{landscape}
+\begin{figure}[h]
+\includegraphics[width=0.49\linewidth]{figures/Diagrams/hier.pdf}
+\includegraphics[width=0.49\linewidth]{figures/Diagrams/hier1.pdf}\\\\[1em]
+\includegraphics[width=0.49\linewidth]{figures/Diagrams/hier2.pdf}
+\includegraphics[width=0.49\linewidth]{figures/Diagrams/hier3.pdf}
+\caption{Schematic illustrating four possible aggregation routines through the combination of Temporal (Daily, Seasonal and Annual), Spatial (Site, Zone) and Measure 
+(Measure, Sub-indicator, Indicator) nodes of the triple hierarchical
+aggregation routine associated with the GBR Report Card. Aggregation directions between 
+nodes are signified by arrows and the main aggregation pathway through
+the routines is illustrated by the green polygon. }\label{fig:hier}
+\end{figure}
+\end{landscape}
+       
+
+
+
+To maximize information retention throughout a series of aggregations, it is preferable to aggregate
+distributions rather than single properties of those distributions (such as means). The simplest way
+to perform a hierarchy of aggregations is to interactively calculate the means (or median) of items
+(means of means etc). At each successive aggregation level only very basic distributional summaries
+(such as the mean and perhaps standard deviation) are retained, the bulk of upstream information is
+lost. Alternatively, more complex methods that involve combining data or probability distributions
+can be effective at aggregating data in a way that propagates rich distributional properties
+throughout a series of aggregations.
+
+Importantly, if the purpose of aggregation is purely to establish a new point estimate of the
+combined items, a large variety of methods essentially yield the same outcomes. On the other hand,
+if the purpose of aggregation is also to propagate a measure of uncertainty or confidence in the
+point estimate through multiple hierarchical levels of aggregation (as is the case here), then the
+different methodologies offer differing degrees of flexibility and suitability.
+
+Hierarchical aggregations are essentially a series of steps that sequentially combine distributions
+(which progressively become more data rich). The resulting distribution formed at each step should
+thereby reflect the general conditions typified by its parent distributions and by extension, each
+of the distributions higher up the hierarchy.
+
+Numerous characteristics can be estimated from a distribution including the location (such as mean
+and median) and scale (such as variance and range). For the current project, the mean and variance
+were considered the most appropriate\footnote{The aggregations typically involve some Measures with
+a small number of unique observations (and thus indices) and thus means and variances provide
+greater sensitivity than medians and ranges.  Moreover, the indexing stage effectively removes
+outliers and standardizes the scale range thereby reducing the need for robust estimators.}
+distributional descriptions and from these estimates Grades and measures of confidence can be
+respectively derived. Hence the numerical summaries (mean and variance) at any stage of the
+hierarchical aggregation are a byproduct rather than the sole property of propagation.
+
+
+\subsubsection{Bootstrap aggregation}
+
+Although some of the items to be aggregated together might initially comprise only a few values (or
+even a single value), it is useful to conceptualize them as continuous distributions. For example,
+when aggregating multiple \emph{Measures} (such as all Water Quality Chemicals) together to generate
+a (\emph{Site} level) \emph{Sub-indicator} average, each \emph{Measure} in each \emph{Site} can be
+considered a distribution comprising the single Score for that \emph{Measure}. Aggregation then
+involves combining together the multiple distributions into a single amalgam (by adding the
+distributions together, see Figure \ref{fig:bootstrap}). Similarly, when aggregating at the
+\emph{Indicator} level across \emph{Site} to generate \emph{Zone} summaries for each
+\emph{Indicator}, \emph{Site} distributions are respectively added together to yield a single
+distribution per \emph{Zone}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{figures/Diagrams/bootstrap.pdf}
+\caption{Illustration of Bootstrapped aggregation of three distributions.  Simple summary statistics (mean, variance and 95\% confidence interval presented for each distribution).}\label{fig:bootstrap}
+\end{figure}
+
+
+If the distributions being aggregated are all proportional distributions (e.g.~density
+distributions), adding them altogether is trivially simple. However, if, rather than actual
+distributions, the items to be aggregated are actually just small collections of values (as is the
+case for many of the discrete Measures here) or even large, yet unequally populous collections of
+values (as could be the case for Continuous Flow Monitoring with missing or suspect observations),
+then simply aggregating the distributions together will result in amalgams that are weighted
+according to the size of the collections (larger collections will have more influence). For example,
+if we were aggregating together three \emph{Zones} (to yield Whole GBR estimates), one of which
+comprised twice as many Sites, simple aggregation of distributions would result in a distribution
+that was more highly influenced by the Zone with the more \emph{Sites}. Similarly, when aggregating
+from the level of Sub-indicator to the level of Indicator, the resulting Indicator would be biased
+towards the Sub-indicator with the most Measures.  Whilst this may well be a useful property
+(e.g.~stratified aggregation), it may also be undesirable.
+
+Bootstrapping is a simulation process that involves repeated sampling (in this case with
+replacement) of a sample set with the aim of generating a bootstrap sample from a distribution.
+This bootstrap sample can be used to estimate the underlying probability distribution function that
+generated the data as well as any other summary statistics.  Importantly, bootstrapping provides a
+way to generate distributions that are proportional and thus un-weighted by the original sample
+sizes thereby facilitating un-weighted aggregation\footnote{technically, all equally weighted rather
+than un-weighted}.  Bootstrapped distributions can be aggregated (added together) to yield
+accumulated child distributions that retain the combined properties of both parents (see Figure
+\ref{fig:bootstrap}). As a stochastic process, repeated calculations will yield slightly different
+outcomes. Nevertheless, the more bootstrap samples are collected, the greater the bootstrap
+distributions will reflect the underlying Score distribution and provided the number of drawn
+samples is sufficiently large (e.g. 10,000 re-samples), repeated outcomes will converge.
+
+To reiterate, the advantage of bootstrapping data before concatenating (or averaging) versus simply
+concatenating data from multiple sources together, is to ensure that source data are all of exactly
+the same sample size (so as to not weight more heavily towards the more populous
+source(s)\footnote{Such weightings should be handled in other ways if at all}).  Bootstrapping also
+provides a mechanism for propagating all distribution information throughout an aggregation
+hierarchy and ensures that estimates of variance derived from child distributions are on a
+consistent scale\footnote{Variance is inversely proportional to sample size}. The latter point is
+absolutely critical if variance is going to be used to inform a Confidence Rating system and
+confidence intervals.
+
+Minimum operator procedures are supported by filtering on the lowest performed indicator prior to
+bootstrapping. Importantly, the bootstrapping routine simply provides a mechanism to collate all
+sources together to yield a super distribution. Thereafter, the joint distribution can be summarized
+in what ever manner is deemed appropriate (arithmetic, geometric, harmonic means, medians, variance,
+range, quantiles etc). Moreover, different levels of the aggregation can be summarized with
+different statistics if appropriate.
+
+\subsubsection{Beta approximation}
+
+Whilst the bootstrap aggregation approach described above does offer a robust way to combine data
+across scales and sources, for large data sets, it does impose large computational and storage
+burdens.  For such cases (large data such as remote sensing), index distributions can be
+approximated by beta distributions.  The beta distribution is defined on the interval [0,1] and is
+parameterized by two positive shape parameters ($\alpha$, $\beta$) according to the following:
+$$
+f(x;\alpha, \beta) = \frac{\Gamma(\alpha +
+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}
+$$
+
+A beta function can manifest as many different shapes and as all of these are described by just two
+shape parameters.  Therefore, rather than store all the bootstrapped values for each distribution,
+we can alternatively approximate each distribution by a beta and store only the defining shape
+parameters of each distribution.  When combining, rather than randomly sample 10,000 stored values
+of each distribution, we simple resample 10,000 random draws from each beta
+distribution\footnote{Unfortunately there is no closed-form general formula for the sum of multiple
+independent beta distributions.}.  The combined distribution can then be approximated by a beta
+distribution and so on.
+
+\begin{figure}[ht]
+\begin{center}\includegraphics{figures/Diagrams/beta.pdf}\end{center}
+\caption{Beta probability densities}\label{fig:beta}
+\end{figure}
+
+\subsubsection{Weights}
+
+
+
+Standard bootstrapping yields equally weighted distributions, however, specific weighting schemes
+can also be easily applied by bootstrapping in proportion to the weights. For example, to weight one
+parent twice as high as another, simply collect twice as many re-samples from the first
+distribution. To ensure that all resulting distributions have the same size (by default 10,000
+items), the number of bootstrap samples collected ($n$) from each of the ($p$) parent distributions
+($i$), given the weights ($w_i$) is calculated as:
+$$
+n_i=\ceil{(S/p)\times w_i}
+$$ 
+where $S$ is the target size (10,000) and $\ceil{.}$ indicates the ceiling.  Qualitative data (such
+as ratings) can also be incorporated by enumerating the categories before bootstrapping.
+
+
+In addition to allowing expert driven weights that govern the contribution of different items during
+aggregations, it is possible to weight according to relative spatial areas during spatial
+aggregations.  Currently, all Sites are equally weighted when aggregating to Zone level and all
+Zones equal when aggregating to Whole of GBR level.  That means that small Zones have an equal
+contribution as large Zones despite representing a smaller fraction of the water body.  Area based
+weights could be applied such that Sites and Zones contribute in proportion to relative areas.
+
+Weights are defined by a user editable configuration file that is similar in structure to the Water
+Quality thresholds file.
+
+
+\subsubsection{Expert interventions}
+
+The ability for experts and Report Card managers to intervene (exclude or overwrite) Scores/Grades
+at any Spatial/Measure scale is essential to maintain the quality of a Report Card in the event of
+unrepresentative or suspect data.  The current system is able to support expert interventions in the
+form of exclusions and overwrites.  For example, after reviewing the QAQC, an expert can elect to
+exclude one or more Measures (or Subindicators etc) from one or more spatial scales.  Such
+interventions are specified via a user editable configuration files\footnote{Since aggregation
+occurs across two hierarchies (the Measure hierarchy and the Spatial hierarchy - see Figures
+\ref{fig:hierarchies} and \ref{fig:hier}), two configuration files are necessary.} (csv) that is
+similar in structure to the Water Quality thresholds file.
+
+The essential component of this configuration file is that it allows a user to specify what Data are
+to be excluded or replaced. These can be at any of the levels of the Measure hierarchy (Measures,
+Sub-indications and Indicators) and any level of the Spatial hierarchy (Sites, Zones and Whole GBR).
+Settings pertaining to levels further along the aggregation hierarchies have precedence. For
+example, if Chemicals are excluded (or overridden) in a particular Zone, then all Chemical Measures
+within all Sites will be excluded irrespective of what the settings are for any specific
+Measure/Site.
+
+\subsubsection{Scores and Grades}
+
+The double hierarchy Bootstrap aggregation described above, yields \textbf{Score} distributions for
+each Measure-level/Spatial-level combination. The location and scale of each distribution can thus
+be described by its mean and variance. Mean \textbf{Scores} are then converted into a simple
+five-point alphanumeric \textbf{Grade} scale (and associated colors) using a control chart (see
+Figure~\ref{fig:control}).
+
+\begin{figure}[ht]
+  \includegraphics[width=\linewidth]{figures/Diagrams/controlcharts.pdf}
+  \caption{Score to grade conversion control charts.  In each case, the scale along the base defines the grade
+  boundaries.}\label{fig:control}
+\end{figure}
+
+The control charts adopted by the AIMS inshore water quality Marine Monitoring Program
+\citep[MMP][]{Lonborg-MMP-2015} and the Gladstone Healthy Harbour Partnership \citep{GHHP-2016} both
+define two levels (Poor and Very Poor) under the Threshold values and three above (Satisfactory,
+Good and Very Good).  The threshold is purposely placed at the boundary of two grades so as to ease
+the distinction between 'pass' and 'fail'.  The major difference between these two charts is that
+whereas the AIMS MMP report card control chart partitions the three better than threshold
+categories, the Gladstone Healthy Harbour Partnership report card control chart employs simpler
+boundary cutoffs around the 'B' grade (although this does result in arbitrarily unequal category
+sizes.
+
+By contrast, the MidCoast Council (formally Great Lakes Council) Waterway and Catchment Report
+\citep{MidCoastCouncil-2016} uses grade boundaries based on historical score distribution quantiles
+associated with definitions of what proportion of total observations (sites) are considered
+'Excellent' (A), 'Good' (B), 'Fair' (C), 'Poor' (D) and 'Very Poor' (Fig.~\ref{fig:control}d).  For
+example, the 'Very Poor' grade was defined as the worst 5\% of sites across the entire State of New
+South Wales and the lowest 5\% of sites has a maximum score of 0.4.  This approach recognizes the
+non-linear spread of scores resulting from their particular metrics and attempts to ensure that
+grades are intuitively interpretable (A grade of A means the site is in Excellent condition).
+Nevertheless, it does necessitate a of historical data and as well as a very specific and agreed
+upon set of a priori condition definitions.
+
+% \begin{table}[ht]
+% \centering\scriptsize\scriptsize
+% \caption{GBR Report Card Grade scale control chart.} 
+% \label{tab:control}
+% \begin{tabular}{rcl}
+%   \toprule
+% {\textbf{Score}} & {\textbf{Grade}} & {\textbf{Description}} \\ 
+%   \midrule
+% $\ge 0.80$ & \cellcolor[HTML]{00734D}{A} & Very Good \\ 
+%   $\ge 0.60, <0.80$ & \cellcolor[HTML]{B0D235}{B} & Good \\ 
+%   $\ge 0.40, <0.60$ & \cellcolor[HTML]{F0C918}{C} & Satisfactory \\ 
+%   $\geq 0.20, < 0.40$ & \cellcolor[HTML]{F47721}{D} & Poor \\ 
+%   $<0.20$ & \cellcolor[HTML]{ED1C24}{E} & Very Poor \\ 
+%    \bottomrule
+% \end{tabular}
+% \end{table}
+
+In each of the above approaches, grade boundaries are usually determined to some extent by expert
+panel to ensure that the range of indices represented by each grade classification is congruent with
+community interpretation of a letter grade report cards. It is far less clear how estimates of
+uncertainty can be incorporated into such a grading scheme in a manner that will be intuitive to
+non-technical audiences. That said, statistical uncertainty is just one of many sources of un-
+certainty that should be captured into a confidence or certainty rating. Hence any expectations of
+presenting uncertainty in a quantitative manner may well be unrealistic anyway.
+
+In the absence of expert opinion, we have elected to adopt a very simple score-grade control chart
+in which the score range is simply partitioned into five equal grades (Fig.~\ref{fig:control}a).
+
+
+\subsubsection{Certainty rating}
+
+Incorporating an estimate of scale (variance) into a certainty or confidence rating necessitates
+re-scaling the estimates into a standard scale. In particular, whereas a scale parameter of high
+magnitude indicates lower degrees of certainty, for a certainty rating to be useful for end users,
+larger numbers should probably represent higher degrees of certainty. Thus, the scaling process
+should also reverse the scale. Furthermore, variance is dependent on the magnitude of the values.
+
+In order to re-scale a scale estimate into a certainty rating, it is necessary to establish the
+range of values possible for the scale estimate. Whilst the minimum is simple enough (it will
+typically be 0), determining the maximum is a little more challenging depending on the aggregation
+algorithm (bootstrapping, Bayesian Network etc). One of the advantages in utilizing proportional
+distributions (such as is the case for a Bayesian Network or a re-sampled bootstrap distribution) is
+that the scale parameter for the single worst case scenario can be devised (once the worst case
+scenario has been determined) independent of sample sizes or weightings. In most situations this is
+going to be when the distribution comprises equal mass at (and only at) each of the two extremes
+(for example, values of just 0 and 1).
+
+The measure of confidence rating discussed above is purely an objective metric derived from the
+variance in the aggregation hierarchy. It is completely naive to issues such as missing data,
+outliers and Limit of Detection issues - the influences of which on a confidence rating are
+necessarily subjective. A full Confidence Rating would combine these objective variance component
+with additional subjective considerations such as climatic and disturbance information, and the
+perceived influence of missing, Limit of Detection and outlying data. Hence, the statistical scaled
+statistical variance would form just one component in the Confidence Rating system.
+
+The bootstrap aggregation method provides a mechanism for estimating variance from which to build
+such an expert considered Confidence Rating system.
+  
+
+Table~\ref{tab:GradeTypeComparisons} presents the Water Quality Indicator Scores and associated
+Grades for each Zone based on three of the grade control chart types described in
+Figure~\ref{fig:control} for the eReefs data indexed using the fsMAMP formulation.  Whilst there is
+some agreement between the different grade types, in general, the Uniform type yields higher grades
+than either MMP or GHHP.
+
+\input{tables/GradeTypeComparison}                                 
+
+
+\subsubsection{Confidence intervals}
+
+Confidence intervals (CI) represent the intervals in which we have a certain degree of confidence
+(e.g. 95\%) that repeated estimates will fall.  Hence the 95\% CI of the mean is the range defined
+by the quantiles representing 95\% of repeated estimates of the mean.
+
+To calculate 95\% confidence intervals for bootstrap aggregated distributions (e.g. Site 1/Chemical
+distribution), we repeatedly\footnote{The more repeated draws the closer the distribution of means
+will converge.  For the current project, the number of repeated draws is 10,000.}  draw a single
+sample from each of the constituent distributions (e.g. a single value from the Site 1 Ammonia,
+Chlorophyll-a and NOx distributions) and from each set of draws, calculate the weighted
+\footnote{Weights according to the weights defined for that level of the aggregation hierarchy} mean
+of the values.  The 95\% CI is thus calculated as the quantiles (p=0.025 and p=0.975) of the means.
+
+\subsection{Summary of adopted methodologies}
+
+The aggregation schedule can be summarized as:
+
+\tikzexternaldisable
+
+\begin{tikzpicture}
+\node [fill=shade,rounded corners=5pt, thick, draw]
+{
+\begin{minipage}[t]{\textwidth}
+\textbf{A. Calculation of Zone level Score and Grades}
+\begin{enumerate}
+\item Collect raw data (= \textbf{Measures}) at each fixed monitoring site and compare individual observations to associated threshold/benchmark/reference or set of expectation ranges
+\item Create indexed data as an expression of degree of difference (\textit{scaled modified amplitude method}) to yield a \textbf{Score} for each \textbf{Measure} per sampling location (e.g. Site)
+(applies to \textit{Measures} in all \textit{Indicators}, Water Quality).  In the absence of thresholds (e.g. Measures within Plankton), observed data are rescaled to a range defined by historical quantiles (20th and 80th percentiles) for each Measure.
+\item Apply any expert opinion interventions
+\item Combine \textbf{Measure} Scores into \textbf{Site}-level \textbf{Sub-indicator} Scores by averaging taking into account any weightings, i.e. aggregate into observation-level Sub-indicator Scores.  This step involves \textbf{Bootstrapping} each input to distributions of 10,000 re-samples (or fewer if weighted), 
+combining distributions and finally Bootstrapping again into a single 10,000 size distribution. 
+\item Combine \textbf{Sub-indicator} Scores into \textbf{Site}-level \textbf{Indicator} Scores by averaging, i.e. aggregate into Site-level Indicator Scores.
+\item Convert Scores into coloured \textbf{Grades} (A-E) for visual presentation in report card
+\end{enumerate}
+\textbf{B.     Calculation of Zone level Grades}
+\begin{enumerate}
+\item Aggregate \textbf{Site}-level \textit{Indicator} Scores from step A.5 into \textbf{Zone}-level \textit{Indicator} Scores by averaging (incorporating spatial weights)
+\item Aggregate \textbf{Zone}-level \textit{Indicator} Scores into \textbf{Zone}-level \textit{Component} Scores by averaging (incorporating weights)
+\end{enumerate}
+\textbf{C.     Calculation of Whole GBR Grades}
+\begin{enumerate}
+\item Aggregate \textbf{Zone}-level \textit{Indicator} Scores from step B.1 into \textbf{Whole GBR}-level \textit{Indicator} Scores by averaging (incorporating spatial weights)
+\item Aggregate \textbf{Whole GBR}-level \textit{Indicator} Scores into \textbf{Whole GBR}-level \textit{Component} Scores by averaging (incorporating weights) 
+\end{enumerate}
+\end{minipage}
+};
+\end{tikzpicture}
+
+\begin{figure}[h]
+\includegraphics[width=\linewidth]{figures/Diagrams/schematic.pdf}
+\caption{Schematic illustrating the major steps of the GBR Report Card. In this fabricated example,
+there are three Measures (Red, Green and Blue).  Each of the Blue and Green Measures are represented by a single
+discrete observation, whereas the Red Measure is represented by a large collection of observations.
+Expert option intervened to lower the blue Measure distribution from observed values at 0.8 to 0.6.}\label{fig:schematic}
+\end{figure}
+
+\clearpage
+
+
+
+
+\subsection{Aggregation summaries}
+
+ISP have indicated that metric should be based purely on eReefs fsMAMP indexed Chlorophyll-a and Secchi Depth for Open Coastal, Midshelf and Offshore.
+Other aggregation combinations can be found in Appendix~\ref{appsec:hierAgg}
