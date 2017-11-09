@@ -598,15 +598,18 @@ system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/prin
 system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Maps/Insitu_sites/Map_insitu1_small.pdf" "figures/Maps/Insitu_sites/Map_insitu1.pdf"'))
 system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/FLNTU/flntu_temporal_small.pdf" "figures/Exploratory_Data_Analysis/FLNTU/flntu_temporal.pdf"'))
 
-figures/Exploratory_Data_Analysis/FLNTU/flntu_temporal.png
-
 lookup = data.frame(src=c('niskin','flntu','','eReefs','eReefs926'),
                     path=c('Insitu','FLNTU','Satellite','eReefs','eReefs926'))
 for (s in 1:nrow(lookup)) {
     for (m in c('chl','nap','sd','NOx')) {
-        if (!(s %in% c(2,3) & m=='NOx'))
+        if (!(s %in% c(2,3) & m=='NOx')){
             #system(paste0('cp "../data/eda/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.png" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.png"'))
             system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf"'))
+            system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.month.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.month.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf"'))
+            #system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA_small.pdf" "../data/eda/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA.pdf"'))
+            system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA_small.png"'))
+            system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA_small.png"'))
+        }
         #system(paste0('cp "../data/eda/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf"'))
         #system(paste0('convert -adaptive-resize 25% "../data/eda/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small.png"'))
         #system(paste0('convert -resize 900x "../data/eda/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.png" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small1.png"'))        
