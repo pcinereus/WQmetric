@@ -696,6 +696,30 @@ for (m in c('chl','nap','sd','NOx')) {
                                         #system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Indices/Maps/Measurement level/Satellite/spatial_map__fsMAMP.Annual_measure.',m,'.site.pdf"  "Figures/spatial_map__fsMAMP.Annual_measure.',m,'.site.pdf"'))
 }
 
+system(paste0('cp "Figures/simple_eReefs_fsMAMP.Annual_measure.zonenoNOxnonap_Grade_Uniform.pdf" "figures/Indices/Aggregations/eReefs/simple_eReefs_fsMAMP.Annual_measure.zonenoNOxnonap_Grade_Uniform.pdf"'))
+for (gradetype in c('Uniform','MMP')) {
+    for (src in c('eReefs')) {
+        system(paste0('cp "Figures/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'.pdf" "figures/Indices/Maps/Measurement level/',src,'/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'.pdf"'))
+        #system(paste0('convert -resize 150% "figures/Indices/Maps/Measurement level/',src,'/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'.pdf" "figures/Indices/Maps/Measurement level/',src,'/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'_small.pdf"'))
+    #system(paste0('convert -support -1 "Figures/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'.pdf" "figures/Indices/Maps/Measurement level/',src,'/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'_small.png"'))
+        #system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dDEVICEWIDTHPOINTS=1152 -dDEVICEFIXEDHEIGHT=688 -dFIXEDMEDIA -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Indices/Maps/Measurement level/',src,'/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'_small.pdf" "Figures/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'.pdf"'))
+        #system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Indices/Maps/Measurement level/',src,'/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'_small.png" -r300 "Figures/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'.pdf"'))
+        #system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Indices/Maps/Measurement level/',src,'/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'_small.png" -r300 -g500x288 -dPDFFITPage "Figures/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'.pdf"'))
+
+        system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -r300 -sOutputFile="figures/Indices/Maps/Measurement level/',src,'/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'_small.png" "Figures/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'.pdf"'))
+        system(paste0('convert -density 300 -trim +repage -resize 605x "figures/Indices/Maps/Measurement level/',src,'/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'_small.png" "Figures/simple_map_',src,'_fsMAMP.Annual_measure_chl.zone_A_Grade_',gradetype,'.pdf"'))
+    }
+}
+
+inPath='Figures'
+outPath='figures/Indices/Maps/Measurement level/eReefs/'
+inFile='simple_map_eReefs_fsMAMP.Annual_measure_chl.zonenoSDnoNOx_with_enclosed_coastal_A_Grade_MMP'
+
+system(paste0("cp 'Figures/simple_map_eReefs_fsMAMP.Annual_measure_chl.zonenoSDnoNOx_with_enclosed_coastal_A_Grade_MMP.pdf' 'figures/Indices/Maps/Measurement level/eReefs/simple_map_eReefs_fsMAMP.Annual_measure_chl.zonenoSDnoNOx_with_enclosed_coastal_A_Grade_MMP.pdf'"))
+system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -r300 -sOutputFile="',outPath,'/',inFile,'_small.png" "',inPath,'/',inFile,'.pdf"'))
+#system(paste0('convert -density 300 -trim +repage -resize 605x "',outPath,'/',inFile,'_small.png" "',outPath,'/',inFile,'_small.png"'))
+system(paste0('convert -density 300 -trim +repage "',outPath,'/',inFile,'_small.png" "',outPath,'/',inFile,'_small.png"'))
+
 
 ## Beta distribution
 library(tidyr)
@@ -791,3 +815,113 @@ ggsave('figures/Diagrams/controlcharts.pdf', grid.arrange(g1,g2,g3,g4,ncol=1), w
 
 
 system('cp Tables/GradeTypeComparison.tex tables/GradeTypeComparison.tex')
+
+
+## Guidlines table
+guidelines = read.csv('../parameters/wq.guidelines.csv', strip.white=TRUE)
+measures = read.table('../parameters/measures.txt', header=TRUE,strip.white=TRUE, sep=';') %>%
+  mutate(UnitsLabel = gsub('.*\\((.*)\\).*','\\1',UnitsLabel),
+         UnitsLabel = gsub('⁻¹','^{-1}',UnitsLabel))
+
+GL=guidelines %>%
+   mutate(
+   Region=case_when(stringr:::str_detect(.$Zone,'Cape') ~ 'Cape York',
+   				   stringr:::str_detect(.$Zone,'Terrain') ~ 'Wet Tropics',
+                    stringr:::str_detect(.$Zone,'Burdekin') ~ 'Dry Tropics',
+                    stringr:::str_detect(.$Zone,'Mackay') ~ 'Mackay Whitsunday',
+                    stringr:::str_detect(.$Zone,'Fitzroy') ~ 'Fitzroy',
+                    stringr:::str_detect(.$Zone,'Burnett') ~ 'Burnett Mary'),
+   waterBody=case_when(stringr:::str_detect(.$Zone,'Enclosed') ~ 'Enclosed Coastal',
+                       stringr:::str_detect(.$Zone,'Open') ~ 'Open Coastal',
+ 					  stringr:::str_detect(.$Zone,'Midshelf') ~ 'Midshelf',
+ 					  stringr:::str_detect(.$Zone,'Offshore') ~ 'Offshore')				   
+   ) %>% rename(GL=Annual.guideline, Justification=Justification.Source) %>%
+   left_join(measures %>% dplyr:::select(Units,UnitsLabel),by=c('Unit'='Units')) %>% dplyr:::select(-Unit) %>% rename(Unit=UnitsLabel) %>%
+    dplyr:::select(Measure,Unit,waterBody,Region,GL,Wet,Dry,DirectionOfFailure,Justification) %>%
+    dplyr:::filter(!is.na(Unit))
+   
+addtorow = list()
+addtorow$pos = list()
+addtorow$pos[[1]] = c(0)
+addtorow$pos[[2]] = match(unique(GL$Measure),GL$Measure) -1
+addtorow$pos[[3]] = match(unique(interaction(GL$Measure,GL$waterBody)),interaction(GL$Measure,GL$waterBody)) -1
+addtorow$pos[[4]] = nrow(GL)
+addtorow$command = c(paste(
+   "\\arrayrulecolor[rgb]{0.06,0.25,0.49}\n",
+   "\\begin{landscape}\n",
+   "\\LTcapwidth=\\linewidth\n",
+   "\\setlength\\aboverulesep{0pt}\\setlength\\belowrulesep{0pt}\n",
+   "\\setlength\\cmidrulekern{1pt}\\setlength\\cmidrulewidth{1pt}\n",
+   "\\renewcommand\\arraystretch{1.2}\\setlength\\tabcolsep{5pt}\n",
+   "\\scriptsize\n",
+   "\\begin{longtable}{\n",
+   "!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]} p{6em}\n",
+   "!{\\color[rgb]{0.06,0.25,0.49}\\vline} c\n",
+   "!{\\color[rgb]{0.06,0.25,0.49}\\vline} l\n",
+   "!{\\color[rgb]{0.06,0.25,0.49}\\vline} l\n",
+   "!{\\color[rgb]{0.06,0.25,0.49}\\vline} r\n",
+   "!{\\color[rgb]{0.06,0.25,0.49}\\vline} r\n",
+   "!{\\color[rgb]{0.06,0.25,0.49}\\vline} r\n",
+   "!{\\color[rgb]{0.06,0.25,0.49}\\vline} c\n",
+   "!{\\color[rgb]{0.06,0.25,0.49}\\vline} l\n",
+   "!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]}\n",
+   "}\\caption{Water Quality Threshold values for each Measure in each Zone (Region/Water Body).  Thresholds values are similar to annual Guideline values.  Wet and Dry represent Wet and Dry season thresholds respectively.  Direction of Failure indicates whether a values higher ('H') or lower ('L') than a Threshold would constitute an exceedence.  Range From and Range To represent Thresholds for Measures that have a range of optimum values (such as dissolved oxygen or pH).}\\label{tab:thresholds}\\\\\n",
+ 
+   "\\arrayrulecolor[rgb]{0.06,0.25,0.49}\\specialrule{1pt}{0pt}{0pt} \n",
+   "\\rowcolor[rgb]{0.53,0.62,0.74} \n",
+   "\\arrayrulecolor[rgb]{0.53,0.62,0.74} \n",
+   "\\multicolumn{1}{!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]} p{6em}}{}&\\multicolumn{1}{c}{}&\\multicolumn{1}{c}{}&\\multicolumn{1}{c}{}&\\multicolumn{3}{c}{\\whiteHeader{{Threshold}}}&\\multicolumn{1}{c}{\\whiteHeader{{Direction}}}&\\\\ \n",
+   "\\addlinespace[-1pt] \n",
+   "\\arrayrulecolor[rgb]{0.53,0.62,0.74}\\cmidrule(lr){1-4}\\cmidrule(lr){8-9} \n",
+   "\\addlinespace[-1pt] \n",
+   "\\arrayrulecolor[rgb]{0.06,0.25,0.49}\\cmidrule(lr){5-7} \n",
+   "\\rowcolor[rgb]{0.53,0.62,0.74} \n",
+   "\\multicolumn{1}{!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]} p{6em}}{\\whiteHeader{{Measure}}} & \n",
+   "\\multicolumn{1}{c}{\\whiteHeader{{Units}}} & \n",
+   "\\multicolumn{1}{c}{\\whiteHeader{{Water Body}}} & \n",
+   "\\multicolumn{1}{c}{\\whiteHeader{{Region}}} & \n",
+   "\\multicolumn{1}{c}{\\whiteHeader{{Annual}}} & \n",
+   "\\multicolumn{1}{c}{\\whiteHeader{{Dry}}} & \n",
+   "\\multicolumn{1}{c}{\\whiteHeader{{Wet}}} & \n",
+   "\\multicolumn{1}{c}{\\whiteHeader{{of Faiure}}} & \n",
+   "\\whiteHeader{{Justification}}\\\\ \n",
+   "\\cmidrule{1-9} \n",
+   "\\endfirsthead \n",
+   "\\multicolumn{9}{l}{\\small\\textsl{...continued from previous page}}\\\\ \n",
+   "\\arrayrulecolor[rgb]{0.06,0.25,0.49}\\specialrule{1pt}{0pt}{0pt} \n",
+   "\\rowcolor[rgb]{0.53,0.62,0.74} \n",
+   "\\arrayrulecolor[rgb]{0.53,0.62,0.74} \n",
+   "\\multicolumn{1}{!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]} p{6em}}{}&\\multicolumn{1}{c}{}&\\multicolumn{1}{c}{}&\\multicolumn{1}{c}{}&\\multicolumn{3}{c}{\\whiteHeader{{Threshold}}}&\\multicolumn{1}{c}{\\whiteHeader{{Direction}}}&\\\\ \n",
+   "\\addlinespace[-1pt] \n",
+   "\\arrayrulecolor[rgb]{0.53,0.62,0.74}\\cmidrule(lr){1-4}\\cmidrule(lr){8-9} \n",
+   "\\addlinespace[-1pt] \n",
+   "\\arrayrulecolor[rgb]{0.06,0.25,0.49}\\cmidrule(lr){5-7} \n",
+   "\\rowcolor[rgb]{0.53,0.62,0.74} \n",
+   "\\multicolumn{1}{!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]} p{6em}}{\\whiteHeader{{Measure}}} & \n",
+   "\\multicolumn{1}{c}{\\whiteHeader{{Units}}} & \n",
+   "\\multicolumn{1}{c}{\\whiteHeader{{Water Body}}} & \n",
+   "\\multicolumn{1}{c}{\\whiteHeader{{Region}}} & \n",
+   "\\multicolumn{1}{c}{\\whiteHeader{{Annual}}} & \n",
+   "\\multicolumn{1}{c}{\\whiteHeader{{Dry}}} & \n",
+   "\\multicolumn{1}{c}{\\whiteHeader{{Wet}}} & \n",
+   "\\multicolumn{1}{c}{\\whiteHeader{{of Faiure}}} & \n",
+   "\\whiteHeader{{Justification}}\\\\ \n",
+   "\\cmidrule{1-9} \n",
+   "\\endhead \n",
+   "\\hline \n",
+   "\\endfoot \n",
+   "\\bottomrule \n",
+   "\\endlastfoot \n"
+   ),
+   "\\cline{1-9}",
+   "\\cline{3-9}",
+   paste(
+       "\\end{longtable}\n",
+       "\\end{landscape}")
+   )
+
+writeLines(text=
+GL %>%
+xtable %>% print(include.rownames=FALSE, add.to.row=addtorow, only.contents=TRUE,include.colnames=FALSE,sanitize.text.function=function(x) x, comment=FALSE),
+con='tables/guidelines.tex')
+

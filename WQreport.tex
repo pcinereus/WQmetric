@@ -38,27 +38,35 @@
 
 \input{WQreport_HA}
 
-\subsection{Theoretical framework}
-\subsection{Bootstrap aggregation}                   
-\subsection{Beta approximation}
-\subsection{Weights}           
-\subsection{Expert interventions}
-\subsection{Scores and Grades}
-\subsection{Certainty rating}
-\subsection{Confidence intervals}
 
-\subsection{Summary of adopted methodologies}
-\subsection{Aggregation summaries}
-\subsubsection{Measure/Zone} 
-\subsubsection{Indicator/Site}
-\subsubsection{Indicator/Zone}
-
-\subsection{Summary of recommendations}
- 
 ~\\[2em]\addcontentsline{toc}{section}{References}
 \bibliographystyle{ecology}
 \bibliography{References}
 
+%Appendicies
+~\\[2em]\addcontentsline{toc}{section}{Appendices}
+\appendix{\fontsize{20}{15}\raggedright\bfseries\sectionfont\color{blue} Appendicies \\}
+\setcounter{table}{0}
+\setcounter{figure}{0}
+\renewcommand{\thetable}{\Alph{section}\arabic{table}}
+\renewcommand{\thefigure}{\Alph{section}\arabic{figure}}
+ 
+   
+\section{Thresholds} 
+
 \clearpage
+
+\input{tables/guidelines.tex}
+
+\clearpage
+
+\begin{landscape}       
+\section{eReefs models}
+ 
+\input{tables/ereefs.tex}
+\end{landscape}  
+ 
+\clearpage 
+
 
 \end{document}  
