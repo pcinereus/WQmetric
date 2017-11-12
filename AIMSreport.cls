@@ -1,7 +1,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{AIMSreport}[2014/08/16 Example LaTeX class]
 
-\LoadClass[10pt]{extarticle}
+\LoadClass[a4paper,10pt]{extarticle}
 
 \usepackage{fancyhdr}
 \usepackage{xcolor}
@@ -43,7 +43,7 @@
 \newcommand\whiteHeader[1]{\color{white}{\textbf{\textsc{\normalsize #1}}}}
 \definecolor{shade}{HTML}{D4D7FE}		%light blue shade
 
-----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
 \usepackage{etoolbox} % to allow control of the linespacing in the table of contents
 \makeatletter
 \pretocmd{\section}{\addtocontents{toc}{\protect\addvspace{5\ex}}}{}{}
@@ -64,20 +64,6 @@
 % -----------------------------------------------------------------------------------------
 
 
-%----------------------------------------------------------------------------------------
-%   Define fonts
-%----------------------------------------------------------------------------------------
-%\setmainfont[ExternalLocation=~/.fonts/, BoldFont={GillSans-Bold}, ItalicFont={GillSans-Italic}]{GillSans}
-%\setmainfont[ExternalLocation=~/.fonts/, BoldFont={GillSans-Bold}, ItalicFont={GillSans-Italic}]{GillSans}
-%\setmainfont[Path=/home/l-p/mlogan/.fonts/,Extension= .tff, BoldFont={gillsans-bold}, ItalicFont={gillsans-italic}]{gillsans}
-%\setmainfont{GillSans}[
-%  Path=/home/l-p/mlogan/.fonts/,
-%  Extension= .ttf]
-%\setmainfont{GillSans}[
-%  Path=../../../../.fonts/,
-%  Extension= .ttf]
-%\fontspec[ExternalLocation=/home/l-p/mlogan/.fonts/, Extension= .ttf]{gillsans}
-%\fontspec{GillSans}
 \setmainfont{GillSans}
 \newfontfamily\titlefont[Color=black]{GillSans-Bold}
 \newfontfamily\subtitlefont[Color=black]{GillSans-Bold} %{Arial}
@@ -121,31 +107,14 @@
             {\fontsize{20}{15}\raggedright\bfseries\chapterfont\color{blue}\thechapter~}% section number
             {1ex}% separator space
             {\MakeUppercase{#1}} %before code
-% \titleformat{\section}% which section
-%             {\fontsize{20}{15}\bfseries\sectionfont\raggedright\color{blue}}% section label
-%             {\fontsize{20}{15}\raggedright\bfseries\sectionfont\color{blue}\thesection~}% section number
-%             {1ex}% separator space
-%             {\MakeUppercase{#1}} %before code
 \titleformat{\section}% which section
             {\Large\bfseries\sectionfont\raggedright\color{blue}}% section label
             {\Large\raggedright\bfseries\sectionfont\color{blue}\thesection.~}% section number
             {1ex}% separator space
             {\MakeUppercase{#1}} %before code          
-% \titlespacing{\section}{0pt}%left
-%              {30pt}%before
-%              {30pt}%after
 \titlespacing{\section}{0pt}%left
              {1.5ex}%before
              {1.0ex}%after             
-
-% \titleformat{\subsection}% which section
-%             {\fontsize{14}{14}\raggedright\subsectionfont\color{black}}% section label
-%             {\fontsize{14}{14}\raggedright\subsectionfont\color{black}\thesubsection~}% section number
-%             {1ex}% separator space
-%             {#1} %before code
-% \titlespacing{\subsection}{0pt}%left
-%              {18pt}%before
-%              {12pt}%after
 \titleformat{\subsection}% which section
             {\large\raggedright\subsectionfont\color{black}}% section label
             {\large\raggedright\subsectionfont\color{black}\thesubsection~}% section number
@@ -154,15 +123,6 @@
 \titlespacing{\subsection}{0pt}%left
              {1.5ex}%before
              {1.0ex}%after             
-
-% \titleformat{\subsubsection}% which section
-%             {\fontsize{11}{11}\raggedright\subsectionfont\color{black}}% section label
-%             {\fontsize{11}{11}\raggedright\subsectionfont\color{black}\thesubsubsection~}% section number
-%             {1ex}% separator space
-%             {#1} %before code
-% \titlespacing{\subsubsection}{0pt}%left
-%              {10pt}%before
-%              {6pt}%after
 \titleformat{\subsubsection}% which section
             {\normalsize\raggedright\subsectionfont\color{black}}% section label
             {\normalsize\raggedright\subsectionfont\color{black}\thesubsubsection~}% section number
@@ -171,15 +131,6 @@
 \titlespacing{\subsubsection}{0pt}%left
              {1.1ex}%before
              {1.0ex}%after             
-
-% \titleformat{\paragraph}% which section
-%             {\fontsize{11}{11}\raggedright\paragraphfont\itseries\color{black}}% section label
-%             {\fontsize{11}{11}\raggedright\paragraphfont\color{black}\theparagraph~}% section number
-%             {1ex}% separator space
-%             {#1} %before code
-% \titlespacing{\paragraph}{0pt}%left
-%              {10pt}%before
-%              {6pt}%after
 \titleformat{\paragraph}% which section
             {\normalsize\raggedright\paragraphfont\itseries\color{black}}% section label
             {\normalsize\raggedright\paragraphfont\color{black}\theparagraph~}% section number
@@ -188,28 +139,4 @@
 \titlespacing{\paragraph}{0pt}%left
              {1.1ex}%before
              {1.0ex}%after
-             
-%\titleformat{\appendix}
-%            {\fontsize{20}{15}\bfseries\sectionfont\raggedright\color{blue}}% section label
-%            {\fontsize{20}{15}\raggedright\bfseries\sectionfont\color{blue}\thesection~}% section number
-%            {1ex}% separator space
-%            {\MakeUppercase{#1}} %before code
 \setlength{\parindent}{0pt}
-
-
-
-%\usepackage{apptools, etoolbox}
-%\newcommand\appendix{\par   % line 581
-%  \setcounter{section}{0}% 
-%  \setcounter{subsection}{0}%
-%  \gdef\@sectapp{\appendixname}%
-%  \gdef\thesection{\@Alph\c@section}}
-
-%\newcommand\appendixname{APPENDIX} % line 784
-
-%\makeatletter
-%\patchcmd{\@section}{\protect {SECTION }}{\ifappendix{APPENDIX }\else{SECTION }\fi}{}{}
-%\makeatother
-
-
-             

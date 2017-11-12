@@ -43,8 +43,8 @@ addtorow$command = c(paste(
     "}\n",
     "\\arrayrulecolor[rgb]{0.06,0.25,0.49}\\specialrule{1pt}{0pt}{0pt} %top border\n",
     "\\rowcolor[rgb]{0.53,0.62,0.74} \n",
-    "%\\multicolumn{1}{!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]}l}}{\\whiteHeader{{GBRMPA Zone}}} & \n",
-    "\\multicolumn{1}{l}{\\whiteHeader{{GBRMPA Zone}}} & \n",
+    "\\multicolumn{1}{!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]}l}{\\whiteHeader{{GBRMPA Zone}}} & \n",
+    "%\\multicolumn{1}{l}{\\whiteHeader{{GBRMPA Zone}}} & \n",
     "\\multicolumn{1}{l}{\\whiteHeader{{Zone}}} & \n",
     "\\multicolumn{1}{l}{\\whiteHeader{{Region}}} & \n",
     "\\whiteHeader{{Water body}}\\\\ \n",
@@ -145,7 +145,7 @@ addtorow$command = c(paste(
     "\\arrayrulecolor[rgb]{0.06,0.25,0.49}\\specialrule{1pt}{0pt}{0pt} %top border\n",
     "\\rowcolor[rgb]{0.53,0.62,0.74} \n",
     #"\\multicolumn{1}{!{\\color[rgb]{0.06,0.25,0.49}\\VRule[0pt]} p{6em}}{}&{\\whiteHeader{{Indicator}}} & \n",
-    "\\multicolumn{1}{!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]} p{6em}}{\\whiteHeader{{Indicator}}} & \n",
+    "\\multicolumn{1}{!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]}l}{\\whiteHeader{{Indicator}}} & \n",
     "\\multicolumn{1}{l}{\\whiteHeader{{Subindicator}}} & \n",
     "\\multicolumn{1}{l}{\\whiteHeader{{Measure}}} & \n",
     "\\multicolumn{1}{l}{\\whiteHeader{{Label}}} & \n",
@@ -826,8 +826,8 @@ measures = read.table('../parameters/measures.txt', header=TRUE,strip.white=TRUE
 GL=guidelines %>%
    mutate(
    Region=case_when(stringr:::str_detect(.$Zone,'Cape') ~ 'Cape York',
-   				   stringr:::str_detect(.$Zone,'Terrain') ~ 'Wet Tropics',
-                    stringr:::str_detect(.$Zone,'Burdekin') ~ 'Dry Tropics',
+   				   stringr:::str_detect(.$Zone,'Wet Tropic') ~ 'Wet Tropics',
+                    stringr:::str_detect(.$Zone,'Dry Tropics') ~ 'Dry Tropics',
                     stringr:::str_detect(.$Zone,'Mackay') ~ 'Mackay Whitsunday',
                     stringr:::str_detect(.$Zone,'Fitzroy') ~ 'Fitzroy',
                     stringr:::str_detect(.$Zone,'Burnett') ~ 'Burnett Mary'),
@@ -836,10 +836,10 @@ GL=guidelines %>%
  					  stringr:::str_detect(.$Zone,'Midshelf') ~ 'Midshelf',
  					  stringr:::str_detect(.$Zone,'Offshore') ~ 'Offshore')				   
    ) %>% rename(GL=Annual.guideline, Justification=Justification.Source) %>%
-   left_join(measures %>% dplyr:::select(Units,UnitsLabel),by=c('Unit'='Units')) %>% dplyr:::select(-Unit) %>% rename(Unit=UnitsLabel) %>%
+   left_join(measures %>% dplyr:::select(Units,UnitsLabel) %>% distinct,by=c('Unit'='Units')) %>% dplyr:::select(-Unit) %>% rename(Unit=UnitsLabel) %>%
     dplyr:::select(Measure,Unit,waterBody,Region,GL,Wet,Dry,DirectionOfFailure,Justification) %>%
     dplyr:::filter(!is.na(Unit))
-   
+GL = GL %>% mutate(Justification=gsub('%','\\%',Justification))   
 addtorow = list()
 addtorow$pos = list()
 addtorow$pos[[1]] = c(0)
@@ -922,6 +922,8 @@ addtorow$command = c(paste(
 
 writeLines(text=
 GL %>%
-xtable %>% print(include.rownames=FALSE, add.to.row=addtorow, only.contents=TRUE,include.colnames=FALSE,sanitize.text.function=function(x) x, comment=FALSE),
+xtable %>% print(include.rownames=FALSE, add.to.row=addtorow, only.contents=TRUE,include.colnames=FALSE, comment=FALSE),
 con='tables/guidelines.tex')
+
+%print(include.rownames=FALSE, add.to.row=addtorow, only.contents=TRUE,include.colnames=FALSE,sanitize.text.function=function(x) x, comment=FALSE),
 
