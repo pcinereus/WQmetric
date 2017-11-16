@@ -8,7 +8,11 @@ library(sp)
 library(rgeos)
 library(ggplot2)
 library(gridExtra)
+require(foreach)
+require(doParallel)
 #library(Cairo)
+
+registerDoParallel(cores=10)
 
 spatial = read.csv('../parameters/spatial.csv', strip.white=TRUE) %>%
     dplyr:::select(GBRMPA_Zone,Zone,Region,WaterBody)
@@ -605,29 +609,68 @@ system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/prin
 system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Maps/Insitu_sites/Map_insitu1_small.pdf" "figures/Maps/Insitu_sites/Map_insitu1.pdf"'))
 system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/FLNTU/flntu_temporal_small.pdf" "figures/Exploratory_Data_Analysis/FLNTU/flntu_temporal.pdf"'))
 
+## Spatial lookup
+full.lookup = expand.grid(src=c('niskin','flntu','','eReefs','eReefs926'),
+                          region=c('Cape York','Wet Tropics','Dry Tropics','Mackay Whitsunday','Fitzroy','Burnett Mary'),
+                          waterbody=c('Enclosed Coastal','Open Coastal','Midshelf','Offshore'),
+                          measure=c('chl','nap','sd','NOx')
+                          ) %>%
+    mutate(path=ifelse(src=='niskin', 'Insitu',
+                ifelse(src=='flntu','FLNTU',
+                ifelse(src=='','Satellite',
+                ifelse(src=='eReefs','eReefs','eReefs926'))))) %>%
+    mutate(Include=1,
+           Include=ifelse(src %in% c('flntu','') & measure=='NOx',0,Include),
+           Include=ifelse(src %in% c('niskin','flntu') & region %in% c('Cape York','Fitzroy','Burnett Mary'),0,Include),
+           Include=ifelse(src %in% c('niskin','flntu') & waterbody %in% c('Offshore'),0,Include),
+           Include=ifelse(src %in% c('niskin','flntu') & region %in% c('Mackay Whitsunday') & waterbody %in% c('Enclosed Coastal','Midshelf'),0,Include),
+           )
+full.lookup %>% head(20)
+## Temporal Exploratory data analysis violin plots
 lookup = data.frame(src=c('niskin','flntu','','eReefs','eReefs926'),
                     path=c('Insitu','FLNTU','Satellite','eReefs','eReefs926'))
+for (i in 1:nrow(full.lookup)) {
+        src=full.lookup$src[i]
+        path=full.lookup$path[i]
+        r=full.lookup$region[i]
+        w=full.lookup$waterbody[i]
+        m=full.lookup$measure[i]
+        inPath='../data/eda/'
+        outPath=paste0('figures/Exploratory_Data_Analysis/',path,'/')
+        inFile=paste0('eda.year.',m,'_',r,'__',w,'_',src,'_log')
+        print(paste0(inPath,inFile))
+        if (full.lookup$Include[i]==1) {
+            system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -r300 -sOutputFile="',outPath,inFile,'_small.png" "',inPath,inFile,'.pdf"'))
+        }
+}
+i = i +1
+full.lookup$Include[i]
+
+## Annual EDA for main text
 for (s in 1:nrow(lookup)) {
     for (m in c('chl','nap','sd','NOx')) {
         if (!(s %in% c(2,3) & m=='NOx')){
-            #system(paste0('cp "../data/eda/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.png" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.png"'))
             system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf"'))
             system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.month.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.month.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf"'))
-            #system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA_small.pdf" "../data/eda/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA.pdf"'))
             system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA_small.png"'))
-            system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA_small.png"'))
+            #system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA_small.png"'))
+
+            system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA_small.png" "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf"'))
+            
         }
-        #system(paste0('cp "../data/eda/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf"'))
-        #system(paste0('convert -adaptive-resize 25% "../data/eda/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small.png"'))
-        #system(paste0('convert -resize 900x "../data/eda/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.png" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small1.png"'))        
     }
 }
 
 #system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Analyses at AIMS niskin sites/Observations/Satellite_vs_Niskin_locations_5km_small.pdf" "Figures/Satellite_vs_Niskin_locations_5km.pdf"'))
-system(paste0('convert -resize 100% "Figures/Satellite_vs_Niskin_locations_5km.pdf" "figures/Analyses at AIMS niskin sites/Observations/Satellite_vs_Niskin_locations_5km_small.png"'))
-system(paste0('convert -resize 100% "Figures/eReefs_vs_Niskin_locations_5km.pdf" "figures/Analyses at AIMS niskin sites/Observations/eReefs_vs_Niskin_locations_5km_small.png"'))
-for (m in c('chl','nap','sd')) {
-    system(paste0('convert -resize 100% "Figures/',m,'_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural.pdf" "figures/Analyses at AIMS niskin sites/Observations/',m,'_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural_small.png"'))
+#system(paste0('convert -resize 100% "Figures/Satellite_vs_Niskin_locations_5km.pdf" "figures/Analyses at AIMS niskin sites/Observations/Satellite_vs_Niskin_locations_5km_small.png"'))
+#system(paste0('convert -resize 100% "Figures/eReefs_vs_Niskin_locations_5km.pdf" "figures/Analyses at AIMS niskin sites/Observations/eReefs_vs_Niskin_locations_5km_small.png"'))
+system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Analyses at AIMS niskin sites/Observations/eReefs_vs_Niskin_locations_5km_small.png" "Figures/eReefs_vs_Niskin_locations_5km.pdf"'))
+system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Analyses at AIMS niskin sites/Observations/Satellite_vs_Niskin_locations_5km_small.png" "Figures/Satellite_vs_Niskin_locations_5km.pdf"'))
+            
+for (m in c('chl','nap','sd','NOx')) {
+    #system(paste0('convert -resize 100% "Figures/',m,'_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural.pdf" "figures/Analyses at AIMS niskin sites/Observations/',m,'_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural_small.png"'))
+    system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Analyses at AIMS niskin sites/Observations/',m,'_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural_small.png" "Figures/',m,'_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural.pdf"'))
+    system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Analyses at AIMS niskin sites/Observations/',m,'_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural_small.pdf" "Figures/',m,'_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural.pdf"'))
 }
 
 
@@ -711,14 +754,488 @@ for (gradetype in c('Uniform','MMP')) {
     }
 }
 
-inPath='Figures'
-outPath='figures/Indices/Maps/Measurement level/eReefs/'
-inFile='simple_map_eReefs_fsMAMP.Annual_measure_chl.zonenoSDnoNOx_with_enclosed_coastal_A_Grade_MMP'
 
-system(paste0("cp 'Figures/simple_map_eReefs_fsMAMP.Annual_measure_chl.zonenoSDnoNOx_with_enclosed_coastal_A_Grade_MMP.pdf' 'figures/Indices/Maps/Measurement level/eReefs/simple_map_eReefs_fsMAMP.Annual_measure_chl.zonenoSDnoNOx_with_enclosed_coastal_A_Grade_MMP.pdf'"))
+##============================================================================================================================
+## Measurement/Site level maps - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (src in c('eReefs','eReefs926','Satellite')[1]) {
+    for (GradeType in c('Uniform','MMP')[1]) {
+        for (m in c('chl','nap','sd')[c(1,3)]) {
+            inPath='Figures'
+            outPath=paste0('figures/Indices/Maps/Measurement level/',src,'/')
+            src1 = ifelse(src=='Satellite','',src)
+        inFile=paste0('spatial_map_',src1,'_fsMAMP.Annual_measure.',m,'.site_Grade_',GradeType)
+        print(paste0(inPath,'/',inFile))
+        system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -r300 -sOutputFile="',outPath,'/',inFile,'_small.png" "',inPath,'/',inFile,'.pdf"'))
+        #system(paste0('convert -density 300 -trim +repage "',outPath,'/',inFile,'_small.png" "',outPath,'/',inFile,'_small.png"'))
+        }       
+    }
+}
+
+## Subindicator/Site level maps - there should be a separate set of maps for each source/index/gradetype/exclusions
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {    
+    for (src in c('eReefs','eReefs926')[1]) {
+        for (GradeType in c('Uniform')) {
+            for (m in c('Productivity','Water Clarity')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Maps/Subindicator level/',src,'/')
+                
+                inFile=paste0('spatial_map_',src,'_fsMAMP.Annual_subindicator.',m,'.site',excludes,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -r300 -sOutputFile="',outPath,'/',inFile,'_small.png" "',inPath,'/',inFile,'.pdf"'))
+                system(paste0('convert -density 300 -trim +repage "',outPath,'/',inFile,'_small.png" "',outPath,'/',inFile,'_small.png"'))
+                
+            }
+        }
+    }
+}
+
+## Indicator/Site level maps - there should be a separate set of maps for each source/index/gradetype/exclusions
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {    
+    for (src in c('eReefs','eReefs926')[1]) {
+        for (GradeType in c('Uniform')) {
+            inPath='Figures'
+            outPath=paste0('figures/Indices/Maps/Indicator level/',src,'/')
+            
+            inFile=paste0('spatial_map_',src,'_fsMAMP.Annual_indicator.site',excludes,'_A_Grade_',GradeType)
+            print(paste0(inPath,'/',inFile))
+            system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -r300 -sOutputFile="',outPath,'/',inFile,'_small.png" "',inPath,'/',inFile,'.pdf"'))
+            system(paste0('convert -density 300 -trim +repage "',outPath,'/',inFile,'_small.png" "',outPath,'/',inFile,'_small.png"'))
+            
+        }
+    }
+}
+    
+## Measurement/Zone level worms - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Aggregations/',src,'/')
+                
+                inFile=paste0('simple_',src,'_fsMAMP.Annual_measure.zone',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                                        #system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -r300 -sOutputFile="',outPath,'/',inFile,'_small.png" "',inPath,'/',inFile,'.pdf"'))
+                                        #system(paste0('convert -density 300 -trim +repage "',outPath,'/',inFile,'_small.png" "',outPath,'/',inFile,'_small.png"'))
+                
+            }
+        }
+    }
+}
+
+## Measurement/Zone flat maps - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                for (m in c('chl','nap','sd')) {
+                    inPath='Figures'
+                    outPath=paste0('figures/Indices/Maps/Measurement level/',src,'/')
+                    
+                    inFile=paste0('simple_map_',src,'_fsMAMP.Annual_measure_',m,'.zone',excludes,'_',coastal,'_A_Grade_',GradeType)
+                    print(paste0(inPath,'/',inFile))
+                    system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -r300 -sOutputFile="',outPath,'/',inFile,'_small.png" "',inPath,'/',inFile,'.pdf"'))
+                    system(paste0('convert -density 300 -trim +repage "',outPath,'/',inFile,'_small.png" "',outPath,'/',inFile,'_small.png"'))
+                    
+                }
+            }
+        }
+    }
+}
+
+    
+
+## Measurement/Zone mosaic - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Maps/Measurement level/',src,'/')
+                
+                inFile=paste0('mosaic_',src,'_fsMAMP.Annual_measure.zone',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+
+## Subindicator/Zone worms - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Aggregations/',src,'/')
+                
+                inFile=paste0('simple_',src,'_fsMAMP.Annual_subindicator.zone',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+
+
+## Subindicator/Zone flat maps - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                for (m in c('Productivity','Water Clarity')) {
+                    inPath='Figures'
+                    outPath=paste0('figures/Indices/Maps/Subindicator level/',src,'/')
+                    
+                    inFile=paste0('simple_map_',src,'_fsMAMP.Annual_subindicator_',m,'.zone',excludes,'_',coastal,'_A_Grade_',GradeType)
+                    print(paste0(inPath,'/',inFile))
+                    system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -r300 -sOutputFile="',outPath,'/',inFile,'_small.png" "',inPath,'/',inFile,'.pdf"'))
+                    system(paste0('convert -density 300 -trim +repage "',outPath,'/',inFile,'_small.png" "',outPath,'/',inFile,'_small.png"'))
+                    
+                }
+            }
+        }
+    }
+}
+
+
+## Subindicator/Zone mosaic - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Maps/Subindicator level/',src,'/')
+                
+                inFile=paste0('mosaic_',src,'_fsMAMP.Annual_subindicator.zone',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+    
+## Indicator/Zone worms - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Aggregations/',src,'/')
+                
+                inFile=paste0('simple_',src,'_fsMAMP.Annual_indicator.zone',excludes,'_',coastal,'_A_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+## Indicator/Zone flat maps - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform','MMP')[1]) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Maps/Indicator level/',src,'/')
+                
+                inFile=paste0('simple_map_',src,'_fsMAMP.Annual_indicator.zone',excludes,'_',coastal,'_A_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -r300 -sOutputFile="',outPath,'/',inFile,'_small.png" "',inPath,'/',inFile,'.pdf"'))
+                system(paste0('convert -density 300 -trim +repage "',outPath,'/',inFile,'_small.png" "',outPath,'/',inFile,'_small.png"'))
+            }
+        }
+    }
+}
+
+
+## Indicator/Zone mosaic - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Maps/Indicator level/',src,'/')
+                
+                inFile=paste0('mosaic_',src,'_fsMAMP.Annual_indicator.zone',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+
+## Measure/Waterbody worms - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Aggregations/',src,'/')
+                
+                inFile=paste0('simple_',src,'_fsMAMP.Annual_measure.waterbody',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+## Measure/Waterbody mosaic - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Maps/Measurement level/',src,'/')
+                
+                inFile=paste0('mosaic_',src,'_fsMAMP.Annual_measure.waterbody',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+
+
+## Subindicator/Waterbody worms - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Aggregations/',src,'/')
+                
+                inFile=paste0('simple_',src,'_fsMAMP.Annual_subindicator.waterbody',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+## Subindicator/Waterbody mosaic - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Maps/Subindicator level/',src,'/')
+                
+                inFile=paste0('mosaic_',src,'_fsMAMP.Annual_subindicator.waterbody',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+## Indicator/Waterbody worms - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Aggregations/',src,'/')
+                
+                inFile=paste0('simple_',src,'_fsMAMP.Annual_indicator.waterbody',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+## Indicator/Waterbody mosaic - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Maps/Indicator level/',src,'/')
+                
+                inFile=paste0('mosaic_',src,'_fsMAMP.Annual_indicator.waterbody',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+
+
+## Measure/GBR worms - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Aggregations/',src,'/')
+                
+                inFile=paste0('simple_',src,'_fsMAMP.Annual_measure.gbr',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+## Measure/GBR mosaic - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Maps/Measurement level/',src,'/')
+                
+                inFile=paste0('mosaic_',src,'_fsMAMP.Annual_measure.gbr',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+
+
+## Subindicator/GBR worms - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Aggregations/',src,'/')
+                
+                inFile=paste0('simple_',src,'_fsMAMP.Annual_subindicator.gbr',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+## Subindicator/GBR mosaic - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Maps/Subindicator level/',src,'/')
+                
+                inFile=paste0('mosaic_',src,'_fsMAMP.Annual_subindicator.gbr',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+## Indicator/GBR worms - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Aggregations/',src,'/')
+                
+                inFile=paste0('simple_',src,'_fsMAMP.Annual_indicator.gbr',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+
+## Indicator/GBR mosaic - there should be a separate set of maps for each source/index/gradetype
+## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
+for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+        for (src in c('eReefs','eReefs926')[1]) {
+            for (GradeType in c('Uniform')) {
+                inPath='Figures'
+                outPath=paste0('figures/Indices/Maps/Indicator level/',src,'/')
+                
+                inFile=paste0('mosaic_',src,'_fsMAMP.Annual_indicator.gbr',excludes,'_',coastal,'_Grade_',GradeType)
+                print(paste0(inPath,'/',inFile))
+                system(paste0('cp "',inPath,'/',inFile,'.pdf" "',outPath,'/',inFile,'.pdf"'))
+                
+            }
+        }
+    }
+}
+    
+
+
+## All indices========================================================================================================================
+
+## Compare sources
+inPath='Figures'
+outPath=paste0('figures/Indices/Compare sources/')
+
+inFile=paste0('simple_map_',src,'_fsMAMP.Annual_subindicator_',m,'.zone',excludes,'_',coastal,'_A_Grade_',GradeType)
+print(paste0(inPath,'/',inFile))
 system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -r300 -sOutputFile="',outPath,'/',inFile,'_small.png" "',inPath,'/',inFile,'.pdf"'))
-#system(paste0('convert -density 300 -trim +repage -resize 605x "',outPath,'/',inFile,'_small.png" "',outPath,'/',inFile,'_small.png"'))
 system(paste0('convert -density 300 -trim +repage "',outPath,'/',inFile,'_small.png" "',outPath,'/',inFile,'_small.png"'))
+
+
+for (GradeType in c('Uniform','MMP')) {
+    for (m in c('chl','nap','sd')) {
+        inPath='Figures'
+        outPath='figures/Indices/Maps/Measurement level/eReefs/'
+
+        
+        #inFile=paste0('simple_map_eReefs_fsMAMP.Annual_measure_',m,'.zonenoSDnoNOx_with_enclosed_coastal_A_Grade_',GradeType)
+        inFile=paste0('simple_map_eReefs926_fsMAMP.Annual_measure_',m,'.zonenoNOx_with_enclosed_coastal_A_Grade_',GradeType)
+        
+                                        #system(paste0("cp 'Figures/simple_map_eReefs_fsMAMP.Annual_measure_chl.zonenoSDnoNOx_with_enclosed_coastal_A_Grade_MMP.pdf' 'figures/Indices/Maps/Measurement level/eReefs/simple_map_eReefs_fsMAMP.Annual_measure_chl.zonenoSDnoNOx_with_enclosed_coastal_A_Grade_MMP.pdf'"))
+        system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -r300 -sOutputFile="',outPath,'/',inFile,'_small.png" "',inPath,'/',inFile,'.pdf"'))
+        system(paste0('convert -density 300 -trim +repage "',outPath,'/',inFile,'_small.png" "',outPath,'/',inFile,'_small.png"'))
+    }
+}
 
 
 ## Beta distribution
@@ -839,7 +1356,7 @@ GL=guidelines %>%
    left_join(measures %>% dplyr:::select(Units,UnitsLabel) %>% distinct,by=c('Unit'='Units')) %>% dplyr:::select(-Unit) %>% rename(Unit=UnitsLabel) %>%
     dplyr:::select(Measure,Unit,waterBody,Region,GL,Wet,Dry,DirectionOfFailure,Justification) %>%
     dplyr:::filter(!is.na(Unit))
-GL = GL %>% mutate(Justification=gsub('%','\\%',Justification))   
+GL = GL %>% mutate(Justification=gsub('%','\\\\%',Justification))   
 addtorow = list()
 addtorow$pos = list()
 addtorow$pos[[1]] = c(0)
@@ -922,7 +1439,7 @@ addtorow$command = c(paste(
 
 writeLines(text=
 GL %>%
-xtable %>% print(include.rownames=FALSE, add.to.row=addtorow, only.contents=TRUE,include.colnames=FALSE, comment=FALSE),
+xtable %>% print(include.rownames=FALSE, add.to.row=addtorow, only.contents=TRUE,include.colnames=FALSE,sanitize.text.function=function(x) x, comment=FALSE),
 con='tables/guidelines.tex')
 
 %print(include.rownames=FALSE, add.to.row=addtorow, only.contents=TRUE,include.colnames=FALSE,sanitize.text.function=function(x) x, comment=FALSE),

@@ -1,7 +1,8 @@
 RNWFILES = $(wildcard *.rnw)
 TEX = $(patsubst %.rnw,%.tex,$(RNWFILES)) #$(wildcard *.tex)
 TARGET = WQreport
-LATEX_ARGS=--interaction=nonstopmode --output-driv="xdvipdfmx -vv -V 5"
+#LATEX_ARGS=--interaction=nonstopmode --output-driv="xdvipdfmx -vv -V 5"
+LATEX_ARGS=--interaction=batchmode --output-driv="xdvipdfmx -vv -V 5"
 LATEX=xelatex
 RERUNBIB = "No file.*\.bbl|Citation.*undefined"
 RERUNINDEX = "No file.*\.ind"
@@ -18,7 +19,7 @@ $(MASTER): $(DEPENDS)
 
 
 $(TARGET).pdf: WQreport.tex
-	$(LATEX) $(LATEX_ARGS) $(TARGET).tex;
+	$(LATEX) $(LATEX_ARGS) -no-pdf $(TARGET).tex;
 	while \egrep -c $(RERUNBIB) $(TARGET).log; \
 	do \
 		bibtex $(TARGET); \
@@ -27,7 +28,7 @@ $(TARGET).pdf: WQreport.tex
 	while \grep -q "Rerun to get cross-references right." \
 	$(TARGET).log; \
 	do \
-		$(LATEX) $(LATEX_ARGS) $(TARGET).tex; \
+		$(LATEX) $(LATEX_ARGS) -no-pdf $(TARGET).tex; \
 	done
 	$(LATEX) $(LATEX_ARGS) $(TARGET).tex;
 

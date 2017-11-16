@@ -1,8 +1,9 @@
+\section{Exploratory data analysis}
 
 Exploratory data analysis is vital for informing data processing and analysis as well as
 establishing assumptions and limitations.  Of particular importance for the current project is the
 spatial and temporal distribution and variability of the various data Measures and Sources.  As
-such, a series of exploratory plots have been generated (see Appendix~\ref{appsec:EDA} begging on
+such, a series of exploratory plots have been generated (see Appendix~\ref{appsec:EDA} beginning on
 page \pageref{appsec:EDA}).  In the interest of keeping the main text free of copious graphics, we
 have elected to present only a small fraction of the exploratory data analyses figures here.  The
 figures presented will act as exemplars of general format and predominant features or patterns.
@@ -11,33 +12,40 @@ figures presented will act as exemplars of general format and predominant featur
 
 Figures~\ref{fig:violin_chl_oc} -- \ref{fig:violin_NOx_oc} display the temporal distribution of
 Chlorophyll-a, TSS, Secchi depth and NOx observations for the Wet Tropics Open Coastal Zone from
-AIMS insitu, AIMS FLNTU, Satellite, eReefs and eReefs926 sources. All combinations of
-Measure/Zone/Source can be found in
-Figures~\ref{appfig:AIMS_insitu_violin_chl}--\ref{appfig:eReefs926_violin_NOx}.
+AIMS insitu, AIMS FLNTU, Satellite, eReefs and eReefs926 sources.
 
-All of the figures are presented with log-transformed y-axes as the data are typically skewed to the
-right.  This is expected for parameters that have a natural minimum (zero), yet no theoretical
+All of the figures are presented with log-transformed y-axes as the data are typically positively
+skewed.  This is expected for parameters that have a natural minimum (zero), yet no theoretical
 maximum.  It does however mean that these distributional properties should be considered during the
 analyses.  In particular, for mean based aggregations, outliers and skewed distributions can impart
 unrepresentative influence on outcomes.
 
-Each of the data sources presents different variability characteristics.  The scale of the range of
+Each of the data sources present different variability characteristics.  The scale of the range of
 AIMS insitu data is predominantly and approximately less than or equal to the scale of the
-half/twice the associated threshold value (Fig.~\ref{fig:violin_chl_oc}a).  The AIMS FLNTU logger
-data (Fig.~\ref{fig:violin_chl_oc}b) have a larger range than the AIMS insitu data - presumably
-because the former data collection frequency captures most of the peaks and trophs whereas the later
-is unlikely to do so.  Similarly, the scale of the range eReefs and eReefs926 data
-(Fig.~\ref{fig:violin_chl_oc}d-e) is approximately equal to the scale of the range of the span from
-half/twice the threshold value.  This reflects both a more complete time series and broader spatial
-extent represented in the data.  In contrast to the AIMS insitu and to a lesser extent the AIMS
-FLNTU and eReefs data, the scale of the range of the Satellite is relatively large - typically a
-greater span than the range of half/twice threshold value (Fig.~\ref{fig:violin_chl_oc}c).
+half/twice the associated threshold value (Fig.~\ref{fig:violin_chl_oc}-\ref{fig:violin_NOx_oc}a).
+The AIMS FLNTU logger data (Fig.~\ref{fig:violin_chl_oc}-\ref{fig:violin_NOx_oc}b) have a larger
+range than the AIMS insitu data - presumably because the former data collection frequency captures
+most of the peaks and trophs whereas the later are unlikely to do so.  Furthermore, whilst the AIMS
+insitu data are predominantly collected during the dry season, the AIMS FLNTU loggers collect data
+across the entire year and are therefore likely to record a greater proportion of the full variation
+in conditions.  Of course it is important when interpreting these diagnostic plots to focus mainly
+on the violin plots and less on the dots (representing individual observations).  This is because
+the dots do not provide an indication of the density and it is easy to allow outliers to distort out
+impression of the variability of the data.
+
+Similarly, the scale of the range eReefs and eReefs926 data
+(Fig.~\ref{fig:violin_chl_oc}-\ref{fig:violin_NOx_oc}d-e) is approximately equal to the scale of the
+range of the span from half/twice the threshold value.  This reflects both a more complete time
+series and broader spatial extent represented in the data.  In contrast to the AIMS insitu and to a
+lesser extent the AIMS FLNTU and eReefs data, the scale of the range of the Satellite is relatively
+large - typically a greater span than the range of half/twice threshold value
+(Fig.~\ref{fig:violin_chl_oc}-\ref{fig:violin_NOx_oc}c).
 
 The Satellite, eReefs and eReefs926 data series all start and end part of the way through a water
 year.  For annually aggregated data, this is likely to result in unrepresentative estimates and thus
 only full water years will be analysed.
  
-\subsection{Annual data}
+\subsection{Annual data}\label{sec:annualchunks}
 \begin{figure}[ptbh] 
   a) AIMS insitu\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.year.chl_Wet Tropics__Open Coastal_niskin_log\res}.pdf}\\
   b) AIMS FLNTU\\\includegraphics[align=t, width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.year.chl_Wet Tropics__Open Coastal_flntu_log\res}.pdf}\\
@@ -50,8 +58,8 @@ eReefs926.  Observations are ordered over time and colored conditional on season
 symbols) and Dry (red symbols).  Blue smoother represents Generalized Additive Mixed Model within a
 water year and purple line represents average within the water year.  Horizontal red, black and
 green dashed lines denote the twice threshold, threshold and half threshold values respectively.
-Red and green background shading indicates the range (10\% shade: $\times 4$,$/4$, 30\% shade:
-$\times 2$,$/2$) above and below threshold respectively.}\label{fig:violin_chl_oc}
+Red and green background shading indicates the range (10\% shade: x4,/4; 30\% shade: x2,/2)
+above and below threshold respectively.}\label{fig:violin_chl_oc}
 \end{figure}
 
 \begin{figure}[ptbh]
@@ -66,7 +74,7 @@ Observations are ordered over time and colored conditional on season as Wet (blu
 (red symbols).  Blue smoother represents Generalized Additive Mixed Model within a water year and
 purple line represents average within the water year.  Horizontal red, black and green dashed lines
 denote the twice threshold, threshold and half threshold values respectively.  Red and green
-background shading indicates the range (10\% shade: $\times 4$,$/4$, 30\% shade: $\times 2$,$/2$)
+background shading indicates the range (10\% shade: x4,/4; 30\% shade: x2,/2)
 above and below threshold respectively.}\label{fig:violin_nap_oc}
 \end{figure}
  
@@ -82,14 +90,14 @@ eReefs926.  Observations are ordered over time and colored conditional on season
 symbols) and Dry (red symbols).  Blue smoother represents Generalized Additive Mixed Model within a
 water year and purple line represents average within the water year.  Horizontal red, black and
 green dashed lines denote the twice threshold, threshold and half threshold values respectively.
-Red and green background shading indicates the range (10\% shade: $\times 4$,$/4$, 30\% shade:
-$\times 2$,$/2$) above and below threshold respectively.}\label{fig:violin_sd_oc}
+Red and green background shading indicates the range (10\% shade: x4,/4; 30\% shade: x2,/2)
+above and below threshold respectively.}\label{fig:violin_sd_oc}
 \end{figure}
 
 
 \begin{figure}[ptbh]
   a) AIMS insitu\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.year.NOx_Wet Tropics__Open Coastal_niskin_log\res}.pdf}\\
-  %b) AIMS FLNTU\\\includegraphics[align=t, width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.year.NOx_Wet Tropics__Open Coastal_flntu_log}.png}\\
+  %b) AIMS FLNTU\\\includegraphics[align=t, width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.year.NOx_Wet Tropics__Open Coastal_flntu_log}.pdf}\\
   %c) Satellite\\\includegraphics[align=t, width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.year.NOx_Wet Tropics__Open Coastal__log}.png}\\
   b) eReefs\\\includegraphics[align=t, width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.year.NOx_Wet Tropics__Open Coastal_eReefs_log\res}.pdf}\\
   c) eReefs926\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.year.NOx_Wet Tropics__Open Coastal_eReefs926_log\res}.pdf}\\
@@ -99,7 +107,7 @@ $\times 2$,$/2$) above and below threshold respectively.}\label{fig:violin_sd_oc
   represents Generalized Additive Mixed Model within a water year and purple line represents average
   within the water year.  Horizontal red, black and green dashed lines denote the twice threshold,
   threshold and half threshold values respectively.  Red and green background shading indicates the
-  range (10\% shade: $\times 4$,$/4$, 30\% shade: $\times 2$,$/2$) above and below threshold
+  range (10\% shade: x4,/4; 30\% shade: x2,/2) above and below threshold
   respectively.}\label{fig:violin_NOx_oc}
 \end{figure}
 
@@ -110,8 +118,7 @@ $\times 2$,$/2$) above and below threshold respectively.}\label{fig:violin_sd_oc
 Figures~\ref{fig:violin_month_chl_oc_1} -- \ref{fig:violin_month_NOx_oc_1} provide finer temporal
 resolution by displaying the temporal distribution of Chlorophyll-a, TSS, Secchi depth and NOx
 observations for the each month within Wet Tropics Open Coastal Zone from AIMS insitu, AIMS FLNTU,
-Satellite, eReefs and eReefs926 sources. Additional combinations of Measure/Zone/Source can be found
-in Figures~\ref{appfig:monthly_AIMS_insitu_violin_chl}--\ref{appfig:monthly_eReefs926_violin_NOx}.
+Satellite, eReefs and eReefs926 sources.
 
 The monthly violin plots do not add any additional insights with respect to understanding the
 characteristics of the underlying data to help guide the selection of appropriate indexation
@@ -126,7 +133,7 @@ easily appreciated.
   \caption{Observed (logarithmic axis with violin plot overlay) Chlorophyll-a data for the Wet Tropics Open Coastal Zone from a) AIMS insitu, b) AIMS FLNTU.
     Observations grouped into months are ordered over time and colored conditional on season as Wet (blue symbols) and Dry (red symbols).
     Sample sizes represented as numbers above violins and horizontal black dashed line denotes threshold value.
-    Red and green background shading indicates the range (10\% shade: $\times 4$,$/4$, 30\% shade: $\times 2$,$/2$) above and below threshold respectively.}\label{fig:violin_month_chl_oc_1}
+    Red and green background shading indicates the range (10\% shade: x4,/4; 30\% shade: x2,/2) above and below threshold respectively.}\label{fig:violin_month_chl_oc_1}
 \end{figure}
 
 \begin{figure}[ptbh]
@@ -135,7 +142,7 @@ easily appreciated.
   \caption{Observed (logarithmic axis with violin plot overlay) Chlorophyll-a data for the Wet Tropics Open Coastal Zone from a) Satellite, b) eReefs.
     Observations grouped into months are ordered over time and colored conditional on season as Wet (blue symbols) and Dry (red symbols).
     Sample sizes represented as numbers above violins and horizontal black dashed line denotes threshold value.
-    Red and green background shading indicates the range (10\% shade: $\times 4$,$/4$, 30\% shade: $\times 2$,$/2$) above and below threshold respectively.}\label{fig:violin_month_chl_oc_2}
+    Red and green background shading indicates the range (10\% shade: x4,/4; 30\% shade: x2,/2) above and below threshold respectively.}\label{fig:violin_month_chl_oc_2}
 \end{figure}
 
 
@@ -145,7 +152,7 @@ easily appreciated.
   \caption{Observed (logarithmic axis with violin plot overlay) TSS data for the Wet Tropics Open Coastal Zone from a) AIMS insitu, b) AIMS FLNTU.
     Observations grouped into months are ordered over time and colored conditional on season as Wet (blue symbols) and Dry (red symbols).
     Sample sizes represented as numbers above violins and horizontal black dashed line denotes threshold value.
-    Red and green background shading indicates the range (10\% shade: $\times 4$,$/4$, 30\% shade: $\times 2$,$/2$) above and below threshold respectively.}\label{fig:violin_month_nap_oc_1}
+    Red and green background shading indicates the range (10\% shade: x4,/4; 30\% shade: x2,/2) above and below threshold respectively.}\label{fig:violin_month_nap_oc_1}
 \end{figure}
 
 \begin{figure}[ptbh]
@@ -154,7 +161,7 @@ easily appreciated.
   \caption{Observed (logarithmic axis with violin plot overlay) TSS data for the Wet Tropics Open Coastal Zone from a) Satellite, b) eReefs.
     Observations grouped into months are ordered over time and colored conditional on season as Wet (blue symbols) and Dry (red symbols).
     Sample sizes represented as numbers above violins and horizontal black dashed line denotes threshold value.
-    Red and green background shading indicates the range (10\% shade: $\times 4$,$/4$, 30\% shade: $\times 2$,$/2$) above and below threshold respectively.}\label{fig:violin_month_nap_oc_2}
+    Red and green background shading indicates the range (10\% shade: x4,/4; 30\% shade: x2,/2) above and below threshold respectively.}\label{fig:violin_month_nap_oc_2}
 \end{figure}
   
 \begin{figure}[ptbh]
@@ -164,7 +171,7 @@ easily appreciated.
   \caption{Observed (logarithmic axis with violin plot overlay) Secchi depth data for the Wet Tropics Open Coastal Zone from a) AIMS insitu, b) Satellite and c) eReefs.
     Observations grouped into months are ordered over time and colored conditional on season as Wet (blue symbols) and Dry (red symbols).
     Sample sizes represented as numbers above violins and horizontal black dashed line denotes threshold value.
-    Red and green background shading indicates the range (10\% shade: $\times 4$,$/4$, 30\% shade: $\times 2$,$/2$) above and below threshold respectively.}\label{fig:violin_month_sd_oc_1}
+    Red and green background shading indicates the range (10\% shade: x4,/4; 30\% shade: x2,/2) above and below threshold respectively.}\label{fig:violin_month_sd_oc_1}
 \end{figure}
  
 \begin{figure}[ptbh]
@@ -175,7 +182,7 @@ easily appreciated.
   \caption{Observed (logarithmic axis with violin plot overlay) Secchi depth data for the Wet Tropics Open Coastal Zone from a) AIMS insitu, b) eReefs c) eReefs926.
     Observations grouped into months are ordered over time and colored conditional on season as Wet (blue symbols) and Dry (red symbols).
     Sample sizes represented as numbers above violins and horizontal black dashed line denotes threshold value.
-    Red and green background shading indicates the range (10\% shade: $\times 4$,$/4$, 30\% shade: $\times 2$,$/2$) above and below threshold respectively.}\label{fig:violin_month_NOx_oc_1}
+    Red and green background shading indicates the range (10\% shade: x4,/4; 30\% shade: x2,/2) above and below threshold respectively.}\label{fig:violin_month_NOx_oc_1}
 \end{figure}
 
 \clearpage
@@ -183,12 +190,22 @@ easily appreciated.
 \subsection{Spatial data}
 
 Figures~\ref{fig:eda.spatial_chl_oc} -- \ref{fig:eda.spatial_NOx_m} explore the spatio-temporal
-patterns in observed data from a finer spatial perspective (focussing on just the Wet Tropics Open
-Coastal and Dry Tropics Midshelf Zones).  These figures highlight the disparity in resolution
+patterns in observed data from a finer spatial perspective (again focussing on just the Wet Tropics
+Open Coastal and Dry Tropics Midshelf Zones).  Importantly, the colour scales have been mapped to
+a constant value range for each source for a given Measure.  The lower and upper bounds of the
+constant range is 
+respectively based on twice and half the threshold (see Table~\ref{tab:thresholds}) value
+(except for Secchi depth which are half and twice respectively).  Half and double the threshold was
+considered broadly appropriate for the Insitu data and thus should also be broadly appropriate for the
+other sources since they are intended to be indirect approximations of direct sampling.
+
+
+These figures also highlight the disparity in resolution
 between the different data sources. The AIMS insitu data is spatially very sparse \footnote{the AIMS
 FLNTU logger data is even more sparse and thus is not shown.}.  The Satellite data has the most
 extensive spatial resolution and notwithstanding the many gaps due to various optical interferences
-(such as cloud cover), also has the greatest temporal coverage.
+(such as cloud cover), also has the greatest temporal coverage\footnote{The remote sensing Satellite data
+span a temporal range of 2002 through to 2017, although only the range 2010-2016 is displayed}.
 
 For the selected Zones and span of water years, there is little evidence of a major latitudinal
 gradient in Satellite Chlorophyll-a with most of any change (if any) occurring across the shelf.
@@ -201,7 +218,11 @@ The eReefs and eReefs926 do show some variability in spatial and temporal Chloro
 depth (see
 Figs.~\ref{fig:eda.spatial_chl_oc}c-d,\ref{fig:eda.spatial_sd_oc}c-d,\ref{fig:eda.spatial_chl_m}c-d
 and \ref{fig:eda.spatial_sd_m}c-d), yet relatively little for TSS and NOx (at least for Dry Tropics
-Midshelf).
+Midshelf).  Whilst this apparent lack of variability is largely an artefact of the colour scale mapping,
+the values of these Measures are constantly
+substantially below the threshold value and thus invariant on the scale considered
+appropriate for comparison against the associated thresholds..
+
 
 %% Spatial maps (single zones)
 %% Wet Tropics Open Coastal
@@ -312,9 +333,9 @@ Midshelf).
  
 \subsection{Comparison of data sources}
 
-Ensuring that the data underpinning the metric calculation is fit-for-purpose is a critical part of
-the process, especially if multiple data sources for a specific indicator are to be aggregated as
-part of this calculation.  For example, successful aggregation of Chlorophyll-a as modelled by the
+Ensuring that the data underpinning the metric calculations are fit-for-purpose is a critical part
+of the process, especially if multiple data sources for a specific indicator are to be aggregated as
+part of these calculations.  For example, successful aggregation of Chlorophyll-a as modelled by the
 eReefs BGC with Chlorophyll-a as extracted from satellite reflectance data (optical properties) will
 largely depend on the underlying compatibility of these two sources.  Moreover, further combining
 with far more sparse and irregular sources (such as AIMS insitu Chlorophyll-a samples) relies on
@@ -322,24 +343,31 @@ general patterns of spatial and temporal autocorrelation being present across th
 sources so as to facilitate a contagious projection of sparse data across the denser layers.
 
 
-The project’s recommendation is not to aggregate, for each indicator, independent streams of data.
-Instead the preferred approach is to assimilate satellite reflectance information into the eReefs
-BGC model and to rely on in situ measurements for verification of the model performance.
+Based on substantial inconsistencies in the magnitude and variation of the observations between
+sources (AIMS insitu, Satellite and eReefs models), we recommend not to aggregating across the
+streams of data.  Although it might be possible to normalize each source such that they do all have
+the same basic characteristics prior to aggregation\footnote{indeed this is one of the functions of
+indexing metrics (see section~\ref{sec:indexing})}, all the various approach to achieve
+normalization rely on the availability of independent estimates of either data reliability, accuracy
+or biases present in each source.  Unfortunately, such information is not available.
 
-It is worthwhile noting that there is no single point of truth as the sparse in situ sampling does
+Instead of aggregating the sources together, the preferred approach is to assimilate satellite
+reflectance information into the eReefs BGC model and to rely on in situ measurements for
+verification of the model performance.
+
+It is worthwhile noting that there is no single point of truth as the sparse insitu sampling does
 not account for the dynamic nature of the receiving environment, both temporally and spatially.  It
 is however possible to compare different measurement methods at a high level.
 
-
-These five different sources (Satellite, eReefs, eReefs926, AIMS Insitu and AIMS FLNTU loggers) were
+The five different sources (Satellite, eReefs, eReefs926, AIMS Insitu and AIMS FLNTU loggers) were
 all collected at different spatio-temporal resolutions.  Specifically:
 \begin{itemize}
 \item the Satellite data are collected on a 1km grid on a daily basis, however there are many gaps
 in the time series of each cell due to cloud cover and other issues that affect the reliability of
 observations.
-\item the eReefs data are collected on a 4km grid on a daily basis without any time series gaps
+\item the eReefs data are modelled and projected on to a 4km grid on a daily basis without any time series gaps
 between 2013 and 2016
-\item the eReefs926 data are collected on a 4km grid on a daily basis without any time series gaps
+\item the eReefs926 data are modelled and projected  on to a 4km grid on a daily basis without any time series gaps
 between 2011 and 2014
 \item the AIMS Insitu samples are collected from specific sampling sites (28-32 throughout the GBR)
 and on an infrequent basis (approx. 3-4 times per year although more frequently in later years).
@@ -356,7 +384,7 @@ transects away from major rivers discharging into the GBR.  As such, they likely
 estimates of the water parameters of the surrounding water bodies.  Nevertheless, the observed data
 are direct measurements of a range of parameters considered to be important measures of water
 quality and are therefore considered to be relatively accurate estimates of the true state - albiet
-for a potentially narrow spati-temporal window.  By contrast, the Satellite data represent indirect
+for a potentially narrow (and biased) spatio-temporal window.  By contrast, the Satellite data represent indirect
 proxies for some of these parameters (Chlorophyll-a, Total Suspended Solids and Secchi Depth) and
 similarly, the eReefs data are indirect modelled estimates simulated from a deterministic
 manifestation of a conceptual model.  Hence, to gauge the accuracy of the Satellite and eReefs data
@@ -366,7 +394,8 @@ eReefs observations were compared to the AIMS Insitu observations.
 The disparate spatio-temporal resolutions of the data sources present substantial challenges for
 extracting comparable data.  For example, the proximity of AIMS Insitu samples to reefs and the
 spatial resolution (1km or 4km grid) frequently results in an inability to obtain matching spatial
-location for all three sources.  Furthermore, gaps in the Satellite time series frequently prevent
+location for all three sources\footnote{Satellite data and eReefs models are of limited value
+in shallow water}}.  Furthermore, gaps in the Satellite time series frequently prevent
 matching Satellite data to the same day as AIMS Insitu sampling.
 
 The degree to which the discrete AIMS Insitu samples reflect space and time around the actual
@@ -374,7 +403,7 @@ sampling sites/times is largely unknown.  That is, we don't know how broadly rep
 direct observations are.  Consequently, it is difficult to estimate how broadly to filter the
 Satellite and eReefs data in space and time around the AIMS Insitu sampling events in order to
 generate comparable data.  The 'best' breadth is likely to be a compromise between data availability
-(time limited for Satellite and space limited for eReefs)
+(time limited for Satellite and space limited for eReefs).
 
 Figures \ref{fig:satellite_vs_niskin_locations_5km} and \ref{fig:eReefs_vs_niskin_locations_5km}
 illustrate the spatial distribution of Satellite and eReefs grid cell centroid locations relative to
@@ -384,8 +413,8 @@ the AIMS Insitu sampling locations.  The different color spokes denote distance 
 The approach we took was to extract all observations within a specific series of spatio-temporal
 windows or neighbourhoods from which we could calculate a range of association and correspondence
 (such as RMSE and $R^2$) metrics (see Tables \ref{tab:association_metrics},
-\ref{tab:comp.all.rmse.sum}, \ref{tab:comp.all.mae.sum} \& \ref{tab:comp.all.mape.sum}).  Tables
-\ref{tab:comp.all.rmse.sum}, \ref{tab:comp.all.mae.sum} \& \ref{tab:comp.all.mape.sum} document the
+\ref{tab:comp.all.rmse.sum.max}, \ref{tab:comp.all.mae.sum.max} \& \ref{tab:comp.all.mpe.sum.max}).  Tables
+\ref{tab:comp.all.rmse.sum.max}, \ref{tab:comp.all.mae.sum.max} \& \ref{tab:comp.all.mpe.sum.max} document the
 top 5 ranked (according to RMSE, MAE and MAPE respectively) spatio-temporal lag associations between
 Satellite/eReefs data and AIMS Insitu data.
    
@@ -413,7 +442,7 @@ Satellite/eReefs data and AIMS Insitu data.
 
 Whilst it is well established that water quality parameters can be highly varied over time and
 space, even approximate degrees of spatio-temporal autocorrelation for these parameters remains
-largely unknown.  Nevertheless, We might expect that observations from different sources collected
+largely unknown.  Nevertheless, we might expect that observations from different sources collected
 at similar locations and at similar times should be more similar to one another than they are to
 more distal observations.  Furthermore, whilst the absolute values derived from different sources
 might not be exactly the same, we should expect a reasonable degree of correlation between the
@@ -437,7 +466,7 @@ integration routine that does more than just update a very limited number of poi
 time.
 
 The other rationale for exploring the spatio-temporal associations between AIMS insitu data and
-Satellite/eReefs data is to be able to determine the an optimal temporal lag and spatial distance
+Satellite/eReefs data is to be able to determine the optimal temporal lag and spatial distance
 for making comparisons of trends.  Given that AIMS insitu data are in some respects considered the
 more accurate (albeit limited in the degree to which they more broadly represent space and time
 around the samples), a comparison of the general temporal trends of each source should give some
@@ -474,39 +503,43 @@ However, the accuracy for Midshelf and Offshore are likely to be sufficient.
 
 
 \begin{figure}[htp]
-\includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/Satellite_vs_Niskin_locations_5km\res}.png}
+  \includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/Satellite_vs_Niskin_locations_5km\res}.png}
 \caption{Location of Satellite cells within 5km of AIMS niskin samples. Panel borders represent water bodies (Red: Enclosed Coastal, Green: Open Coastal, Blue: Midshelf).}\label{fig:satellite_vs_niskin_locations_5km}	
 \end{figure}
 
-\begin{figure}[htp]
+\begin{figure}[htp] 
 \includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/eReefs_vs_Niskin_locations_5km\res}.png}
 \caption{Location of eReefs cells within 5km of AIMS niskin samples.  Panel borders represent water bodies (Red: Enclosed Coastal, Green: Open Coastal, Blue: Midshelf).}\label{fig:eReefs_vs_niskin_locations_5km}	
 \end{figure}
 
 \begin{landscape}
 \begin{figure}[htp]
-\includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/chl_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural\res}.png}
+  %\includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/chl_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural\res}.png}
+  \includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/chl_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural\res}.pdf}
 \caption{Temporal patterns in Chlorophyll-a within 5km of each AIMS MMP sampling site for eReefs, Satellite and AIMS insitu and FLNTU logger sources. Horizontal dashed line represents the guideline value. Title backgrounds represent water bodies (Red: Enclosed Coastal, Green: Open Coastal, Blue: Midshelf).}\label{fig:chl_eReefs_vs_vs_Satellite_niskin_5km_natural}	
 \end{figure}		
 \end{landscape}
 
 \begin{landscape}
 \begin{figure}[htp]
-\includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/nap_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural\res}.png}
+  %\includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/nap_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural\res}.png}
+  \includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/nap_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural\res}.pdf}
 \caption{Temporal patterns in TSS within 5km of each AIMS MMP sampling site for eReefs, Satellite and AIMS insitu and FLNTU logger sources. Horizontal dashed line represents the guideline value. Title backgrounds represent water bodies (Red: Enclosed Coastal, Green: Open Coastal, Blue: Midshelf).}\label{fig:nap_eReefs_vs_vs_Satellite_niskin_5km_natural}	
 \end{figure}		
 \end{landscape}
 
 \begin{landscape}
 \begin{figure}[htp]
-\includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/sd_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural\res}.png}
+  %\includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/sd_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural\res}.png}
+  \includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/sd_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural\res}.pdf}
 \caption{Temporal patterns in Secchi Depth within 5km of each AIMS MMP sampling site for eReefs, Satellite and AIMS insitu and FLNTU logger sources. Horizontal dashed line represents the guideline value. Title backgrounds represent water bodies (Red: Enclosed Coastal, Green: Open Coastal, Blue: Midshelf).}\label{fig:sd_eReefs_vs_vs_Satellite_niskin_5km_natural}	
 \end{figure}		
 \end{landscape}
 
 \begin{landscape}
 \begin{figure}[htp]
-\includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/NOx_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural\res}.png}
+  %\includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/NOx_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural\res}.png}
+  \includegraphics[width=0.9\linewidth]{{figures/Analyses at AIMS niskin sites/Observations/NOx_eReefs_vs_Satellite_vs_Niskin_.Radius_5_natural\res}.pdf}
 \caption{Temporal patterns in NOx within 5km of each AIMS MMP sampling site for eReefs, Satellite and AIMS insitu and FLNTU logger sources. Horizontal dashed line represents the guideline value. Title backgrounds represent water bodies (Red: Enclosed Coastal, Green: Open Coastal, Blue: Midshelf).}\label{fig:NOx_eReefs_vs_vs_Satellite_niskin_5km_natural}	
 \end{figure}		
 \end{landscape}
