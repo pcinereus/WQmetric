@@ -629,7 +629,11 @@ full.lookup %>% head(20)
 ## Temporal Exploratory data analysis violin plots
 lookup = data.frame(src=c('niskin','flntu','','eReefs','eReefs926'),
                     path=c('Insitu','FLNTU','Satellite','eReefs','eReefs926'))
-for (i in 1:nrow(full.lookup)) {
+ii=(full.lookup$region=='Wet Tropics' & full.lookup$waterbody=='Open Coastal') | (full.lookup$region=='Dry Tropics' & full.lookup$waterbody=='Midshelf')
+which(ii)
+
+#for (i in 1:nrow(full.lookup[which(ii),])) {
+for (i in which(ii)) {
         src=full.lookup$src[i]
         path=full.lookup$path[i]
         r=full.lookup$region[i]
@@ -652,10 +656,15 @@ for (s in 1:nrow(lookup)) {
         if (!(s %in% c(2,3) & m=='NOx')){
             system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf"'))
             system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.month.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.month.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf"'))
-            system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA_small.png"'))
-            #system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA_small.png"'))
 
-            system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA_small.png" "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf"'))
+            system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_log.pdf"'))
+            system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.month.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.month.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_log.pdf"'))
+            ##system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA_small.png"'))
+            ##system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA_small.png"'))
+            #system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA_small.png" "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf"'))
+            #system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA_small.png" "../data/eda/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA.pdf"'))
+            system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logB_small.png" "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logB.pdf"'))
+            system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logB_small.png" "../data/eda/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logB.pdf"'))
             
         }
     }
@@ -679,31 +688,37 @@ for (i in c('GL_10.R_1000','GL_100.R_1000','GL_1.R_10','GL_10.R_10')) {
     system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Sensitivity of indices/sensitivity.Group_1.',i,'_small.pdf"  "Figures/sensitivity.Group_1.',i,'.pdf"'))
 }
 
-
-
-for (idx in c('.idx_Binary_year','.idx.year','.idx_fsMAMP4_year')) {
-    print(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_natural.pdf"'))
-    #system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_log.pdf" "figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_log_small.png"'))
-    #system(paste0('cp "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_log.png" "figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_log.png"'))
-    system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_natural_small.pdf"  "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_natural.pdf"'))
-    system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/FLNTU/eda',idx,'.chl_Wet Tropics__Open Coastal_flntu_natural_small.pdf"  "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_flntu_natural.pdf"'))
-    system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/Satellite/eda',idx,'.chl_Wet Tropics__Open Coastal__natural_small.pdf"  "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal__natural.pdf"'))
-    system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/eReefs/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs_natural_small.pdf"  "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs_natural.pdf"'))
-    system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/eReefs926/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs926_natural_small.pdf"  "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs926_natural.pdf"'))
-
+#Index violin plots
+for (m in c('chl','nap','sd','NOx')[2]) {
+    for (idx in c('.idx_Binary_year','.idx.year','.idx_fsMAMP_year','.idx_fsMAMP4_year')[c(1,3,4)]) {
+        for (z in c('Wet Tropics__Open Coastal','Dry Tropics__Midshelf')) {
+            print(paste0('convert -resize 100% "../data/eda/eda',idx,'.',m,'_',z,'_niskin_natural.pdf"'))
+                                        #system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_',z,'_niskin_log.pdf" "figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.chl_',z,'_niskin_log_small.png"'))
+                                        #system(paste0('cp "../data/eda/eda',idx,'.chl_',z,'_niskin_log.png" "figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.chl_',z,'_niskin_log.png"'))
+            system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.',m,'_',z,'_niskin_natural_small.pdf"  "../data/eda/eda',idx,'.',m,'_',z,'_niskin_natural.pdf"'))
+            system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/FLNTU/eda',idx,'.',m,'_',z,'_flntu_natural_small.pdf"  "../data/eda/eda',idx,'.',m,'_',z,'_flntu_natural.pdf"'))
+            system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/Satellite/eda',idx,'.',m,'_',z,'__natural_small.pdf"  "../data/eda/eda',idx,'.',m,'_',z,'__natural.pdf"'))
+            system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/eReefs/eda',idx,'.',m,'_',z,'_eReefs_natural_small.pdf"  "../data/eda/eda',idx,'.',m,'_',z,'_eReefs_natural.pdf"'))
+            system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/eReefs926/eda',idx,'.',m,'_',z,'_eReefs926_natural_small.pdf"  "../data/eda/eda',idx,'.',m,'_',z,'_eReefs926_natural.pdf"'))
+        }
+    }
 }
 
-for (idx in c('.idx.spatial.year','.idx_Binary_spatial.year','.idx_fsMAMP4_spatial.year')) {
-    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_naturalA.pdf" "figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.chl_Wet Tropics__Open Coastal_niskin_naturalA_small.png"'))
-    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal__naturalA.pdf" "figures/Exploratory_Data_Analysis/Satellite/eda',idx,'.chl_Wet Tropics__Open Coastal__naturalA_small.png"'))
-    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs_naturalA.pdf" "figures/Exploratory_Data_Analysis/eReefs/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs_naturalA_small.png"'))
-    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs926_naturalA.pdf" "figures/Exploratory_Data_Analysis/eReefs926/eda',idx,'.chl_Wet Tropics__Open Coastal_eReefs926_naturalA_small.png"'))
-
-    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Dry Tropics__Midshelf_niskin_naturalA.pdf" "figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.chl_Dry Tropics__Midshelf_niskin_naturalA_small.png"'))
-    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Dry Tropics__Midshelf_flntu_naturalA.pdf" "figures/Exploratory_Data_Analysis/FLNTU/eda',idx,'.chl_Dry Tropics__Midshelf_flntu_naturalA_small.png"'))
-    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Dry Tropics__Midshelf__naturalA.pdf" "figures/Exploratory_Data_Analysis/Satellite/eda',idx,'.chl_Dry Tropics__Midshelf__naturalA_small.png"'))
-    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Dry Tropics__Midshelf_eReefs_naturalA.pdf" "figures/Exploratory_Data_Analysis/eReefs/eda',idx,'.chl_Dry Tropics__Midshelf_eReefs_naturalA_small.png"'))
-    system(paste0('convert -resize 100% "../data/eda/eda',idx,'.chl_Dry Tropics__Midshelf_eReefs926_naturalA.pdf" "figures/Exploratory_Data_Analysis/eReefs926/eda',idx,'.chl_Dry Tropics__Midshelf_eReefs926_naturalA_small.png"'))
+## Spatial index maps
+for (m in c('chl','nap','sd','NOx')) {
+    for (idx in c('.idx.spatial.year','.idx_Binary_spatial.year','.idx_fsMAMP_spatial.year','.idx_fsMAMP4_spatial.year')[2:4]) {
+        print(paste0('eda',idx,'.',m,'_Wet Tropics__Open Coastal_niskin_naturalA.pdf'))
+        system(paste0('convert -resize 100% "../data/eda/eda',idx,'.',m,'_Wet Tropics__Open Coastal_niskin_naturalA.pdf" "figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.',m,'_Wet Tropics__Open Coastal_niskin_naturalA_small.png"'))
+        system(paste0('convert -resize 100% "../data/eda/eda',idx,'.',m,'_Wet Tropics__Open Coastal__naturalA.pdf" "figures/Exploratory_Data_Analysis/Satellite/eda',idx,'.',m,'_Wet Tropics__Open Coastal__naturalA_small.png"'))
+        system(paste0('convert -resize 100% "../data/eda/eda',idx,'.',m,'_Wet Tropics__Open Coastal_eReefs_naturalA.pdf" "figures/Exploratory_Data_Analysis/eReefs/eda',idx,'.',m,'_Wet Tropics__Open Coastal_eReefs_naturalA_small.png"'))
+        system(paste0('convert -resize 100% "../data/eda/eda',idx,'.',m,'_Wet Tropics__Open Coastal_eReefs926_naturalA.pdf" "figures/Exploratory_Data_Analysis/eReefs926/eda',idx,'.',m,'_Wet Tropics__Open Coastal_eReefs926_naturalA_small.png"'))
+        
+        system(paste0('convert -resize 100% "../data/eda/eda',idx,'.',m,'_Dry Tropics__Midshelf_niskin_naturalA.pdf" "figures/Exploratory_Data_Analysis/Insitu/eda',idx,'.',m,'_Dry Tropics__Midshelf_niskin_naturalA_small.png"'))
+        system(paste0('convert -resize 100% "../data/eda/eda',idx,'.',m,'_Dry Tropics__Midshelf_flntu_naturalA.pdf" "figures/Exploratory_Data_Analysis/FLNTU/eda',idx,'.',m,'_Dry Tropics__Midshelf_flntu_naturalA_small.png"'))
+        system(paste0('convert -resize 100% "../data/eda/eda',idx,'.',m,'_Dry Tropics__Midshelf__naturalA.pdf" "figures/Exploratory_Data_Analysis/Satellite/eda',idx,'.',m,'_Dry Tropics__Midshelf__naturalA_small.png"'))
+        system(paste0('convert -resize 100% "../data/eda/eda',idx,'.',m,'_Dry Tropics__Midshelf_eReefs_naturalA.pdf" "figures/Exploratory_Data_Analysis/eReefs/eda',idx,'.',m,'_Dry Tropics__Midshelf_eReefs_naturalA_small.png"'))
+        system(paste0('convert -resize 100% "../data/eda/eda',idx,'.',m,'_Dry Tropics__Midshelf_eReefs926_naturalA.pdf" "figures/Exploratory_Data_Analysis/eReefs926/eda',idx,'.',m,'_Dry Tropics__Midshelf_eReefs926_naturalA_small.png"'))
+    }
 }
 
 lookup = data.frame(src=c('niskin','flntu','','eReefs','eReefs926'),
