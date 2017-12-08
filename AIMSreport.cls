@@ -19,7 +19,25 @@
 \usepackage{rotating}
 \usepackage{booktabs}
 \usepackage[lmargin=2.54cm,rmargin=2.54cm, tmargin=2.54cm,bmargin=2.54cm,headsep=1.52cm,a4paper]{geometry}
-\usepackage{sfmath} %redefines math font into sf
+
+%% Some choices of math font
+%\usepackage{sfmath} %redefines math font into sf
+%\usepackage{MnSymbol}
+%\usepackage{lmodern}
+%\usepackage{mathpazo}
+%\usepackage{kpfonts}
+%\usepackage{mathptmx}
+%\usepackage{times,mtpro2}
+%\usepackage{stix} % cant do large curly braces
+\usepackage{txfonts}
+%\usepackage{newtxtext,newtxmath}
+%\usepackage{libertine} 
+%\usepackage[libertine]{newtxmath}
+%\usepackage{newpxtext}
+%\usepackage[euler-digits]{eulervm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \usepackage{mathtools} %recently added to fix an issue with pmatrix, matrix, bmatrix, align etc
 \usepackage{enumitem}% http://ctan.org/pkg/enumitem
 \usepackage{tikz}
@@ -64,7 +82,7 @@
 % -----------------------------------------------------------------------------------------
 
 
-\setmainfont{GillSans}
+\setmainfont[BoldFont={GillSans-Bold}, ItalicFont={GillSans-Italic}]{GillSans}
 \newfontfamily\titlefont[Color=black]{GillSans-Bold}
 \newfontfamily\subtitlefont[Color=black]{GillSans-Bold} %{Arial}
 \newfontfamily\sectionfont[Color=blue]{GillSans-Bold} %{Arial}

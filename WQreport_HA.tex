@@ -1,3 +1,5 @@
+\section{Hierarchical aggregations}
+
 \subsection{Theoretical framework} To facilitate the integration of additional input Measures into
 the report card scores (such as additional Physical or Chemical), or even additional Sub-indicators
 (such as sediment metals, aquaculture yields etc), we can defined a hierarchical structure in which
@@ -22,7 +24,7 @@ nested in Indicators and Sites are nested within Zones (see Figure \ref{fig:hier
 
 
 \begin{figure}[h]
-\begin{center}\includegraphics[width=0.5\linewidth]{../Figures/Diagrams/hierarchies.pdf}}\end{center}
+\begin{center}\includegraphics[width=0.5\linewidth]{figures/Diagrams/hierarchies.pdf}}\end{center}
 \caption{Temporal, measure and spatial aggregation hierarchy}\label{fig:hierarchies}
 \end{figure}
 
@@ -372,7 +374,246 @@ Figure~\ref{fig:control} for the eReefs data indexed using the fsMAMP formulatio
 some agreement between the different grade types, in general, the Uniform type yields higher grades
 than either MMP or GHHP.
 
-\input{tables/GradeTypeComparison}                                 
+%\input{tables/GradeTypeComparison}                                 
+
+\LTcapwidth=\linewidth
+\setlength\aboverulesep{0pt}\setlength\belowrulesep{0pt}
+\setlength\cmidrulekern{1pt}\setlength\cmidrulewidth{1pt}
+\renewcommand\arraystretch{1.2}\setlength\tabcolsep{5pt}
+
+\begin{longtable}{llccccc}
+\caption{Score and associated Grades based on three different grade control charts (Uniform, MMP and GHHP) for eReefs data indexed via fsMAMP and aggregated to Zone/Indicator level.}\label{tab:GradeTypeComparisons}\\ 
+\toprule
+Region&Water Body & Water Year & Score & Grade (MMP) & Grade (Uniform) & Grade (GHHP)\\
+\midrule
+\endfirsthead
+
+\multicolumn{7}{l}{..continued from previous page}\\
+\toprule
+Region&Water Body & Water Year & Score & Grade (MMP) & Grade (Uniform) & Grade (GHHP)\\
+\midrule 
+
+\endhead
+\bottomrule
+\endlasthead
+Cape York & Open Coastal & 2014 & 0.692 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Cape York & Open Coastal & 2014 & 0.791 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Cape York & Open Coastal & 2014 & 0.891 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Open Coastal & 2014 & 0.856 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Open Coastal & 2015 & 0.741 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\
+  Cape York & Open Coastal & 2015 & 0.906 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Open Coastal & 2015 & 0.880 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Open Coastal & 2016 & 0.757 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Cape York & Open Coastal & 2016 & 0.837 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Cape York & Open Coastal & 2016 & 0.917 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Open Coastal & 2016 & 0.891 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Midshelf & 2014 & 0.716 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Cape York & Midshelf & 2014 & 0.805 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Cape York & Midshelf & 2014 & 0.894 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Midshelf & 2014 & 0.862 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Midshelf & 2015 & 0.764 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Cape York & Midshelf & 2015 & 0.838 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Cape York & Midshelf & 2015 & 0.913 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Midshelf & 2015 & 0.891 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Midshelf & 2016 & 0.781 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Cape York & Midshelf & 2016 & 0.855 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Midshelf & 2016 & 0.929 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Midshelf & 2016 & 0.903 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Offshore & 2014 & 0.825 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Cape York & Offshore & 2014 & 0.874 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Offshore & 2014 & 0.923 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Offshore & 2014 & 0.911 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Offshore & 2015 & 0.852 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Offshore & 2015 & 0.896 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Offshore & 2015 & 0.941 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Offshore & 2015 & 0.928 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Offshore & 2016 & 0.895 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Offshore & 2016 & 0.927 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Offshore & 2016 & 0.960 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Cape York & Offshore & 2016 & 0.951 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Open Coastal & 2014 & 0.602 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Wet Tropics & Open Coastal & 2014 & 0.711 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Open Coastal & 2014 & 0.819 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Open Coastal & 2014 & 0.742 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Open Coastal & 2015 & 0.668 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Open Coastal & 2015 & 0.760 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Open Coastal & 2015 & 0.853 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Open Coastal & 2015 & 0.803 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Open Coastal & 2016 & 0.692 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Open Coastal & 2016 & 0.790 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Open Coastal & 2016 & 0.888 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Open Coastal & 2016 & 0.836 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Midshelf & 2014 & 0.711 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Midshelf & 2014 & 0.789 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Midshelf & 2014 & 0.866 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Midshelf & 2014 & 0.826 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Midshelf & 2015 & 0.760 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Midshelf & 2015 & 0.826 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Midshelf & 2015 & 0.893 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Midshelf & 2015 & 0.866 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Midshelf & 2016 & 0.796 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Midshelf & 2016 & 0.864 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Midshelf & 2016 & 0.933 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Midshelf & 2016 & 0.905 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Offshore & 2014 & 0.819 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Offshore & 2014 & 0.868 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Offshore & 2014 & 0.918 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Offshore & 2014 & 0.906 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Offshore & 2015 & 0.844 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Wet Tropics & Offshore & 2015 & 0.886 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Offshore & 2015 & 0.929 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Offshore & 2015 & 0.923 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Offshore & 2016 & 0.873 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Offshore & 2016 & 0.910 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Offshore & 2016 & 0.947 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Wet Tropics & Offshore & 2016 & 0.940 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Open Coastal & 2014 & 0.580 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Dry Tropics & Open Coastal & 2014 & 0.686 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Open Coastal & 2014 & 0.793 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Open Coastal & 2014 & 0.772 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Open Coastal & 2015 & 0.624 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Dry Tropics & Open Coastal & 2015 & 0.726 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Open Coastal & 2015 & 0.829 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Open Coastal & 2015 & 0.813 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Open Coastal & 2016 & 0.639 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Dry Tropics & Open Coastal & 2016 & 0.746 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Open Coastal & 2016 & 0.852 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Open Coastal & 2016 & 0.827 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Midshelf & 2014 & 0.758 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Midshelf & 2014 & 0.806 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Midshelf & 2014 & 0.853 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Midshelf & 2014 & 0.817 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Midshelf & 2015 & 0.799 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Midshelf & 2015 & 0.841 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Midshelf & 2015 & 0.884 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Midshelf & 2015 & 0.870 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Midshelf & 2016 & 0.821 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Midshelf & 2016 & 0.863 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Midshelf & 2016 & 0.906 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Midshelf & 2016 & 0.896 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Offshore & 2014 & 0.778 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Offshore & 2014 & 0.842 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Offshore & 2014 & 0.907 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Offshore & 2014 & 0.885 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Offshore & 2015 & 0.809 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Offshore & 2015 & 0.867 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Offshore & 2015 & 0.924 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Offshore & 2015 & 0.905 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Offshore & 2016 & 0.829 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Dry Tropics & Offshore & 2016 & 0.885 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Offshore & 2016 & 0.940 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Dry Tropics & Offshore & 2016 & 0.921 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Mackay Whitsunday & Open Coastal & 2014 & 0.464 & \cellcolor[HTML]{F47721}{D} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F47721}{D} \\ 
+  Mackay Whitsunday & Open Coastal & 2014 & 0.559 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Mackay Whitsunday & Open Coastal & 2014 & 0.654 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Open Coastal & 2014 & 0.686 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Open Coastal & 2015 & 0.491 & \cellcolor[HTML]{F47721}{D} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F47721}{D} \\ 
+  Mackay Whitsunday & Open Coastal & 2015 & 0.586 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Mackay Whitsunday & Open Coastal & 2015 & 0.682 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Open Coastal & 2015 & 0.709 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Open Coastal & 2016 & 0.505 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Mackay Whitsunday & Open Coastal & 2016 & 0.600 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Mackay Whitsunday & Open Coastal & 2016 & 0.696 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Open Coastal & 2016 & 0.720 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Midshelf & 2014 & 0.568 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Mackay Whitsunday & Midshelf & 2014 & 0.633 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Mackay Whitsunday & Midshelf & 2014 & 0.699 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Midshelf & 2014 & 0.687 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Midshelf & 2015 & 0.607 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Mackay Whitsunday & Midshelf & 2015 & 0.670 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Midshelf & 2015 & 0.733 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Midshelf & 2015 & 0.722 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Midshelf & 2016 & 0.602 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Mackay Whitsunday & Midshelf & 2016 & 0.666 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Midshelf & 2016 & 0.729 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Midshelf & 2016 & 0.734 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Offshore & 2014 & 0.470 & \cellcolor[HTML]{F47721}{D} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F47721}{D} \\ 
+  Mackay Whitsunday & Offshore & 2014 & 0.590 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Mackay Whitsunday & Offshore & 2014 & 0.710 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Offshore & 2014 & 0.689 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Offshore & 2015 & 0.474 & \cellcolor[HTML]{F47721}{D} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F47721}{D} \\ 
+  Mackay Whitsunday & Offshore & 2015 & 0.596 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Mackay Whitsunday & Offshore & 2015 & 0.718 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Offshore & 2015 & 0.702 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Offshore & 2016 & 0.475 & \cellcolor[HTML]{F47721}{D} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F47721}{D} \\ 
+  Mackay Whitsunday & Offshore & 2016 & 0.596 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Mackay Whitsunday & Offshore & 2016 & 0.716 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Mackay Whitsunday & Offshore & 2016 & 0.693 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Open Coastal & 2014 & 0.377 & \cellcolor[HTML]{F47721}{D} & \cellcolor[HTML]{F47721}{D} & \cellcolor[HTML]{F47721}{D} \\ 
+  Fitzroy & Open Coastal & 2014 & 0.484 & \cellcolor[HTML]{F47721}{D} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F47721}{D} \\ 
+  Fitzroy & Open Coastal & 2014 & 0.592 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Open Coastal & 2014 & 0.559 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Open Coastal & 2015 & 0.382 & \cellcolor[HTML]{F47721}{D} & \cellcolor[HTML]{F47721}{D} & \cellcolor[HTML]{F47721}{D} \\ 
+  Fitzroy & Open Coastal & 2015 & 0.491 & \cellcolor[HTML]{F47721}{D} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F47721}{D} \\ 
+  Fitzroy & Open Coastal & 2015 & 0.600 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Open Coastal & 2015 & 0.608 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Open Coastal & 2016 & 0.442 & \cellcolor[HTML]{F47721}{D} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F47721}{D} \\ 
+  Fitzroy & Open Coastal & 2016 & 0.542 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Open Coastal & 2016 & 0.643 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Open Coastal & 2016 & 0.671 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Midshelf & 2014 & 0.589 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Midshelf & 2014 & 0.646 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Midshelf & 2014 & 0.703 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Midshelf & 2014 & 0.570 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Midshelf & 2015 & 0.595 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Midshelf & 2015 & 0.654 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Midshelf & 2015 & 0.713 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Midshelf & 2015 & 0.627 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Midshelf & 2016 & 0.631 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Midshelf & 2016 & 0.681 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Midshelf & 2016 & 0.731 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Midshelf & 2016 & 0.683 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Offshore & 2014 & 0.528 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Offshore & 2014 & 0.638 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Offshore & 2014 & 0.749 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Offshore & 2014 & 0.699 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Offshore & 2015 & 0.541 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Offshore & 2015 & 0.651 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Offshore & 2015 & 0.761 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Offshore & 2015 & 0.727 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Offshore & 2016 & 0.571 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Fitzroy & Offshore & 2016 & 0.675 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Offshore & 2016 & 0.779 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Fitzroy & Offshore & 2016 & 0.739 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Open Coastal & 2014 & 0.624 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Burnett Mary & Open Coastal & 2014 & 0.702 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Open Coastal & 2014 & 0.780 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Open Coastal & 2014 & 0.779 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Open Coastal & 2015 & 0.639 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Burnett Mary & Open Coastal & 2015 & 0.721 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Open Coastal & 2015 & 0.803 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Open Coastal & 2015 & 0.797 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Open Coastal & 2016 & 0.653 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Open Coastal & 2016 & 0.735 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Open Coastal & 2016 & 0.817 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Open Coastal & 2016 & 0.805 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Midshelf & 2014 & 0.646 & \cellcolor[HTML]{F0C918}{C} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{F0C918}{C} \\ 
+  Burnett Mary & Midshelf & 2014 & 0.690 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Midshelf & 2014 & 0.734 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Midshelf & 2014 & 0.749 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Midshelf & 2015 & 0.675 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Midshelf & 2015 & 0.717 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Midshelf & 2015 & 0.759 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Midshelf & 2015 & 0.785 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Midshelf & 2016 & 0.745 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Midshelf & 2016 & 0.780 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Midshelf & 2016 & 0.815 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Midshelf & 2016 & 0.835 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Offshore & 2014 & 0.733 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Offshore & 2014 & 0.802 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Offshore & 2014 & 0.871 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Burnett Mary & Offshore & 2014 & 0.842 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Offshore & 2015 & 0.771 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Offshore & 2015 & 0.831 & \cellcolor[HTML]{B0D235}{B} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Offshore & 2015 & 0.891 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Burnett Mary & Offshore & 2015 & 0.872 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Burnett Mary & Offshore & 2016 & 0.848 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{B0D235}{B} \\ 
+  Burnett Mary & Offshore & 2016 & 0.893 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Burnett Mary & Offshore & 2016 & 0.938 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+  Burnett Mary & Offshore & 2016 & 0.912 & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} & \cellcolor[HTML]{00734D}{A} \\ 
+   \hrule
+\end{longtable}
+
 
 
 \subsubsection{Confidence intervals}
@@ -388,6 +629,37 @@ sample from each of the constituent distributions (e.g. a single value from the 
 Chlorophyll-a and NOx distributions) and from each set of draws, calculate the weighted
 \footnote{Weights according to the weights defined for that level of the aggregation hierarchy} mean
 of the values.  The 95\% CI is thus calculated as the quantiles (p=0.025 and p=0.975) of the means.
+
+Confidence intervals are used to represent uncertainty in estimations.
+For example, 95\% confidence intervals associated with a estimated mean roughly express a range
+of values over which we have the nominated degree of confidence that the true value is likely to
+lie\footnote{From a frequentist perspective, 95\% confidence intervals techinically indicate that
+  95\% of intervals of the calculated extent will contain the true mean}.
+
+Uncertainty arrises from multiple sources.  Firstly, it arrises from the accuracies of the measured data
+and secondly, from the inprecisions introduced by the statistical methodologies for processing and summarizing
+the dat.  Hence encapsulating and communicating full uncertainty requires information about both of these
+sources of uncertainty.
+
+Estimates (such as sample means) are typically calculated from very small (yet ideally representative) samples
+drawn from a much larger population.  In such cases, the statistically derived confidence intervals are used to provide
+an indication of the range of estimates in which we are confident the true value is likely to lie.
+That is, they depict the statistical uncertainty that arrizes from the need to estimate parameters from
+small amounts of the total possible spatial/temporal domain.
+
+If measurement uncertainty is also known, then it is possible to incorporate and propogate this through
+the aggregation schedule so as to yeild total uncertainty.  Measurement uncertainty is very typically
+very difficult to obtain.  Nevertheless, it is usually assumed to be relatively small compared to
+the statistical uncertainty.
+
+However, in the case of the Satellite and eReefs data, we have a virtual saturation of sample data.  That is,
+with respect to the spatial and temporal extent of the data, we essentially have the entire population.
+Consequently, the statistical uncertainty is virtually zero.  We are not estimating a mean, we
+are calculating the mean.  Hence measurement uncertaintly is of elevated importance.  Unfortunately,
+we do not have any information about the measurement uncertainty at a spatial and temporal scale
+appropriate.  As a result, we have elected not to represent uncertainty (as it would only be based on
+statistical uncertainty which would give the misleading impression of extremely low levels of uncertainty).
+
 
 \subsection{Summary of adopted methodologies}
 
@@ -451,18 +723,18 @@ determinants.  Other aggregation combinations can be found in Appendix~\ref{apps
 \paragraph{Site level maps}
 
 %Site/Measure (eReefs/fsMAMP/Uniform/chl) - spatial map
-\begin{figure}[ptbh]
+\begin{figure}[!hptb]
   \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Measurement level/eReefs/spatial_map_eReefs_fsMAMP.Annual_measure.chl.site_Grade_Uniform\res}.png}
 \caption{Spatio-temporal patterns in eReefs fsMAMP Chlorophyll-a index grades (Uniform grade type control chart applied).}\label{fig:spatial_map_eReefs_fsMAMP.Annual_measure.chl.site_Grade_Uniform_lowres}
 \end{figure}
 
 %Site/Measure (eReefs/fsMAMP/Uniform/sd) - spatial map
-\begin{figure}[ptbh]
+\begin{figure}[!hptb]
   \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Measurement level/eReefs/spatial_map_eReefs_fsMAMP.Annual_measure.sd.site_Grade_Uniform\res}.png}
 \caption{Spatio-temporal patterns in eReefs fsMAMP Secchi Depth index grades (Uniform grade type control chart applied).}\label{fig:spatial_map_eReefs_fsMAMP.Annual_measure.sd.site_Grade_Uniform_lowres}
 \end{figure}
 
-\clearpage
+%\clearpage
 
 \subsubsection{Site/Subindicator level}
 
@@ -470,7 +742,7 @@ determinants.  Other aggregation combinations can be found in Appendix~\ref{apps
 
 \paragraph{Site level maps}
 
-\begin{figure}[ptbh]
+\begin{figure}[!hptb]
   \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Subindicator level/eReefs/spatial_map_eReefs_fsMAMP.Annual_subindicator.Productivity.sitenoNOx_Grade_Uniform\res}.png}
 \caption{Spatio-temporal patterns in eReefs fsMAMP Productivity index grades (Uniform grade type control chart applied).}\label{fig:spatial_map_eReefs_fsMAMP.Annual_subindictor.Productivity.sitenoNOx_Grade_Uniform_lowres}
 \end{figure}
@@ -500,17 +772,17 @@ determinants.  Other aggregation combinations can be found in Appendix~\ref{apps
 
 \paragraph{Simple time series}
 
-\begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Aggregations/eReefs/simple_eReefs_fsMAMP.Annual_measure.zonenoNOXnonap_with_enclosed_coastal_Grade_Uniform}.pdf}
-\caption{Time series of fsMAMP measures (Chlorophyll-a, TSS and Secchi Depth) index scores by zone. The blue vertical bar spans from mid 2009 to mid 2011.  Faint colored horizontal bands represent Uniform grade ranges.}\label{fig:simple_eReefs_fsMAMP.Annual_measure.zonenoNOXnonap_with_enclosed_coastal_Grade_Uniform}
+\begin{figure}[!hptb]
+  \includegraphics[width=1\linewidth]{{figures/Indices/Aggregations/eReefs/simple_eReefs_fsMAMP.Annual_measure.zonenoNOxnonap_with_enclosed_coastal_Grade_Uniform}.pdf}
+\caption{Time series of fsMAMP measures (Chlorophyll-a and Secchi Depth) index scores by zone. The blue vertical bar spans from mid 2009 to mid 2011.  Faint colored horizontal bands represent Uniform grade ranges.}\label{fig:simple_eReefs_fsMAMP.Annual_measure.zonenoNOXnonap_with_enclosed_coastal_Grade_Uniform}
 \end{figure}
 \clearpage
  
 \paragraph{Flat map}
 
 \begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Measurement level/eReefs/simple_map_eReefs_fsMAMP.Annual_measure_chl.zonenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform\res}.png}
-\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Chlorophyll-a index grades (Uniform grade type control chart applied).}\label{fig:simple_map_eReefs_fsMAMP.Annual_measure_chl.zonenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform_lowres}
+  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Measurement level/eReefs/simple_map_eReefs_fsMAMP.Annual_measure_chl.zonenoNOxnonap_with_enclosed_coastal_A_Grade_Uniform\res}.png}
+\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Chlorophyll-a index grades (Uniform grade type control chart applied).}\label{fig:simple_map_eReefs_fsMAMP.Annual_measure_chl.zonenoNOxnonap_with_enclosed_coastal_A_Grade_Uniform_lowres}
 \end{figure}
 
 %\begin{figure}[ptbh]
@@ -519,21 +791,21 @@ determinants.  Other aggregation combinations can be found in Appendix~\ref{apps
 %\end{figure}
 
 
-\begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Measurement level/eReefs/simple_map_eReefs_fsMAMP.Annual_measure_nap.zonenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform\res}.png}
-\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP TSS index grades (Uniform grade type control chart applied).}\label{fig:simple_map_eReefs_fsMAMP.Annual_measure_nap.zonenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform_lowres}
-\end{figure}
+%\begin{figure}[ptbh]
+%  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Measurement level/eReefs/simple_map_eReefs_fsMAMP.Annual_measure_nap.zonenoNOxnonap_with_enclosed_coastal_A_Grade_Uniform\res}.png}
+%\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP TSS index grades (Uniform grade type control chart applied).}\label{fig:simple_map_eReefs_fsMAMP.Annual_measure_nap.zonenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform_lowres}
+%\end{figure}
 
 %\begin{figure}[ptbh]
-%  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Measurement level/eReefs/simple_map_eReefs_fsMAMP.Annual_measure_nap.zonenoSDnoNOXnonap_with_enclosed_coastal_A_Grade_MMP\res}.png}
+%  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Measurement level/eReefs/simple_map_eReefs_fsMAMP.Annual_measure_nap.zonenoSDnoNOxnonap_with_enclosed_coastal_A_Grade_MMP\res}.png}
 %\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP TSS index grades (MMP-like grade type control chart applied).}\label{fig:simple_map_eReefs_fsMAMP.Annual_measure_nap.zone_A_Grade_MMP_lowres}
 %\end{figure}
 
 
 
 \begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Measurement level/eReefs/simple_map_eReefs_fsMAMP.Annual_measure_sd.zonenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform\res}.png}
-\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Secchi Depth index grades (Uniform grade type control chart applied).}\label{fig:simple_map_eReefs_fsMAMP.Annual_measure_sd.zonenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform_lowres}
+  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Measurement level/eReefs/simple_map_eReefs_fsMAMP.Annual_measure_sd.zonenoNOxnonap_with_enclosed_coastal_A_Grade_Uniform\res}.png}
+\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Secchi Depth index grades (Uniform grade type control chart applied).}\label{fig:simple_map_eReefs_fsMAMP.Annual_measure_sd.zonenoNOxnonap_with_enclosed_coastal_A_Grade_Uniform_lowres}
 \end{figure}
 
 %\begin{figure}[ptbh]
@@ -545,8 +817,8 @@ determinants.  Other aggregation combinations can be found in Appendix~\ref{apps
 \paragraph{Mosaic plots level}
  
 \begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Measurement level/eReefs/mosaic_eReefs_fsMAMP.Annual_measure.zonenoNOXnonap_with_enclosed_coastal_Grade_Uniform}.pdf}
-\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Chlorophyll-a index grades (Uniform grade type control chart applied).}\label{fig:mosaic_eReefs_fsMAMP.Annual_measure.zonenoNOXnonap_with_enclosed_coastal_Grade_Uniform}
+  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Measurement level/eReefs/mosaic_eReefs_fsMAMP.Annual_measure.zonenoNOxnonap_with_enclosed_coastal_Grade_Uniform}.pdf}
+\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Chlorophyll-a index grades (Uniform grade type control chart applied).}\label{fig:mosaic_eReefs_fsMAMP.Annual_measure.zonenoNOxnonap_with_enclosed_coastal_Grade_Uniform}
 \end{figure}
 
 %\begin{figure}[ptbh]
@@ -567,29 +839,29 @@ determinants.  Other aggregation combinations can be found in Appendix~\ref{apps
 \paragraph{Simple time series}
 
 \begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Aggregations/eReefs/simple_eReefs_fsMAMP.Annual_subindicator.zonenoNOXnonap_with_enclosed_coastal_Grade_Uniform}.pdf}
-\caption{Time series of fsMAMP Productivity and Water Clarity index scores by zone. The blue vertical bar spans from mid 2009 to mid 2011.  Faint colored horizontal bands represent Uniform grade ranges.}\label{fig:simple_eReefs_fsMAMP.Annual_subindicator.zonenoNOXnonap_Grade_Uniform}
+  \includegraphics[width=1\linewidth]{{figures/Indices/Aggregations/eReefs/simple_eReefs_fsMAMP.Annual_subindicator.zonenoNOxnonap_with_enclosed_coastal_Grade_Uniform}.pdf}
+\caption{Time series of fsMAMP Productivity and Water Clarity index scores by zone. The blue vertical bar spans from mid 2009 to mid 2011.  Faint colored horizontal bands represent Uniform grade ranges.}\label{fig:simple_eReefs_fsMAMP.Annual_subindicator.zonenoNOxnonap_Grade_Uniform}
 \end{figure}
 \clearpage
 
 \paragraph{Flat map}
 
 \begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Subindicator level/eReefs/simple_map_eReefs_fsMAMP.Annual_subindicator_Productivity.zonenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform\res}.png}
-\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Productivity index grades (Uniform grade type control chart applied).}\label{fig:simple_map_eReefs_fsMAMP.Annual_subindicator_Productivity.zonenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform_lowres}
+  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Subindicator level/eReefs/simple_map_eReefs_fsMAMP.Annual_subindicator_Productivity.zonenoNOxnonap_with_enclosed_coastal_A_Grade_Uniform\res}.png}
+\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Productivity index grades (Uniform grade type control chart applied).}\label{fig:simple_map_eReefs_fsMAMP.Annual_subindicator_Productivity.zonenoNOxnonap_with_enclosed_coastal_A_Grade_Uniform_lowres}
 \end{figure}
 
 \begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Subindicator level/eReefs/simple_map_eReefs_fsMAMP.Annual_subindicator_Water Clarity.zonenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform\res}.png}
-\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Water Clarity index grades (Uniform grade type control chart applied).}\label{fig:simple_map_eReefs_fsMAMP.Annual_subindicator_Water Clarity.zonenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform_lowres}
+  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Subindicator level/eReefs/simple_map_eReefs_fsMAMP.Annual_subindicator_Water Clarity.zonenoNOxnonap_with_enclosed_coastal_A_Grade_Uniform\res}.png}
+\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Water Clarity index grades (Uniform grade type control chart applied).}\label{fig:simple_map_eReefs_fsMAMP.Annual_subindicator_Water Clarity.zonenoNOxnonap_with_enclosed_coastal_A_Grade_Uniform_lowres}
 \end{figure}
 
 
 \paragraph{Mosaic plots}
   
 \begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Subindicator level/eReefs/mosaic_eReefs_fsMAMP.Annual_subindicator.zonenoNOXnonap_with_enclosed_coastal_Grade_Uniform}.pdf}
-\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Subindicator index grades (Uniform grade type control chart applied).}\label{fig:mosaic_eReefs_fsMAMP.Annual_subindicator.zonenoNOXnonap_with_enclosed_coastal_Grade_Uniform}
+  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Subindicator level/eReefs/mosaic_eReefs_fsMAMP.Annual_subindicator.zonenoNOxnonap_with_enclosed_coastal_Grade_Uniform}.pdf}
+\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Subindicator index grades (Uniform grade type control chart applied).}\label{fig:mosaic_eReefs_fsMAMP.Annual_subindicator.zonenoNOxnonap_with_enclosed_coastal_Grade_Uniform}
 \end{figure}
 
 \clearpage
@@ -602,39 +874,39 @@ determinants.  Other aggregation combinations can be found in Appendix~\ref{apps
 \paragraph{Simple time series}
 
 \begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Aggregations/eReefs/simple_eReefs_fsMAMP.Annual_indicator.zonenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform}.pdf}
-\caption{Time series of fsMAMP Water Quality index scores by zone. The blue vertical bar spans from mid 2009 to mid 2011.  Faint colored horizontal bands represent Uniform grade ranges.}\label{fig:simple_eReefs_fsMAMP.Annual_indicator.zonenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform}
+  \includegraphics[width=1\linewidth]{{figures/Indices/Aggregations/eReefs/simple_eReefs_fsMAMP.Annual_indicator.zonenoNOxnonap_with_enclosed_coastal_A_Grade_Uniform}.pdf}
+\caption{Time series of fsMAMP Water Quality index scores by zone. The blue vertical bar spans from mid 2009 to mid 2011.  Faint colored horizontal bands represent Uniform grade ranges.}\label{fig:simple_eReefs_fsMAMP.Annual_indicator.zonenoNOxnonap_with_enclosed_coastal_A_Grade_Uniform}
 \end{figure}
 \clearpage
 
 \paragraph{Flat map}
 
 \begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Indicator level/eReefs/simple_map_eReefs_fsMAMP.Annual_indicator.sitenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform\res}.png}
-\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Productivity index grades (Uniform grade type control chart applied).}\label{fig:simple_map_eReefs_fsMAMP.Annual_indicator.sitenoNOXnonap_with_enclosed_coastal_A_Grade_Uniform_lowres}
+  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Indicator level/eReefs/simple_map_eReefs_fsMAMP.Annual_indicator.zonenoNOxnonap_with_enclosed_coastal_A_Grade_Uniform\res}.png}
+\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Productivity index grades (Uniform grade type control chart applied).}\label{fig:simple_map_eReefs_fsMAMP.Annual_indicator.sitenoNOxnonap_with_enclosed_coastal_A_Grade_Uniform_lowres}
 \end{figure}
 
 \paragraph{Mosaic plots}
   
 \begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Indicator level/eReefs/mosaic_eReefs_fsMAMP.Annual_indicator.zonenoNOXnonap_with_enclosed_coastal_Grade_Uniform}.pdf}
-\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP indicator index grades (Uniform grade type control chart applied).}\label{fig:mosaic_eReefs_fsMAMP.Annual_indicator.zonenoNOXnonap_with_enclosed_coastal_Grade_Uniform}
+  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Indicator level/eReefs/mosaic_eReefs_fsMAMP.Annual_indicator.zonenoNOxnonap_with_enclosed_coastal_Grade_Uniform}.pdf}
+\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP indicator index grades (Uniform grade type control chart applied).}\label{fig:mosaic_eReefs_fsMAMP.Annual_indicator.zonenoNOxnonap_with_enclosed_coastal_Grade_Uniform}
 \end{figure}
 
 
 %\begin{figure}[ptbh]
-%  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Indicator level/Satellite/spatial_map__fsMAMP.Annual_indicator.sitenoSDnoNOXnonap_A\res}.pdf}
-%\caption{Spatio-temporal Satellite fsMAMP Water Quality index scores for each data source.}\label{fig:spatial_map__fsMAMP.Annual_indicator.sitenoSDnoNOXnonap_A}
+%  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Indicator level/Satellite/spatial_map__fsMAMP.Annual_indicator.sitenoSDnoNOxnonap_A\res}.pdf}
+%\caption{Spatio-temporal Satellite fsMAMP Water Quality index scores for each data source.}\label{fig:spatial_map__fsMAMP.Annual_indicator.sitenoSDnoNOxnonap_A}
 %\end{figure}
  
-\begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Indicator level/eReefs/spatial_map_eReefs_fsMAMP.Annual_indicator.sitenoNOXnonap_A_Grade_Uniform}.pdf}
-  \caption{Spatio-temporal eReefs fsMAMP Water Quality index scores for each data source.}\label{fig:spatial_map_eReefs_fsMAMP.Annual_indicator.sitenoSDnoNOXnonap_A}
-\end{figure}
+%\begin{figure}[ptbh]
+%  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Indicator level/eReefs/spatial_map_eReefs_fsMAMP.Annual_indicator.sitenoNOxnonap_A_Grade_Uniform}.pdf}
+%  \caption{Spatio-temporal eReefs fsMAMP Water Quality index scores for each data source.}\label{fig:spatial_map_eReefs_fsMAMP.Annual_indicator.sitenoSDnoNOxnonap_A}
+%\end{figure}
  
 %\begin{figure}[ptbh]
-%  \includegraphics[width=1\linewidth]{{../Figures/Indices/Maps/Indicator level/eReefs926/spatial_map_eReefs926_fsMAMP.Annual_indicator.sitenoSDnoNOXnonap_A\res}.pdf}
-%  \caption{Spatio-temporal eReefs926 fsMAMP Water Quality index scores for each data source.}\label{fig:spatial_map_eReefs926_fsMAMP.Annual_indicator.sitenoSDnoNOXnonap_A}
+%  \includegraphics[width=1\linewidth]{{../Figures/Indices/Maps/Indicator level/eReefs926/spatial_map_eReefs926_fsMAMP.Annual_indicator.sitenoSDnoNOxnonap_A\res}.pdf}
+%  \caption{Spatio-temporal eReefs926 fsMAMP Water Quality index scores for each data source.}\label{fig:spatial_map_eReefs926_fsMAMP.Annual_indicator.sitenoSDnoNOxnonap_A}
 %\end{figure}
 
 
@@ -715,16 +987,16 @@ determinants.  Other aggregation combinations can be found in Appendix~\ref{apps
 \paragraph{Simple time series}
 
 \begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Aggregations/eReefs/simple_eReefs_fsMAMP.Annual_measure.waterbodynoNOx_with_enclosed_coastal_Grade_Uniform}.pdf}
+  \includegraphics[width=1\linewidth]{{figures/Indices/Aggregations/eReefs/simple_eReefs_fsMAMP.Annual_measure.waterbodynoNOxnonap_with_enclosed_coastal_Grade_Uniform}.pdf}
 \caption{Time series of fsMAMP Measure index scores by water body (aggregated over management region weighted by area). The blue vertical bar spans from mid 2009 to mid 2011.  Faint colored horizontal bands represent Uniform grade ranges.}\label{fig:simple_eReefs_fsMAMP.Annual_measure.waterbodynoNOx_with_enclosed_coastal_Grade_Uniform}
 \end{figure}
 \clearpage
 
 \paragraph{Mosaic plots}
   
-\begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Measurement level/eReefs/mosaic_eReefs_fsMAMP.Annual_measure.waterbodynoNOx_with_enclosed_coastal_Grade_Uniform}.pdf}
-\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Measurement index grades (Uniform grade type control chart applied).}\label{fig:mosaic_eReefs_fsMAMP.Annual_measure.waterbodynoNOx_with_enclosed_coastal_Grade_Uniform}
+\begin{figure}[!hptb]
+  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Measurement level/eReefs/mosaic_eReefs_fsMAMP.Annual_measure.waterbodynoNOxnonap_with_enclosed_coastal_Grade_Uniform}.pdf}
+\caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Measurement index grades (Uniform grade type control chart applied).}\label{fig:mosaic_eReefs_fsMAMP.Annual_measure.waterbodynoNOxnonap_with_enclosed_coastal_Grade_Uniform}
 \end{figure}
 
 
@@ -735,16 +1007,16 @@ determinants.  Other aggregation combinations can be found in Appendix~\ref{apps
 
 \paragraph{Simple time series}
 
-\begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Aggregations/eReefs/simple_eReefs_fsMAMP.Annual_subindicator.waterbodynoNOx_with_enclosed_coastal_Grade_Uniform}.pdf}
+\begin{figure}[!hptb]
+  \includegraphics[width=1\linewidth]{{figures/Indices/Aggregations/eReefs/simple_eReefs_fsMAMP.Annual_subindicator.waterbodynoNOxnonap_with_enclosed_coastal_Grade_Uniform}.pdf}
 \caption{Time series of fsMAMP Subindicator index scores by water body (aggregated over management region weighted by area). The blue vertical bar spans from mid 2009 to mid 2011.  Faint colored horizontal bands represent Uniform grade ranges.}\label{fig:simple_eReefs_fsMAMP.Annual_subindicator.waterbodynoNOx_with_enclosed_coastal_Grade_Uniform}
 \end{figure}
 \clearpage
 
 \paragraph{Mosaic plots}
   
-\begin{figure}[ptbh]
-  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Subindicator level/eReefs/mosaic_eReefs_fsMAMP.Annual_subindicator.waterbodynoNOx_with_enclosed_coastal_Grade_Uniform}.pdf}
+\begin{figure}[!hptb]
+  \includegraphics[width=1\linewidth]{{figures/Indices/Maps/Subindicator level/eReefs/mosaic_eReefs_fsMAMP.Annual_subindicator.waterbodynoNOxnonap_with_enclosed_coastal_Grade_Uniform}.pdf}
 \caption{Simplified (Zone mean) eReefs spatio-temporal fsMAMP Subindicator index grades (Uniform grade type control chart applied).}\label{fig:mosaic_eReefs_fsMAMP.Annual_subindicator.waterbodynoNOx_with_enclosed_coastal_Grade_Uniform}
 \end{figure}
 

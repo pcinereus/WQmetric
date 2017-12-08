@@ -39,10 +39,19 @@ shrink:
 	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$(TARGET)_small.pdf $(TARGET).pdf
 
 restrict:
-	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -dFirstPage=1 -dLastPage=59 -sOutputFile=$(TARGET)_part1.pdf $(TARGET).pdf
-	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -dFirstPage=60 -dLastPage=105 -sOutputFile=$(TARGET)_part2.pdf $(TARGET).pdf
-	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -dFirstPage=106 -dLastPage=139 -sOutputFile=$(TARGET)_part3.pdf $(TARGET).pdf
-	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -dFirstPage=158 -dLastPage=160 -sOutputFile=$(TARGET)_part4.pdf $(TARGET).pdf
+	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -dFirstPage=1 -dLastPage=32 -sOutputFile=$(TARGET)_part1.pdf $(TARGET).pdf
+	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -dFirstPage=33 -dLastPage=47 -sOutputFile=$(TARGET)_part2.pdf $(TARGET).pdf
+	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -dFirstPage=48 -dLastPage=80 -sOutputFile=$(TARGET)_part3.pdf $(TARGET).pdf
+	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -dFirstPage=81 -dLastPage=127 -sOutputFile=$(TARGET)_part4.pdf $(TARGET).pdf
+	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -dFirstPage=128 -dLastPage=167 -sOutputFile=$(TARGET)_part5.pdf $(TARGET).pdf
+	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -dFirstPage=168 -dLastPage=174 -sOutputFile=$(TARGET)_part6.pdf $(TARGET).pdf
+	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -dFirstPage=175 -dLastPage=182 -sOutputFile=$(TARGET)_part7.pdf $(TARGET).pdf
+	gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -dFirstPage=183 -dLastPage=330 -sOutputFile=$(TARGET)_part8.pdf $(TARGET).pdf
+	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -dFirstPage=1 -dLastPage=59 -sOutputFile=$(TARGET)_part1.pdf $(TARGET).pdf
+	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -dFirstPage=1 -dLastPage=32 -sOutputFile=$(TARGET)_part1.pdf $(TARGET).pdf
+	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -dFirstPage=60 -dLastPage=105 -sOutputFile=$(TARGET)_part2.pdf $(TARGET).pdf
+	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -dFirstPage=106 -dLastPage=139 -sOutputFile=$(TARGET)_part3.pdf $(TARGET).pdf
+	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -dFirstPage=158 -dLastPage=160 -sOutputFile=$(TARGET)_part4.pdf $(TARGET).pdf
 
 figs: $(JPGS) $(EPSS)
 
