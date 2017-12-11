@@ -36,7 +36,7 @@ addtorow$command = c(paste(
     "\\renewcommand\\arraystretch{1.2}\\setlength\\tabcolsep{5pt}\n",
     "%\\begin{landscape}\n",
     "\\begin{table}[h]\\caption{Great Barrier Reef spatial Zones and associated Regions and Water bodies.}\\label{tab:spatial}\n",
-    "%\\begin{center}\n",
+    "\\begin{center}\n",
     "\\scriptsize\n",
     "\\begin{tabular}{\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]} p{25em}\n",
@@ -47,7 +47,7 @@ addtorow$command = c(paste(
     "}\n",
     "\\arrayrulecolor[rgb]{0.06,0.25,0.49}\\specialrule{1pt}{0pt}{0pt} %top border\n",
     "\\rowcolor[rgb]{0.53,0.62,0.74} \n",
-    "\\multicolumn{1}{!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]}l}{\\whiteHeader{{GBRMPA Zone}}} & \n",
+    "\\multicolumn{1}{!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]}l}{\\whiteHeader{{Spatial Reporting Zone}}} & \n",
     "%\\multicolumn{1}{l}{\\whiteHeader{{GBRMPA Zone}}} & \n",
     "\\multicolumn{1}{l}{\\whiteHeader{{Zone}}} & \n",
     "\\multicolumn{1}{l}{\\whiteHeader{{Region}}} & \n",
@@ -58,8 +58,8 @@ addtorow$command = c(paste(
     paste(
         "\\bottomrule\n",
         "\\end{tabular}\n",
-        "%\\end{center}\n",
-        "\\end{table}",
+        "\\end{center}\n",
+        "\\end{table}\n",
         "%\\end{landscape}\n")
     )
 
@@ -85,7 +85,7 @@ addtorow$command = c(paste(
     "\\setlength\\cmidrulekern{1pt}\\setlength\\cmidrulewidth{1pt}\n",
     "\\renewcommand\\arraystretch{1.2}\\setlength\\tabcolsep{5pt}\n",
     "\\begin{table}[h]\\caption{Summary of used data sources.}\\label{tab:sources}\n",
-    "%\\begin{center}\n",
+    "\\begin{center}\n",
     "\\scriptsize\n",
     "\\begin{tabular}{\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]} p{6em}\n",
@@ -104,7 +104,7 @@ addtorow$command = c(paste(
     paste(
         "\\bottomrule\n",
         "\\end{tabular}\n",
-        "%\\end{center}\n",
+        "\\end{center}\n",
         "\\end{table}")
     )
 writeLines(text=
@@ -135,7 +135,7 @@ addtorow$command = c(paste(
     "\\setlength\\aboverulesep{0pt}\\setlength\\belowrulesep{0pt}\n",
     "\\setlength\\cmidrulekern{1pt}\\setlength\\cmidrulewidth{1pt}\n",
     "\\renewcommand\\arraystretch{1.2}\\setlength\\tabcolsep{5pt}\n",
-    "\\begin{table}[h]\\caption{Water Quality Measure hierarchy specifying which Measures contribute to which Subindicators and which Subindicators contribute to which Indicators.}\\label{tab:measures}\n",
+    "\\begin{table}[h]\\caption{Example of Water Quality Measure hierarchy specifying which Measures contribute to which Subindicators and which Subindicators contribute to which Indicators.}\\label{tab:measures}\n",
     "\\begin{center}\n",
     "\\scriptsize\n",
     "\\begin{tabular}{\n",
@@ -826,7 +826,7 @@ for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
 ## Measurement/Zone level worms - there should be a separate set of maps for each source/index/gradetype
 ## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
 for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
-    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[2]) {
         for (src in c('eReefs','eReefs926')[1]) {
             for (GradeType in c('Uniform')) {
                 inPath='Figures'
@@ -869,7 +869,7 @@ for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
 ## Measurement/Zone mosaic - there should be a separate set of maps for each source/index/gradetype
 ## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
 for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
-    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[2]) {
         for (src in c('eReefs','eReefs926')[1]) {
             for (GradeType in c('Uniform')) {
                 inPath='Figures'
@@ -888,7 +888,7 @@ for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
 ## Subindicator/Zone worms - there should be a separate set of maps for each source/index/gradetype
 ## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
 for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
-    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[2]) {
         for (src in c('eReefs','eReefs926')[1]) {
             for (GradeType in c('Uniform')) {
                 inPath='Figures'
@@ -930,7 +930,7 @@ for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
 ## Subindicator/Zone mosaic - there should be a separate set of maps for each source/index/gradetype
 ## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
 for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
-    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[2]) {
         for (src in c('eReefs','eReefs926')[1]) {
             for (GradeType in c('Uniform')) {
                 inPath='Figures'
@@ -948,7 +948,7 @@ for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
 ## Indicator/Zone worms - there should be a separate set of maps for each source/index/gradetype
 ## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
 for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
-    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[2]) {
         for (src in c('eReefs','eReefs926')[1]) {
             for (GradeType in c('Uniform')) {
                 inPath='Figures'
@@ -985,7 +985,7 @@ for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
 ## Indicator/Zone mosaic - there should be a separate set of maps for each source/index/gradetype
 ## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
 for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
-    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[2]) {
         for (src in c('eReefs','eReefs926')[1]) {
             for (GradeType in c('Uniform')) {
                 inPath='Figures'
@@ -1004,7 +1004,7 @@ for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
 ## Measure/Waterbody worms - there should be a separate set of maps for each source/index/gradetype
 ## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
 for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
-    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[2]) {
         for (src in c('eReefs','eReefs926')[1]) {
             for (GradeType in c('Uniform')) {
                 inPath='Figures'
@@ -1022,7 +1022,7 @@ for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
 ## Measure/Waterbody mosaic - there should be a separate set of maps for each source/index/gradetype
 ## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
 for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
-    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[2]) {
         for (src in c('eReefs','eReefs926')[1]) {
             for (GradeType in c('Uniform')) {
                 inPath='Figures'
@@ -1042,7 +1042,7 @@ for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
 ## Subindicator/Waterbody worms - there should be a separate set of maps for each source/index/gradetype
 ## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
 for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
-    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[2]) {
         for (src in c('eReefs','eReefs926')[1]) {
             for (GradeType in c('Uniform')) {
                 inPath='Figures'
@@ -1060,7 +1060,7 @@ for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
 ## Subindicator/Waterbody mosaic - there should be a separate set of maps for each source/index/gradetype
 ## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
 for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
-    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[2]) {
         for (src in c('eReefs','eReefs926')[1]) {
             for (GradeType in c('Uniform')) {
                 inPath='Figures'
@@ -1078,7 +1078,7 @@ for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
 ## Indicator/Waterbody worms - there should be a separate set of maps for each source/index/gradetype
 ## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
 for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
-    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[2]) {
         for (src in c('eReefs','eReefs926')[1]) {
             for (GradeType in c('Uniform')) {
                 inPath='Figures'
@@ -1096,7 +1096,7 @@ for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
 ## Indicator/Waterbody mosaic - there should be a separate set of maps for each source/index/gradetype
 ## RUN THIS AGAIN ONCE WE HAVE eReefs926 and MMP combinations
 for (excludes in c('noNOxnonap','noNOx','noSDnoNOx')[1]) {
-    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[1]) {
+    for (coastal in c('with_enclosed_coastal', 'without_enclosed_coastal')[2]) {
         for (src in c('eReefs','eReefs926')[1]) {
             for (GradeType in c('Uniform')) {
                 inPath='Figures'

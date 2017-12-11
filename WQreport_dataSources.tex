@@ -1,24 +1,28 @@
-\section{Data sources}
+\section{Data sources}\label{sec:sources}
 
 Report cards are typically compiled and communicated annually.  However, the time window that
 constitutes a year differs from report card to report card.  Many environmental report cards
 communicate on data collected within a financial year.  This schedule provides a reporting window
 that is consistent with other management and governmental considerations.  Others use a time window
 that naturally aligns with the cycle of some major underlying environmental gradient - such as
-wet/dry season. For this project, we are adopting using the same water year (1st Oct -- 31 Sept)
+wet/dry season. For this project, we are adopting using the same water year (1st Oct -- 30 Sept)
 definition as the AIMS inshore Water Quality Marine Monitoring Program \citep{Lonborg-MMP-2015}.
 
-The Great Barrier Reef Marine Park (GBR)spans nearly 14$^\circ$ of latitude and covers approximately
-344,400km$^2$.
-
-- spanning multiple jurisdictions/pressures as well as distance offshore - more useful to partition
-the GBR into smaller more homogeneous zones representing combinations of region and water body.  -
-Six regions (Cape York, Wet Tropics, Dry Tropics, Mackay Whitsunday, Fitzroy and Burnett Mary) -
-Four water bodies (Enclosed Coastal, Open Coastal, Midshelf and Offshore) - define each...
+The Great Barrier Reef Marine Park (GBR), spans nearly 14$^\circ$ of latitude, covers approximately
+344,400km$^2$ and in so doing spans multiple jurisdictions with differing pressures and management strategies.
+Furthermore, the GBR also spans a substantial longitudinal range being bounded by the Queesland coastline in the west and the outer reef in the east.
+Hence, it is useful to partition
+the GBR into smaller more homogeneous zones representing combinations of region and water body.
+For this project, we will adopt
+six regions (Cape York, Wet Tropics, Dry Tropics, Mackay Whitsunday, Fitzroy and Burnett Mary) and
+four water bodies (Enclosed Coastal, Open Coastal, Midshelf and Offshore), see Figure \ref{fig:Map_region_waterbody}.
+Following the recomendations of the Idependent Science Panel (ISP), the Enclosed Coastal zone will be
+excluded from the majority of high level summary products.  Nevertheless, it will be present in exploratory
+data analysis products for the sake of transparency as well as to provide some form of validation and
+justification for ISP's recommendations.
  
 \input{tables/spatial.tex}
   
-
 \begin{figure}[ptbh] \includegraphics[width=1\linewidth]{figures/Maps/Map_region_waterbody\res.pdf}
 \caption{Great Barrier Reef Zones (Regions and Water Bodies).}\label{fig:Map_region_waterbody}
 \end{figure}
@@ -34,7 +38,7 @@ implications are all dependent on the indicators selected, the selection process
 influential steps and has justifiably received a great deal of attention.
 
 As part of their ecosystem report card framework, \citet{Harwell-1999} urged that the alignment of
-scientific information with societal goals and objectives should be the guiding principal of
+scientific information with societal goals and objectives should be the guiding principle of
 indicator selection.  In their framework, clearly articulated societal goals and objectives (a
 combination of societal values and scientific knowledge, such as restored and sustainable wetland
 system) are translated into Essential Ecosystem Characteristics (EECs) that represent a set of
@@ -83,7 +87,7 @@ framework is that the inherent inbuilt redundancy allows for the addition, delet
 finer scale items (sites and actual measured variables) with minimum disruption to the actual report
 indicators.  That is, the indicator is relatively robust to some degree of internal makeup.
 Furthermore, by abstracting away the fine details of an indicator, similar indicators from different
-report cards (each potentially comprising different sampling designs) are more directly comparably.
+report cards (each potentially comprising different sampling designs) are more directly comparable.
 For example, in different report cards that include water quality, a water quality indicator of
 'water clarity' might comprise different Measures (e.g. suspended solids, NTU, Secchi depth etc)
 collected from different sources (e.g. satellite, in situ loggers or hand samples), yet provided
@@ -143,14 +147,16 @@ south into the focal Regions.}\label{fig:flntu_temporal}
 
 Daily (July 2002--Dec 2016, $1\times 1 km^2$ resolution) Moderate Resolution Imaging
 Spectroradiometer (MODIS satellite) imagery (hereafter referred to as Satellite) data were obtained
-by downloading NETCDF files from the thredds server.
+by downloading NETCDF files from the thredds server (http://ereeftds.bom.gov.au/ereefs/tds/catalog/ereef/mwq/P1D/2002/catalog.html).
+The data referred to herein relates to the individual measures considered in the data exploration
+component of the project, and is distinct from the surface reflectance data used in the eReefs data
+assimilation scheme discussed below in section \ref{sec:eReefs}.
 
 \input{tables/satellite.measures.tex}
 
  
 
 %\subsection{eReefs assimilated model}
-
 
 \input{WQ_GBRreanalysis}
 

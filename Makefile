@@ -53,6 +53,13 @@ restrict:
 	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -dFirstPage=106 -dLastPage=139 -sOutputFile=$(TARGET)_part3.pdf $(TARGET).pdf
 	#gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -dFirstPage=158 -dLastPage=160 -sOutputFile=$(TARGET)_part4.pdf $(TARGET).pdf
 
+zippdf:
+	zip WQreport.zip WQreport_part1.pdf WQreport_part2.pdf WQreport_part3.pdf WQreport_part4.pdf WQreport_part5.pdf WQreport_part6.pdf WQreport_part7.pdf
+
+zipsingle:
+	rm WQreport.zip
+	zip WQreport.zip WQreport.pdf
+
 figs: $(JPGS) $(EPSS)
 
 %.jpg: %.pdf

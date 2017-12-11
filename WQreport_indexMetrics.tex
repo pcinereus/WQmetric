@@ -1,4 +1,4 @@
-\section{Index metrics}
+\section{Index metrics}\label{sec:indexing}
 
 \subsection{Theoretical framework}
  
@@ -429,7 +429,7 @@ parameters and is beyond the scope of the current project.
 
 \clearpage
 
-\paragraph{Summary of simulation index sensitivity exploration}
+\subsubsection{Summary of simulation index sensitivity exploration}
 \begin{itemize}
 \item Indices decline with increasing values relative to the thresholds (and for a given
 variability)
@@ -437,10 +437,13 @@ variability)
 more values towards lower end)
 \item when R is very large, the different indicators behave similarly (except Max\_Duration and
 MAMP)
-\item MAMP is more susceptable to outliers
+\item MAMP is more susceptible to outliers
+\item fsMAMP4 (as an example of increasing the capping range from 1/2 and x2) is more sensitive at the extremes and less discerning closer to the threshold
+\item fsMAMP (with capes fixed at the range of 1/2 and x2) appears to be a good compromise between under and over sensitivity across the range of simulated
+  scenarios.
 \end{itemize}
 
-\clearpage
+%\clearpage
 
 \subsection{Index explorations}
 
@@ -464,7 +467,7 @@ larger units will typically exhibit more variability in absolute terms.  Hence, 
 the relative utility of different parameters, it is necessary to either express variation relative
 to scale (such as coefficient of variation) or standardize the parameters.  The scaled hierarchical
 index formations of Section~\ref{sec:hierarchicalIndices} (such as Binary, fsMAMP, fsMAMP4 and
-logistic MAMP) are all a form of standardization which yeild scores on scales that are all bound [0,1].
+logistic MAMP) are all a form of standardization which yield scores on scales that are all bound [0,1].
 
 The following three subsections will provide information to assist in the selection of:
 \begin{itemize}
@@ -554,7 +557,7 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
   b) AIMS insitu site mean Binary\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.idx_Binary_year.chl_Wet Tropics__Open Coastal_niskin_natural\res.pdf}}\\
   c) AIMS insitu site mean fsMAMP\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.idx_fsMAMP_year.chl_Wet Tropics__Open Coastal_niskin_natural\res.pdf}}\\
   d) AIMS insitu site mean fsMAMP4\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.idx_fsMAMP4_year.chl_Wet Tropics__Open Coastal_niskin_natural\res.pdf}}\\
-  \caption{Temporal distribution of AIMS insitu Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone. Red and Blue symbols represent samples collected in Dry and Wet seasons respectively.
+  \caption[Temporal distribution of AIMS insitu Chlorophyll-a and associated indices for the Wet Tropics Open Coastal zone]{Temporal distribution of AIMS insitu Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone. Red and Blue symbols represent samples collected in Dry and Wet seasons respectively.
     Green and red shaded banding on a) respectively represent half and twice threshold value (50\% shading) and one-forth and four times threshold value (30\% shading). Traffic-light banding on b-d) indicates
     simple 5-level color scheme.  Purple lines represent annual means.}\label{fig:idx.violin_chl_oc_niskin}
 \end{figure}
@@ -564,7 +567,7 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
   b) AIMS FLNTU site mean Binary\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.idx_Binary_year.chl_Wet Tropics__Open Coastal_flntu_natural\res.pdf}}\\
   c) AIMS FLNTU site mean fsMAMP\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.idx_fsMAMP_year.chl_Wet Tropics__Open Coastal_flntu_natural\res.pdf}}\\
   d) AIMS FLNTU site mean fsMAMP4\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.idx_fsMAMP4_year.chl_Wet Tropics__Open Coastal_flntu_natural\res.pdf}}\\
-  \caption{Temporal distribution of AIMS FLNTU Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone. Red and Blue symbols represent samples collected in Dry and Wet seasons respectively.
+  \caption[Temporal distribution of AIMS FLNTU Chlorophyll-a and associated indices for the Wet Tropics Open Coastal zone]{Temporal distribution of AIMS FLNTU Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone. Red and Blue symbols represent samples collected in Dry and Wet seasons respectively.
     Green and red shaded banding on a) respectively represent half and twice threshold value (50\% shading) and one-forth and four times threshold value (30\% shading). Traffic-light banding on b-d) indicates
     simple 5-level color scheme.  Purple lines represent annual means.}\label{fig:idx.violin_chl_oc_flntu}
 \end{figure}
@@ -574,7 +577,7 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
   b) Satellite site mean Binary\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.idx_Binary_year.chl_Wet Tropics__Open Coastal__natural\res.pdf}}\\
   c) Satellite site mean fsMAMP\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.idx_fsMAMP_year.chl_Wet Tropics__Open Coastal__natural\res.pdf}}\\
   d) Satellite site mean fsMAMP4\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.idx_fsMAMP4_year.chl_Wet Tropics__Open Coastal__natural\res.pdf}}\\
-  \caption{Temporal distribution of Satellite Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone. Red and Blue symbols represent samples collected in Dry and Wet seasons respectively.
+  \caption[Temporal distribution of Satellite Chlorophyll-a and associated indices for the Wet Tropics Open Coastal zone]{Temporal distribution of Satellite Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone. Red and Blue symbols represent samples collected in Dry and Wet seasons respectively.
     Green and red shaded banding on a) respectively represent half and twice threshold value (50\% shading) and one-forth and four times threshold value (30\% shading). Traffic-light banding on b-d) indicates
     simple 5-level color scheme.  Purple lines represent annual means.}\label{fig:idx.violin_chl_oc_satellite}
 \end{figure}
@@ -584,7 +587,7 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
   b) eReefs site mean Binary\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.idx_Binary_year.chl_Wet Tropics__Open Coastal_eReefs_natural\res.pdf}}\\
   c) eReefs site mean fsMAMP\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.idx_fsMAMP_year.chl_Wet Tropics__Open Coastal_eReefs_natural\res.pdf}}\\
   d) eReefs site mean fsMAMP4\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.idx_fsMAMP4_year.chl_Wet Tropics__Open Coastal_eReefs_natural\res.pdf}}\\
-  \caption{Temporal distribution of eReefs Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations  for the Wet Tropics Open Coastal zone. Red and Blue symbols represent samples collected in Dry and Wet seasons respectively.
+  \caption[Temporal distribution of eReefs Chlorophyll-a and associated indices for the Wet Tropics Open Coastal zone]{Temporal distribution of eReefs Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations  for the Wet Tropics Open Coastal zone. Red and Blue symbols represent samples collected in Dry and Wet seasons respectively.
     Green and red shaded banding on a) respectively represent half and twice threshold value (50\% shading) and one-forth and four times threshold value (30\% shading). Traffic-light banding on b-d) indicates
     simple 5-level color scheme.  Purple lines represent annual means.}\label{fig:idx.violin_chl_oc_eReefs}
 \end{figure}
@@ -594,7 +597,7 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
   b) eReefs926 site mean Binary\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_Binary_year.chl_Wet Tropics__Open Coastal_eReefs926_natural\res.pdf}}\\
   c) eReefs926 site mean fsMAMP\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_fsMAMP_year.chl_Wet Tropics__Open Coastal_eReefs926_natural\res.pdf}}\\
   d) eReefs926 site mean fsMAMP4\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_fsMAMP4_year.chl_Wet Tropics__Open Coastal_eReefs926_natural\res.pdf}}\\
-  \caption{Temporal distribution of eReefs926 Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone. Red and Blue symbols represent samples collected in Dry and Wet seasons respectively.
+  \caption[Temporal distribution of eReefs926 Chlorophyll-a and associated indices for the Wet Tropics Open Coastal zone]{Temporal distribution of eReefs926 Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone. Red and Blue symbols represent samples collected in Dry and Wet seasons respectively.
     Green and red shaded banding on a) respectively represent half and twice threshold value (50\% shading) and one-forth and four times threshold value (30\% shading). Traffic-light banding on b-d) indicates
     simple 5-level color scheme.  Purple lines represent annual means.}\label{fig:idx.violin_chl_oc_eReefs926}
 \end{figure}
@@ -609,7 +612,7 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
       b) AIMS insitu Binary\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.idx_Binary_spatial.year.chl_Wet Tropics__Open Coastal_niskin_naturalA\res.png}}\\[1em]
       d) AIMS insitu fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.idx_fsMAMP4_spatial.year.chl_Wet Tropics__Open Coastal_niskin_naturalA\res.png}}\\[1em]
     \end{minipage}
-    \caption{Spatial distribution of AIMS in situ Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone.
+    \caption[Spatial distribution of AIMS in situ Chlorophyll-a and associated indices for the Wet Tropics Open Coastal zone]{Spatial distribution of AIMS in situ Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_oc_s_niskin}
 \end{figure}
 \end{landscape}
@@ -624,7 +627,7 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
       b) Satellite Binary\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.idx_Binary_spatial.year.chl_Wet Tropics__Open Coastal__naturalA\res.png}}\\[1em]
       d) Satellite fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.idx_fsMAMP4_spatial.year.chl_Wet Tropics__Open Coastal__naturalA\res.png}}\\[1em]
     \end{minipage}
-  \caption{Spatial distribution of Satellite Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone.
+  \caption[Spatial distribution of Satellite Chlorophyll-a and associated indices for the Wet Tropics Open Coastal zone]{Spatial distribution of Satellite Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_oc_s_satellite}
 \end{figure}
 \end{landscape}
@@ -640,7 +643,7 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
       d) eReefs fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.idx_fsMAMP4_spatial.year.chl_Wet Tropics__Open Coastal_eReefs_naturalA\res.png}}\\[1em]
     \end{minipage}
   %b) AIMS FLNTU\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.spatial.year.chl_Wet Tropics__Open Coastal_flntu_logA\res.png}}\\[1em]
-  \caption{Spatial distribution of eReefs Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone.
+  \caption[Spatial distribution of eReefs Chlorophyll-a and associated indices for the Wet Tropics Open Coastal zone]{Spatial distribution of eReefs Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_oc_s_eReefs}
 \end{figure}
 \end{landscape}
@@ -656,7 +659,7 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
       d) eReefs926 fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_fsMAMP4_spatial.year.chl_Wet Tropics__Open Coastal_eReefs926_naturalA\res.png}}\\[1em]
     \end{minipage}
   %b) AIMS FLNTU\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.spatial.year.chl_Wet Tropics__Open Coastal_flntu_logA\res.png}}\\[1em]
-  \caption{Spatial distribution of eReefs926 Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone.
+  \caption[Spatial distribution of eReefs926 Chlorophyll-a and associated indices for the Wet Tropics Open Coastal zone][Spatial distribution of AIMS in situ Chlorophyll-a and associated indices for the Wet Tropics Open Coastal zone]{Spatial distribution of eReefs926 Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_oc_s_eReefs926}
 \end{figure}
 \end{landscape}
@@ -668,7 +671,7 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
   b) AIMS insitu Binary\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf_niskin_naturalA\res.png}}\\[1em]
   c) AIMS insitu fsMAMP\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf_niskin_naturalA\res.png}}\\[1em]
   d) AIMS insitu fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf_niskin_naturalA\res.png}}\\[1em]
-  \caption{Spatial distribution of AIMS insitu Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
+  \caption[Spatial distribution of AIMS in situ Chlorophyll-a and associated indices for the Dry Tropics Midshelf zone]{Spatial distribution of AIMS insitu Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_m_s_niskin}
 \end{figure}
 
@@ -678,7 +681,7 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
   b) AIMS FLNTU Binary\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf_flntu_naturalA\res.png}}\\[1em]
   c) AIMS FLNTU fsMAMP\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf_flntu_naturalA\res.png}}\\[1em]
   d) AIMS FLNTU fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf_flntu_naturalA\res.png}}\\[1em]
-  \caption{Spatial distribution of AIMS FLNTU Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
+  \caption[Spatial distribution of AIMS FLNTU Chlorophyll-a and associated indices for the Dry Tropics Midshelf zone]{Spatial distribution of AIMS FLNTU Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_m_s_flntu}
 \end{figure}
 
@@ -687,7 +690,7 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
   b) Satellite Binary\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf__naturalA\res.png}}\\[1em]
   c) Satellite fsMAMP\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf__naturalA\res.png}}\\[1em]
   d) Satellite fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf__naturalA\res.png}}\\[1em]
-  \caption{Spatial distribution of Satellite Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
+  \caption[Spatial distribution of Satellite Chlorophyll-a and associated indices for the Dry Tropics Midshelf zone]{Spatial distribution of Satellite Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_m_s_satellite}
 \end{figure}
 
@@ -696,7 +699,7 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
   b) eReefs Binary\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf_eReefs_naturalA\res.png}}\\[1em]
   c) eReefs fsMAMP\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf_eReefs_naturalA\res.png}}\\[1em]
   d) eReefs fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf_eReefs_naturalA\res.png}}\\[1em]
-  \caption{Spatial distribution of eReefs Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
+  \caption[Spatial distribution of eReefs Chlorophyll-a and associated indices for the Dry Tropics Midshelf zone]{Spatial distribution of eReefs Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_m_s_eReefs}
 \end{figure}
 
@@ -705,7 +708,7 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
   b) eReefs926 Binary\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf_eReefs926_naturalA\res.png}}\\[1em]
   c) eReefs926 fsMAMP\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf_eReefs926_naturalA\res.png}}\\[1em]
   d) eReefs926 fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf_eReefs926_naturalA\res.png}}\\[1em]
-  \caption{Spatial distribution of eReefs926 Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
+  \caption[Spatial distribution of eReefs926 Chlorophyll-a and associated indices for the Dry Tropics Midshelf zone]{Spatial distribution of eReefs926 Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_m_s_eReefs926}
 \end{figure}
 
@@ -713,28 +716,28 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
 
 \begin{figure}[ptbh]
 \includegraphics[width=1\linewidth]{{figures/Indices/Compare indices/All_sources_AIMS insitu.Annual_measure.chl_zone\res}.pdf}
-\caption{Time series of annually aggregated Binary, fsMAMP and fsMAMP4 index formulations for AIMS insitu Chlorophyll-a across each of the Regions and Water bodies. The blue vertical bar spans from mid 2009 to mid 2011.}\label{fig:All_sources_AIMS insitu.Annual_measure.chl_zone}
+\caption[Time series of AIMS insitu Chlorophyll-a indices]{Time series of annually aggregated Binary, fsMAMP and fsMAMP4 index formulations for AIMS insitu Chlorophyll-a across each of the Regions and Water bodies. The blue vertical bar spans from mid 2009 to mid 2011.}\label{fig:All_sources_AIMS insitu.Annual_measure.chl_zone}
 \end{figure}
 
 \begin{figure}[ptbh]
 \includegraphics[width=1\linewidth]{{figures/Indices/Compare indices/All_sources_AIMS FLNTU.Annual_measure.chl_zone\res}.pdf}
-\caption{Time series of annually aggregated Binary, fsMAMP and fsMAMP4 index formulations for AIMS FLNTU Chlorophyll-a across each of the Regions and Water bodies. The blue vertical bar spans from mid 2009 to mid 2011.}\label{fig:All_sources_AIMS flntu.Annual_measure.chl_zone}
+\caption[Time series of AIMS FLNTU Chlorophyll-a indices]{Time series of annually aggregated Binary, fsMAMP and fsMAMP4 index formulations for AIMS FLNTU Chlorophyll-a across each of the Regions and Water bodies. The blue vertical bar spans from mid 2009 to mid 2011.}\label{fig:All_sources_AIMS flntu.Annual_measure.chl_zone}
 \end{figure}
 
 \begin{figure}[ptbh]
 \includegraphics[width=1\linewidth]{{figures/Indices/Compare indices/All_sources_Satellite.Annual_measure.chl_zone\res}.pdf}
-\caption{Time series of annually aggregated Binary, fsMAMP and fsMAMP4 index formulations for Satellite Chlorophyll-a across each of the Regions and Water bodies. The blue vertical bar spans from mid 2009 to mid 2011.}\label{fig:All_sources_Satellite.Annual_measure.chl_zone}
+\caption[Time series of Satellite Chlorophyll-a indices]{Time series of annually aggregated Binary, fsMAMP and fsMAMP4 index formulations for Satellite Chlorophyll-a across each of the Regions and Water bodies. The blue vertical bar spans from mid 2009 to mid 2011.}\label{fig:All_sources_Satellite.Annual_measure.chl_zone}
 \end{figure}
 
 
 \begin{figure}[ptbh]
 \includegraphics[width=1\linewidth]{{figures/Indices/Compare indices/All_sources_eReefs.Annual_measure.chl_zone\res}.pdf}
-\caption{Time series of annually aggregated Binary, fsMAMP and fsMAMP4 index formulations for eReefs Chlorophyll-a across each of the Regions and Water bodies. The blue vertical bar spans from mid 2009 to mid 2011.}\label{fig:All_sources_eReefs.Annual_measure.chl_zone}
+\caption[Time series of eReefs Chlorophyll-a indices]{Time series of annually aggregated Binary, fsMAMP and fsMAMP4 index formulations for eReefs Chlorophyll-a across each of the Regions and Water bodies. The blue vertical bar spans from mid 2009 to mid 2011.}\label{fig:All_sources_eReefs.Annual_measure.chl_zone}
 \end{figure}
 
 \begin{figure}[ptbh]
 \includegraphics[width=1\linewidth]{{figures/Indices/Compare indices/All_sources_eReefs926.Annual_measure.chl_zone\res}.pdf}
-\caption{Time series of annually aggregated Binary, fsMAMP and fsMAMP4 index formulations for eReefs926 Chlorophyll-a across each of the Regions and Water bodies. The blue vertical bar spans from mid 2009 to mid 2011.}\label{fig:All_sources_eReefs926.Annual_measure.chl_zone}
+\caption[Time series of eReefs926 Chlorophyll-a indices]{Time series of annually aggregated Binary, fsMAMP and fsMAMP4 index formulations for eReefs926 Chlorophyll-a across each of the Regions and Water bodies. The blue vertical bar spans from mid 2009 to mid 2011.}\label{fig:All_sources_eReefs926.Annual_measure.chl_zone}
 \end{figure}
 
 
@@ -747,9 +750,9 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
 Typically, the major aspects of a property like water quality are not directly measurable.
 Properties such as productivity, water clarity, nutrients, pesticides etc encapsulate a set of
 underlying conditions and yet themselves are not directly measurable.  Directly measurable
-properties (such as Chlorophyll-a, total suspended solids etc) thus act as proxies for the more
+properties (such as Chlorophyll-a, total suspended solids etc) thus act as proxies for the
 broader properties.  As directly measurable entities, many of these measures have long monitoring
-histories and there are at least some understanding of the ecological role of these measures.
+histories and there is at least some understanding of the ecological role of these measures.
 
 A major advantage of remote sensing and modelling products in the context of environmental
 monitoring is that they provide substantially greater spatial and temporal coverage.  However, the
@@ -757,28 +760,30 @@ majority of the parameters yielded from these tools are algorithmic approximatio
 measures.  Consequently, in the context of water quality, they produce proxies of proxies.
 
 The current project has access to a variety of sources of water quality monitoring data (see
-Section~\ref{}) ranging from sparse, yet vigorous direct in situ measurements (AIMS insitu) and
+Section~\ref{sec:sources}) ranging from sparse, yet rigorous direct in situ measurements (AIMS insitu) and
 temporally rich, spatially sparse AIMS FLNTU logger data through to spatio-temporally extensive, yet
-patchy remote sensing MODIS Satellite data and multiple versions of eReefs modelled data.  These
+patchy Satellite data and spatio-temporally extensive eReefs modelled data, with or without assimilation
+of remotely sensed surface reflectance.  These
 different sources of data are likely to provide estimates of the parameters that differ in both
-location (such as mean) as well as scale (variability).
+statistical location (such as mean) as well as scale (variability).
 
 Whilst it is beyond the scope of the current project to undertake a full evaluation of the accuracy,
-robustness and reliability of each of these sources, the indexed data permit us to explore and
+robustness and reliability of each of these sources, the indexed data allow us to explore and
 compare the spatio-temporal patterns of each data source.  In particular, we can focus on
 sensitivity as suggested by variability in spatio-temporal patterns of indices of each data source
 and whether these patterns are consistent with expert expectations.
 
 It is reasonable to expect that since the AIMS insitu data are the most direct measures, they would
 be the most accurate of all the sources, however it is also likely that these observations only
-represent conditions over a very restricted space and time.  The AIMS insitu data are predominantly
+represent conditions over a very restricted space and time.  They are predominantly
 the limited spatial coverage of the AIMS insitu data that limits its utility as input into a water
 quality metric for the entire Great Barrier Reef.
 
-A motivating inspiration for this project was the perceived insensitivity of the Satellite data
-source and aspirations to improve the sensitivity of the water quality metric as a whole.  It was
+A motivating inspiration for this project was the perceived lack of sensitivity of the water quality
+metric when based solely on the Satellite data source.  It was
 hoped that the introduction of eReefs modelled data would result in a metric that yields patterns
-that are more consistent with assumed trends.
+that are more consistent with expectations based on historical observations, empirical evidence and
+experience in the field.
 
 Figures~\ref{fig:All_indicies_fsMAMP.Annual_measure.chl_zone} --
 \ref{fig:All_indicies_fsMAMP.Annual_measure.NOx_zone} contrast the broad spatial and temporal
@@ -792,7 +797,9 @@ there is little (if any) consistent South-North water quality increase.
 The AIMS insitu data result in the most sensitive metrics.  However, the temporal deviances in data
 (and thus indices) could be exaggerated by the the proximal location of AIMS insitu sites relative
 to sources of major river discharge.  Thus, this sensitivity could be artificially inflated and is
-unlikely to be unrepresentative.  Moreover, the AIMS insitu data are restricted to just a subset
+unlikely to be unrepresentative.  In particular, these absolute state and temporal trends in these
+data are likely to be mainly representative of water conditions close to major sources of discharge. 
+Moreover, the AIMS insitu data are restricted to just a subset
 (5/18) of the zones of interest.
 
 Surprisingly, there is relatively little correspondence in trajectories between AIMS insitu and AIMS
@@ -800,9 +807,11 @@ FLNTU logger data.  These differences could be due either to differences in samp
 insitu have additional sites and thus represent a different spatial domains, AIMS FLNTU have
 substantially greater temporal coverage and thus are potentially more representative over time) and
 could also reflect direct (AIMS insitu) vs indirect (AIMS FLNTU) nature of the measurements.  Either
-way, it is difficult endorse either of these sources as a primary data source on which to construct
+way, it is
+not recommended to use
+% difficult endorse
+either of these sources as a primary data source on which to construct
 GBR wide Water Quality metrics.
-
 
 The broad spatial pattern of both eReefs and eReefs926 appear to follow the overall expectations of
 South - North and West - East gradients\footnote{less obvious for TSS and NOx}, with Chlorophyll-a
@@ -812,7 +821,10 @@ to their relatively short availability windows.  In particular, it is inconvenie
 eReefs source extend back to the 2010--2011 wet years to provide some form of qualitative
 calibration.
 
-Underlying alterations in the eReefs biogeochemical model have resulted in some relatively large
+
+The data assimilation of remotely sensed surface reflectance into the eReefs model has resulted in
+some relatively large
+%Underlying alterations in the eReefs biogeochemical model have resulted in some relatively large
 changes for each of Chlorophyll-a, Secchi depth and NOx and evaluating the causes of these
 differences is beyond the scope of the current study.
 
@@ -883,12 +895,12 @@ number of candidate Measure combinations\footnote{These effectively act as weigh
 (based on the hierarchy presented in Table~\ref{tab:mhier}) are:
 \begin{itemize}
 \item Chlorophyll-a ($1/3$), TSS ($1/2\times 1/3=1/6$), SD ($1/2\times 1/3=1/6$) and NOx ($1/3$)
-\item Chlorophyll-a ($1/3$), TSS ($1/2\times 1/2=1/4$), SD ($1/2\times 1/2=1/4$)
+\item Chlorophyll-a ($1/2$), TSS ($1/2\times 1/2=1/4$), SD ($1/2\times 1/2=1/4$)
 \item Chlorophyll-a ($1/2$), SD ($1/2$)
 \item Chlorophyll-a ($1/2$), TSS ($1/2$)
 \end{itemize}
 
-For each candidates, eReefs data with fsMAMP formulations are presented (see
+For each candidate, eReefs data with fsMAMP formulations are presented (see
 Figure~\ref{fig:All_excludes_index_fsMAMP_eReefs.Annual_indicator_zone}).
 
 \begin{figure}[ptbh]
@@ -901,6 +913,9 @@ NOx or just Chl and TSS are considered very similar.  Generally, Water Quality I
 lowered by the inclusion of Secchi Depth, the severity of which depends on the degree of dilution by
 other Measures.  
 
+Questions have been raised about the reliability and accuracy of the Satellite TSS (non-algal particles) as well as the
+eReefs TSS and NOx data or else their suitability as good indicators.  In particularly, eReefs TSS in Midshelf and Offshore
+is consistently well below the associated threshold values - so much so that the indices are virtually invariant over space and time.
 
 \clearpage
 
@@ -970,5 +985,17 @@ other Measures.
 \clearpage
 
 \subsection{Summary of recommendations}
+
+\begin{itemize}
+\item Whilst demonstrably more sensitive than either the Satellite or eReefs (with and without assimilation), the AIMS insitu data are
+  likely to be spatially biased (predominantly reflecting conditions relatively close to major discharge sources) and lack the
+  spatial and temporal coverage to provide representative metrics for entire GBR.
+\item Although the Satellite data shows some spatial variability (except for Secchi depth), temporal variability is very subtle  
+\item Assuming the eReefs assimilated modelled data encapsulates both deterministic expectations (models) and some form of observable
+  realisations of state, these data should provide a solid basis on which to build water quality report card metrics.
+\item eReefs TSS and NOx both appear to be very low (particularly in Midshelf and Offshore) compared to the associated
+  thresholds thereby resulting in highly insensitive indices.
+\item In the short-term, water quality metrics should comprise only eReefs Chlorophyll-a and Secchi depth.  
+\end{itemize}
 
 \clearpage

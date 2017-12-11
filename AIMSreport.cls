@@ -109,14 +109,33 @@
 \renewcommand{\headrulewidth}{1.5pt}%
 \renewcommand{\headrule}{\hbox to\headwidth{%
     \color{blue!70}\leaders\hrule height \headrulewidth\hfill}}
+% \renewcommand{\subsectionmark}[1]{\markboth{#1}{}}
+\let\Sectionmark\sectionmark
+\def\sectionmark#1{\def\Sectionname{#1}\Sectionmark{#1}}
+\let\Subsectionmark\subsectionmark
+\def\subsectionmark#1{\def\Subsectionname{#1}\Subsectionmark{#1}}
 \fancyhead[C]{}
-\fancyhead[L]{\raisebox{-.5\baselineskip}[0pt][0pt]{\parbox{0.4\textwidth}{\leftmark}}}
-\fancyhead[R]{\raisebox{-.5\baselineskip}[0pt][0pt]{\parbox{0.4\textwidth}{\hfill\rightmark}}}
+%\fancyhead[L]{\raisebox{-.5\baselineskip}[0pt][0pt]{\parbox{0.4\textwidth}{\leftmark}}}
+%\fancyhead[R]{\raisebox{-.5\baselineskip}[0pt][0pt]{\parbox{0.4\textwidth}{\hfill\rightmark}}}
+\fancyhead[L]{\raisebox{-.5\baselineskip}[0pt][0pt]{\parbox{0.4\textwidth}{\rightmark}}}
+\fancyhead[R]{\raisebox{-.5\baselineskip}[0pt][0pt]{\parbox{0.4\textwidth}{\hfill\thesubsection\quad \Subsectionname}}}
 \fancyfoot[C]{}
 \fancyfoot[L]{\parbox{0.8\textwidth}{Water Quality Report Card Metrics}}
 \fancyfoot[R]{Page~\thepage}
 \renewcommand{\footrulewidth}{1.5pt}%
 \headrulecolor{blue!70}%
+
+% \usepackage{titleps}
+% \newpagestype{mypage}{%
+%   \headrule
+%   \sethead{\MakeUppercase{\thesection\quad\sectiontitle}}{}{\thesubsection\quad\subsectiontitle}
+%   \setfoot{Water Quality Report Card Matrics}{}{\thepage}
+% }
+% \settitlemarks{section,subsection}
+% \pagestyle{mypage}
+
+
+
 
 %% %-Redefine the section title formats--------------
 \setcounter{secnumdepth}{4}
