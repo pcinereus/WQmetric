@@ -34,7 +34,7 @@ location is displayed in Figure \ref{fig:focalArea_Spatial.Yongala_Measure.chl}.
 
 \begin{figure}[!hptb]
   \includegraphics[width=\textwidth]{figures/FocalAreas/focalArea_Spatial.Yongala_Measure.chl.pdf}
-    \caption{Spatial distribution of eReefs observation locations within 5km of the Yongala AIMS MMP niskin sampling location (point with red outline).  Observations represent a) Chlorophyll-a values and associated b) fsMAMP indices and c) Grades (Uniform control chart) for 25/03/2015.}\label{fig:focalArea_Spatial.Yongala_Measure.chl}
+    \caption[Spatial distribution of eReefs observation locations within 5km of the Yongala AIMS MMP niskin sampling location]{Spatial distribution of eReefs observation locations within 5km of the Yongala AIMS MMP niskin sampling location (point with red outline).  Observations represent a) Chlorophyll-a values and associated b) fsMAMP indices and c) Grades (Uniform control chart) for 25/03/2015.}\label{fig:focalArea_Spatial.Yongala_Measure.chl}
 \end{figure}
 
 Importantly, although the AIMS niskin sample is located geographically roughly in the middle of the
@@ -81,7 +81,7 @@ we could aggregate Chlorophyll-a indicies (see Figure \ref{fig:focalArea_Spatial
 
 \begin{figure}[!hptb]
   \includegraphics[width=\textwidth]{figures/FocalAreas/focalArea_Spatial.Yongala_Measure.chl_Method1.1.pdf}
-    \caption{Yongala focal area aggregated a) Chlorophyll-a values and associated b) fsMAMP indices and c) Grades (Uniform control chart) for 25/03/2015.}\label{fig:focalArea_Spatial.Yongala_Measure_Method1.1.chl}
+    \caption[Illustration of simple multi source aggregation for the Yongala focal area]{Yongala focal area aggregated a) Chlorophyll-a values and associated b) fsMAMP indices and c) Grades (Uniform control chart) for 25/03/2015.}\label{fig:focalArea_Spatial.Yongala_Measure_Method1.1.chl}
 \end{figure}
 
 Critically, this technique does assume that 
@@ -242,7 +242,7 @@ the most appropriate values for $\sigma_f^2$ and $l$, $\sigma_n^2$ and $\sigma_e
 
 \begin{figure}[!hptb]
   \includegraphics[width=\textwidth]{figures/FocalAreas/focalArea_Spatial.Yongala_Measure.chl_Method2.1.pdf}
-  \caption{Illustration of data assimilation via squared exponential Gaussian process applied to a single dimension (Latitude) for the 25/03/2015 Yongala focal area a) Raw Chlorophyll-a values and b-e) different Gaussian Process parameters.}\label{fig:focalArea_Spatial.Yongala_Measure_Method2.1.chl}
+  \caption[Illustration of Gaussian Process multi source aggregation for the Yongala focal area]{Illustration of data assimilation via squared exponential Gaussian process applied to a single dimension (Latitude) for the 25/03/2015 Yongala focal area a) Raw Chlorophyll-a values and b-e) different Gaussian Process parameters.}\label{fig:focalArea_Spatial.Yongala_Measure_Method2.1.chl}
 \end{figure}
   
 Similar to the Kalman Filter, high dimensionality incurs substantial covariance size increases.
@@ -297,7 +297,7 @@ converted into Grades (see Figure \ref{fig:focalArea_Spatial.Yongala_Measure.chl
 
 \begin{figure}[!hptb]
   \includegraphics[width=\textwidth]{figures/FocalAreas/focalArea_Spatial.Yongala_Measure.chl_Method3.pdf}
-    \caption{Illustration of data assimilation via Fixed Rank Kriging applied to spatial data for the 25/03/2015 Yongala focal area a) Raw Chlorophyll-a values (AIMS niskin: red symbol border, eReefs: black symbol border), b) dicretization of the spatial domain into a regular hexagonal grid and varying footprints (support) for AIMS niskin (blue) and eReefs (red), d) Matern basis functions of two resolutions, d) predicted values and associated e) fsMAMP indices and f) Grades (Uniform control chart) for 25/03/2015.}\label{fig:focalArea_Spatial.Yongala_Measure.chl_Method3}
+    \caption[Illustration of Fixed Rank Kriging multi source aggregation for the Yongala focal area]{Illustration of data assimilation via Fixed Rank Kriging applied to spatial data for the 25/03/2015 Yongala focal area a) Raw Chlorophyll-a values (AIMS niskin: red symbol border, eReefs: black symbol border), b) dicretization of the spatial domain into a regular hexagonal grid and varying footprints (support) for AIMS niskin (blue) and eReefs (red), d) Matern basis functions of two resolutions, d) predicted values and associated e) fsMAMP indices and f) Grades (Uniform control chart) for 25/03/2015.}\label{fig:focalArea_Spatial.Yongala_Measure.chl_Method3}
 \end{figure}
 
 Figure \ref{fig:focalArea_Spatial.Yongala_Measure.chl_Method3} illustrates that whilst fixed rank kriging does offer
