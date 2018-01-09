@@ -690,6 +690,7 @@ for (i in which(ii)) {
         outPath=paste0('figures/Exploratory_Data_Analysis/',path,'/')
         inFile=paste0('eda.year.',m,'_',r,'__',w,'_',src,'_log')
         print(paste0(inPath,inFile))
+        print(paste0(outPath,inFile))
         if (full.lookup$Include[i]==1) {
             system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -r300 -sOutputFile="',outPath,inFile,'_small.png" "',inPath,inFile,'.pdf"'))
             #system(paste0('convert -resize 100% "',inPath,inFile,'.pdf" "',outPath,inFile,'_small.pdf"'))
