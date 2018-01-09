@@ -3,13 +3,13 @@
  \setlength\aboverulesep{0pt}\setlength\belowrulesep{0pt}
  \setlength\cmidrulekern{1pt}\setlength\cmidrulewidth{1pt}
  \renewcommand\arraystretch{1.2}\setlength\tabcolsep{5pt}
- \begin{table}[h]\caption{Measures collected from MODIS satellite imaging. Data used are daily means per pixel. Variable and Description pertain to the eReefs source.  Conversion indicates the conversion applied on data to conform to threshold Units.  Abbreviation provides a consistent key accross data.}\label{tab:satellite.measures}
+ \begin{table}[h]\caption{Measures collected from MODIS satellite imaging. Data used are daily means per pixel. Variable and Description pertain to the eReefs source.  Conversion indicates the conversion applied on data to conform to threshold Units.  Abbreviation provides a consistent key accross data. MIM refers to the robust and scalable matrix inversion method used to handle the variability in optical properties of satellite imagery.}\label{tab:satellite.measures}
  %\begin{center}
  \scriptsize
  \begin{tabular}{
  !{\color[rgb]{0.06,0.25,0.49}\VRule[1pt]} p{10em}
  !{\color[rgb]{0.06,0.25,0.49}\vline} l
- !{\color[rgb]{0.06,0.25,0.49}\vline} p{15em}
+ !{\color[rgb]{0.06,0.25,0.49}\vline} p{20em}
  !{\color[rgb]{0.06,0.25,0.49}\vline} l
  !{\color[rgb]{0.06,0.25,0.49}\vline} l
  !{\color[rgb]{0.06,0.25,0.49}\vline} l
@@ -24,9 +24,9 @@
  \multicolumn{1}{l}{\whiteHeader{{Conversion}}} & 
  \whiteHeader{{Units}}\\ 
  \cmidrule{1-6} 
-Chlorophyll-a & Chl\_MIM} & ?? & chl & Chl\_MIM} x1 & µgL^{-1} \\ 
-   \cline{1-6}Non-Algal Particles & Nap\_MIM} & ?? & nap & Nap\_MIM} x1 & mgL^{-1} \\ 
-   \cline{1-6}Secchi Depth & SD\_MIM} & ?? & sd & SD\_MIM} x1 & m \\ 
+Chlorophyll-a & Chl\_MIM} & Near surface concentration based on empirical relationship established between in situ measurements and blue-to-green band ratios & chl & Chl\_MIM} x1 & µgL^{-1} \\ 
+   \cline{1-6}Non-Algal Particles & Nap\_MIM} & Total suspended solids based on relationship established between in situ measurements and the absorption concentration of non-algal particles & nap & Nap\_MIM} x1 & mgL^{-1} \\ 
+   \cline{1-6}Secchi Depth & SD\_MIM} & Secchi depth based on empirical relationship established between in situ measurements and estimated depth at which 10\% of surface light still available & sd & SD\_MIM} x1 & m \\ 
    \bottomrule
  \end{tabular}
  %\end{center}

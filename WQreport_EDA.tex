@@ -192,13 +192,17 @@ easily appreciated.
 Figures~\ref{fig:eda.spatial_chl_oc} -- \ref{fig:eda.spatial_NOx_m} explore the spatio-temporal
 patterns in observed data from a finer spatial perspective (again focussing on just the Wet Tropics
 Open Coastal and Dry Tropics Midshelf Zones).  Importantly, the colour scales have been mapped to
-a constant value range for each source for a given Measure.  The lower and upper bounds of the
-constant range is 
-respectively based on twice and half the threshold (see Table~\ref{tab:thresholds}) value
-(except for Secchi depth which are half and twice respectively).  Half and double the threshold was
-considered broadly appropriate for the Insitu data and thus, should also be broadly appropriate for the
-other sources which could be considered 'proxies' for direct sampling.
-
+a constant value range for each source for a given Measure.
+% The lower and upper bounds of the constant range is 
+% respectively based on twice and half the threshold (see Table~\ref{tab:thresholds}) value
+% (except for Secchi depth which are half and twice respectively).  Half and double the threshold was
+% considered broadly appropriate for the Insitu data and thus, should also be broadly appropriate for the
+% other sources which could be considered 'proxies' for direct sampling.
+Colour scales have been mapped to a constant value range for each
+source for a given Measure, the lower and upper bounds of which are
+based on the minimum and maximum data range for the Measure within the
+Region/Water body combination across all years.  The scale is a viridis
+(color blind safe) color mapping.
 % since they are intended to be indirect approximations of direct sampling.
 
 
@@ -233,42 +237,42 @@ appropriate for comparison against the associated thresholds..
   
   \begin{figure}[ptbh]
     \begin{minipage}{0.5\linewidth}
-      a) AIMS insitu\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.chl_Wet Tropics__Open Coastal_niskin_logA\res.png}}\\[1em]
-      c) eReefs\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.chl_Wet Tropics__Open Coastal_eReefs_logA\res.png}}\\[1em]
+      a) AIMS insitu\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.chl_Wet Tropics__Open Coastal_niskin_logB\res.png}}\\[1em]
+      c) eReefs\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.chl_Wet Tropics__Open Coastal_eReefs_logB\res.png}}\\[1em]
     \end{minipage}
     \begin{minipage}{0.5\linewidth}
-      b) Satellite\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.spatial.year.chl_Wet Tropics__Open Coastal__logA\res.png}}\\[1em]
-      d) eReefs926\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.chl_Wet Tropics__Open Coastal_eReefs926_logA\res.png}}\\[1em]
+      b) Satellite\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.spatial.year.chl_Wet Tropics__Open Coastal__logB\res.png}}\\[1em]
+      d) eReefs926\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.chl_Wet Tropics__Open Coastal_eReefs926_logB\res.png}}\\[1em]
     \end{minipage}
   %b) AIMS FLNTU\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.spatial.year.chl_Wet Tropics__Open Coastal_flntu_logA\res.pdf}}\\[1em]
     \caption{Spatial distribution of observed a) AIMS insitu, b) Satellite, c) eReefs and d) eReefs926 Chlorophyll-a (2009--2016) for the Wet Tropics Open Coastal Zone.}\label{fig:eda.spatial_chl_oc}
 \end{figure}
 \end{landscape}
 
-\begin{landscape}
-  \begin{figure}[ptbh]
-    \begin{minipage}{0.5\linewidth}
-      a) AIMS insitu\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.nap_Wet Tropics__Open Coastal_niskin_logA\res.png}}\\[1em]
-      c) eReefs\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.nap_Wet Tropics__Open Coastal_eReefs_logA\res.png}}\\[1em]
-    \end{minipage}
-    \begin{minipage}{0.5\linewidth}
-      b) Satellite\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.spatial.year.nap_Wet Tropics__Open Coastal__logA\res.png}}\\[1em]
-      d) eReefs926\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.nap_Wet Tropics__Open Coastal_eReefs926_logA\res.png}}\\[1em]
-    \end{minipage}
-  %b) AIMS FLNTU\\\includegraphics[align=t,width=0.95\linewidth]{{../Figures/Exploratory Data Analysis/FLNTU/eda.spatial.year.nap_Wet Tropics__Open Coastal_flntu_logA\res.pdf}}\\[1em]
-  \caption{Spatial distribution of observed a) AIMS insitu, b) Satellite, c) eReefs and d) eReefs926 TSS (2009--2016) for the Wet Tropics Open Coastal Zone.}\label{fig:eda.spatial_nap_oc}
-\end{figure}
-\end{landscape}
+% \begin{landscape}
+%   \begin{figure}[ptbh]
+%     \begin{minipage}{0.5\linewidth}
+%       a) AIMS insitu\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.nap_Wet Tropics__Open Coastal_niskin_logA\res.png}}\\[1em]
+%       c) eReefs\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.nap_Wet Tropics__Open Coastal_eReefs_logA\res.png}}\\[1em]
+%     \end{minipage}
+%     \begin{minipage}{0.5\linewidth}
+%       b) Satellite\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.spatial.year.nap_Wet Tropics__Open Coastal__logA\res.png}}\\[1em]
+%       d) eReefs926\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.nap_Wet Tropics__Open Coastal_eReefs926_logA\res.png}}\\[1em]
+%     \end{minipage}
+%   %b) AIMS FLNTU\\\includegraphics[align=t,width=0.95\linewidth]{{../Figures/Exploratory Data Analysis/FLNTU/eda.spatial.year.nap_Wet Tropics__Open Coastal_flntu_logA\res.pdf}}\\[1em]
+%   \caption{Spatial distribution of observed a) AIMS insitu, b) Satellite, c) eReefs and d) eReefs926 TSS (2009--2016) for the Wet Tropics Open Coastal Zone.}\label{fig:eda.spatial_nap_oc}
+% \end{figure}
+% \end{landscape}
 
 \begin{landscape}
   \begin{figure}[ptbh]
     \begin{minipage}{0.5\linewidth}
-      a) AIMS insitu\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.sd_Wet Tropics__Open Coastal_niskin_logA\res.png}}\\[1em]
-      c) eReefs\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.sd_Wet Tropics__Open Coastal_eReefs_logA\res.png}}\\[1em]
+      a) AIMS insitu\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.sd_Wet Tropics__Open Coastal_niskin_logB\res.png}}\\[1em]
+      c) eReefs\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.sd_Wet Tropics__Open Coastal_eReefs_logB\res.png}}\\[1em]
     \end{minipage}
     \begin{minipage}{0.5\linewidth}
-      b) Satellite\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.spatial.year.sd_Wet Tropics__Open Coastal__logA\res.png}}\\[1em]
-      d) eReefs926\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.sd_Wet Tropics__Open Coastal_eReefs926_logA\res.png}}\\[1em]
+      b) Satellite\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.spatial.year.sd_Wet Tropics__Open Coastal__logB\res.png}}\\[1em]
+      d) eReefs926\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.sd_Wet Tropics__Open Coastal_eReefs926_logB\res.png}}\\[1em]
     \end{minipage}
   \caption{Spatial distribution of observed a) AIMS insitu, b) Satellite, c) eReefs and d) eReefs926 Secchi depth (2009--2016) for the Wet Tropics Open Coastal Zone.}\label{fig:eda.spatial_sd_oc}
 \end{figure}
@@ -277,11 +281,11 @@ appropriate for comparison against the associated thresholds..
 \begin{landscape}
   \begin{figure}[ptbh]
     \begin{minipage}[t]{0.5\linewidth}
-      a) AIMS insitu\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.NOx_Wet Tropics__Open Coastal_niskin_logA\res.png}}\\[1em]
-      c) eReefs926\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.NOx_Wet Tropics__Open Coastal_eReefs926_logA\res.png}}\\[1em]      
+      a) AIMS insitu\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.NOx_Wet Tropics__Open Coastal_niskin_logB\res.png}}\\[1em]
+      c) eReefs926\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.NOx_Wet Tropics__Open Coastal_eReefs926_logB\res.png}}\\[1em]      
     \end{minipage}
     \begin{minipage}[t]{0.5\linewidth}
-      b) eReefs\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.NOx_Wet Tropics__Open Coastal_eReefs_logA\res.png}}\\[1em]
+      b) eReefs\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.NOx_Wet Tropics__Open Coastal_eReefs_logB\res.png}}\\[1em]
     \end{minipage}
   \caption{Spatial distribution of observed a) AIMS insitu, b) eReefs and c) eReefs926 NOx (2009--2016) for the Wet Tropics Open Coastal Zone.}\label{fig:eda.spatial_NOx_oc}
 \end{figure}
@@ -292,10 +296,10 @@ appropriate for comparison against the associated thresholds..
   \begin{figure}[ptbh]
     %\begin{center}
     %  \begin{parbox}{width=0.8\linewidth}
-    a) AIMS insitu\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.chl_Dry Tropics__Midshelf_niskin_logA\res.png}}\end{center}
-    b) Satellite\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.spatial.year.chl_Dry Tropics__Midshelf__logA\res.png}}\end{center}
-    c) eReefs\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.chl_Dry Tropics__Midshelf_eReefs_logA\res.png}}\end{center}
-    d) eReefs926\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.chl_Dry Tropics__Midshelf_eReefs926_logA\res.png}}\end{center}
+    a) AIMS insitu\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.chl_Dry Tropics__Midshelf_niskin_logB\res.png}}\end{center}
+    b) Satellite\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.spatial.year.chl_Dry Tropics__Midshelf__logB\res.png}}\end{center}
+    c) eReefs\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.chl_Dry Tropics__Midshelf_eReefs_logB\res.png}}\end{center}
+    d) eReefs926\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.chl_Dry Tropics__Midshelf_eReefs926_logB\res.png}}\end{center}
     %\end{parbox}
     %\end{center}
   \caption{Spatial distribution of observed a) AIMS insitu, b) Satellite, c) eReefs and d) eReefs926 Chlorophyll-a (2009--2016) for the Dry Tropics Midshelf Zone.}\label{fig:eda.spatial_chl_m}
@@ -304,31 +308,31 @@ appropriate for comparison against the associated thresholds..
     
 \begin{landscape}
   \begin{figure}[ptbh]
-      a) AIMS insitu\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.nap_Dry Tropics__Midshelf_niskin_logA\res.png}}\end{center}
-      b) Satellite\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.spatial.year.nap_Dry Tropics__Midshelf__logA\res.png}}\end{center}
-      c) eReefs\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.nap_Dry Tropics__Midshelf_eReefs_logA\res.png}}\end{center}
-      d) eReefs926\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.nap_Dry Tropics__Midshelf_eReefs926_logA\res.png}}\end{center}
+      a) AIMS insitu\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.nap_Dry Tropics__Midshelf_niskin_logB\res.png}}\end{center}
+      b) Satellite\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.spatial.year.nap_Dry Tropics__Midshelf__logB\res.png}}\end{center}
+      c) eReefs\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.nap_Dry Tropics__Midshelf_eReefs_logB\res.png}}\end{center}
+      d) eReefs926\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.nap_Dry Tropics__Midshelf_eReefs926_logB\res.png}}\end{center}
     \caption{Spatial distribution of observed a) AIMS insitu, b) Satellite, c) eReefs and d) eReefs926 TSS (2009--2016) for the Dry Tropics Midshelf Zone.}\label{fig:eda.spatial_nap_m}
   \end{figure}
 \end{landscape}
 
 \begin{landscape}
   \begin{figure}[ptbh]
-      a) AIMS insitu\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.sd_Dry Tropics__Midshelf_niskin_logA\res.png}}\end{center}
-      b) Satellite\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.spatial.year.sd_Dry Tropics__Midshelf__logA\res.png}}\end{center}
-      c) Reefs\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.sd_Dry Tropics__Midshelf_eReefs_logA\res.png}}\end{center}
-      d) eReefs926\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.sd_Dry Tropics__Midshelf_eReefs926_logA\res.png}}\end{center}
-    % b) AIMS FLNTU\\\includegraphics[align=t,width=0.95\linewidth]{{../Figures/Exploratory Data Analysis/FLNTU/eda.spatial.year.sd_Dry Tropics__Midshelf_flntu_logA\res.pdf}}\\[1em]
+      a) AIMS insitu\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.sd_Dry Tropics__Midshelf_niskin_logB\res.png}}\end{center}
+      b) Satellite\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.spatial.year.sd_Dry Tropics__Midshelf__logB\res.png}}\end{center}
+      c) Reefs\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.sd_Dry Tropics__Midshelf_eReefs_logB\res.png}}\end{center}
+      d) eReefs926\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.sd_Dry Tropics__Midshelf_eReefs926_logB\res.png}}\end{center}
+    % b) AIMS FLNTU\\\includegraphics[align=t,width=0.95\linewidth]{{../Figures/Exploratory Data Analysis/FLNTU/eda.spatial.year.sd_Dry Tropics__Midshelf_flntu_logB\res.pdf}}\\[1em]
     \caption{Spatial distribution of observed a) AIMS insitu, b) Satellite, c) eReefs and d) eReefs926 Secchi depth (2009--2016) for the Dry Tropics Midshelf Zone.}\label{fig:eda.spatial_sd_m}
   \end{figure}
 \end{landscape}
 
 \begin{landscape}
   \begin{figure}[ptbh]
-      a) AIMS insitu\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.NOx_Dry Tropics__Midshelf_niskin_logA\res.png}}\end{center}
-      b) Reefs\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.NOx_Dry Tropics__Midshelf_eReefs_logA\res.png}}\end{center}
-      c) eReefs926\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.NOx_Dry Tropics__Midshelf_eReefs926_logA\res.png}}\end{center}
-    % b) AIMS FLNTU\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.spatial.year.NOx_Dry Tropics__Midshelf_flntu_logA\res.png}}\\[1em]
+      a) AIMS insitu\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.NOx_Dry Tropics__Midshelf_niskin_logB\res.png}}\end{center}
+      b) Reefs\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.NOx_Dry Tropics__Midshelf_eReefs_logB\res.png}}\end{center}
+      c) eReefs926\begin{center}\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.NOx_Dry Tropics__Midshelf_eReefs926_logB\res.png}}\end{center}
+    % b) AIMS FLNTU\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.spatial.year.NOx_Dry Tropics__Midshelf_flntu_logB\res.png}}\\[1em]
     \caption{Spatial distribution of observed a) AIMS insitu, b) eReefs and c) eReefs926 NOx (2009--2016) for the Dry Tropics Midshelf Zone.}\label{fig:eda.spatial_NOx_m}
   \end{figure}
 \end{landscape} 

@@ -1,8 +1,7 @@
 #module load emacs/25.1.1 R/3.4.1 gdal/2.0.2 netcdf/4.3.3.1-v4 gcc/4.9.0 geos/3.5.0 hdf5/1.8.16 jags/3.4.0 xtide/2.15.1 texlive
 
-
-library(tidyr)
 library(dplyr)
+library(tidyr)
 library(xtable)
 library(sp)
 library(rgeos)
@@ -17,6 +16,49 @@ registerDoParallel(cores=10)
 spatial = read.csv('../parameters/spatial.csv', strip.white=TRUE) %>%
     dplyr:::select(GBRMPA_Zone,Zone,Region,WaterBody)
 measures = read.table('../parameters/measures.txt', strip.white=TRUE, sep=';', header=TRUE)
+
+
+
+######################
+## Table of sources ##
+######################
+glossery = read.table('../parameters/glossery.csv',  header=TRUE,sep='\t')
+addtorow = list()
+addtorow$pos = list()
+addtorow$pos[[1]] = c(0)
+addtorow$pos[[2]] = (match(unique(glossery$Term),glossery$Term) -1)[-1]
+addtorow$pos[[3]] = nrow(glossery)
+addtorow$command = c(paste(
+    "\\arrayrulecolor[rgb]{0.06,0.25,0.49}\n",
+    "\\LTcapwidth=\\linewidth\n",
+    "\\setlength\\aboverulesep{0pt}\\setlength\\belowrulesep{0pt}\n",
+    "\\setlength\\cmidrulekern{1pt}\\setlength\\cmidrulewidth{1pt}\n",
+    "\\renewcommand\\arraystretch{1.2}\\setlength\\tabcolsep{5pt}\n",
+    "\\begin{table}[h]\\caption{Glossery of important terms used throughout the report.}\\label{tab:glossery}\n",
+    #"\\begin{center}\n",
+    "\\scriptsize\n",
+    "\\begin{tabular}{\n",
+    "!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]} p{6em}\n",
+    "!{\\color[rgb]{0.06,0.25,0.49}\\vline} p{60em}\n",
+    "!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]}\n",
+    "}\n",
+    "\\arrayrulecolor[rgb]{0.06,0.25,0.49}\\specialrule{1pt}{0pt}{0pt} %top border\n",
+    "\\rowcolor[rgb]{0.53,0.62,0.74} \n",
+    "\\multicolumn{1}{!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]}l}{\\whiteHeader{{Term}}} & \n",
+    "\\multicolumn{1}{l}{\\whiteHeader{{Description}}} & \n",
+    "\\cmidrule{1-2} \n"
+    ),
+    "\\cline{1-2}",
+    paste(
+        "\\bottomrule\n",
+        "\\end{tabular}\n",
+        #"\\end{center}\n",
+        "\\end{table}")
+    )
+writeLines(text=
+glossery %>%
+xtable %>% print(include.rownames=FALSE, add.to.row=addtorow,only.contents=TRUE,include.colnames=FALSE,sanitize.text.function=function(x) gsub('\\_','\\\\_',x), comment=FALSE, hline.after=-1),
+con='tables/glossery.tex')
 
 
 ##############################################################
@@ -36,7 +78,7 @@ addtorow$command = c(paste(
     "\\renewcommand\\arraystretch{1.2}\\setlength\\tabcolsep{5pt}\n",
     "%\\begin{landscape}\n",
     "\\begin{table}[h]\\caption{Great Barrier Reef spatial Zones and associated Regions and Water bodies.}\\label{tab:spatial}\n",
-    "\\begin{center}\n",
+    #"\\begin{center}\n",
     "\\scriptsize\n",
     "\\begin{tabular}{\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]} p{25em}\n",
@@ -58,7 +100,7 @@ addtorow$command = c(paste(
     paste(
         "\\bottomrule\n",
         "\\end{tabular}\n",
-        "\\end{center}\n",
+        #"\\end{center}\n",
         "\\end{table}\n",
         "%\\end{landscape}\n")
     )
@@ -84,8 +126,8 @@ addtorow$command = c(paste(
     "\\setlength\\aboverulesep{0pt}\\setlength\\belowrulesep{0pt}\n",
     "\\setlength\\cmidrulekern{1pt}\\setlength\\cmidrulewidth{1pt}\n",
     "\\renewcommand\\arraystretch{1.2}\\setlength\\tabcolsep{5pt}\n",
-    "\\begin{table}[h]\\caption{Summary of used data sources.}\\label{tab:sources}\n",
-    "\\begin{center}\n",
+    "\\begin{table}[h]\\caption{Overview of used data sources.}\\label{tab:sources}\n",
+    #"\\begin{center}\n",
     "\\scriptsize\n",
     "\\begin{tabular}{\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]} p{6em}\n",
@@ -104,7 +146,7 @@ addtorow$command = c(paste(
     paste(
         "\\bottomrule\n",
         "\\end{tabular}\n",
-        "\\end{center}\n",
+        #"\\end{center}\n",
         "\\end{table}")
     )
 writeLines(text=
@@ -136,7 +178,7 @@ addtorow$command = c(paste(
     "\\setlength\\cmidrulekern{1pt}\\setlength\\cmidrulewidth{1pt}\n",
     "\\renewcommand\\arraystretch{1.2}\\setlength\\tabcolsep{5pt}\n",
     "\\begin{table}[h]\\caption{Example of Water Quality Measure hierarchy specifying which Measures contribute to which Subindicators and which Subindicators contribute to which Indicators.}\\label{tab:measures}\n",
-    "\\begin{center}\n",
+    #"\\begin{center}\n",
     "\\scriptsize\n",
     "\\begin{tabular}{\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]} p{6em}\n",
@@ -162,7 +204,7 @@ addtorow$command = c(paste(
     paste(
         "\\bottomrule\n",
         "\\end{tabular}\n",
-        "\\end{center}\n",
+        #"\\end{center}\n",
         "\\end{table}")
     )
 writeLines(text=
@@ -231,8 +273,8 @@ con='tables/insitu.measures.tex')
 ## FLNTU logger measures table
 flntu.measures = data.frame(Measure=c('Chlorophyll-a', 'NTU'),
                             AIMS_NAME = c('CHL_QA_AVG', 'NTU_QA_AVG'),
-                            Description=c('??',
-                                           '??'
+                            Description=c('Daily mean chlorophyll fluorescence',
+                                           'Daily mean turbidity'
                                            ),
                             Abbreviation=c('chl','ntu'),
                             Conversion = c('CHL_QA_AVG x1','NTU_QA_AVG x1'),
@@ -288,9 +330,9 @@ con='tables/flntu.measures.tex')
 ## SATELLITE logger measures table
 satellite.measures = data.frame(Measure=c('Chlorophyll-a', 'Non-Algal Particles','Secchi Depth'),
                                 AIMS_NAME = c('Chl_{MIM}', 'Nap_{MIM}','SD_{MIM}'),
-                                Description=c('??',
-                                           '??',
-                                           '??'
+                                Description=c('Near surface concentration based on empirical relationship established between in situ measurements and blue-to-green band ratios',
+                                           'Total suspended solids based on relationship established between in situ measurements and the absorption concentration of non-algal particles',
+                                           'Secchi depth based on empirical relationship established between in situ measurements and estimated depth at which 10\\% of surface light still available'
                                            ),
                                 Abbreviation=c('chl','nap','sd'),
                                 Conversion = c('Chl_{MIM} x1','Nap_{MIM} x1','SD_{MIM} x1'),
@@ -308,13 +350,13 @@ addtorow$command = c(paste(
     "\\setlength\\aboverulesep{0pt}\\setlength\\belowrulesep{0pt}\n",
     "\\setlength\\cmidrulekern{1pt}\\setlength\\cmidrulewidth{1pt}\n",
     "\\renewcommand\\arraystretch{1.2}\\setlength\\tabcolsep{5pt}\n",
-    "\\begin{table}[h]\\caption{Measures collected from MODIS satellite imaging. Data used are daily means per pixel. Variable and Description pertain to the eReefs source.  Conversion indicates the conversion applied on data to conform to threshold Units.  Abbreviation provides a consistent key accross data.}\\label{tab:satellite.measures}\n",
+    "\\begin{table}[h]\\caption{Measures collected from MODIS satellite imaging. Data used are daily means per pixel. Variable and Description pertain to the eReefs source.  Conversion indicates the conversion applied on data to conform to threshold Units.  Abbreviation provides a consistent key accross data. MIM refers to the robust and scalable matrix inversion method used to handle the variability in optical properties of satellite imagery.}\\label{tab:satellite.measures}\n",
     "%\\begin{center}\n",
     "\\scriptsize\n",
     "\\begin{tabular}{\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]} p{10em}\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\vline} l\n",
-    "!{\\color[rgb]{0.06,0.25,0.49}\\vline} p{15em}\n",
+    "!{\\color[rgb]{0.06,0.25,0.49}\\vline} p{20em}\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\vline} l\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\vline} l\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\vline} l\n",
@@ -348,8 +390,8 @@ con='tables/satellite.measures.tex')
 ereefs.measures = data.frame(Measure=c('Chlorophyll-a', 'Non-Algal Particles','Secchi Depth','NOx'),
                              AIMS_NAME = c('Chl_{a}_sum', 'EFI','Kd_{490}','NO3'),
                              Description=c('Sum of Chlorophyll concentration of four microalgae types ($mg/m^3$)',
-                                           '??',
-                                           '??',
+                                           'EFI = NAP and is the sum of Mud and Fine Sediment',
+                                           'Kd\\_490 is calculated from the scattering and absorbing properties of all optical-active constituents, and includes the cosine zenith angle on vertical attenuation.',
                                            'Concentration of Nitrate. As Nitrite is not represented in the model, NO3 = $[NO^-_3] + [NO^-_2]$ ($mg/m^3$)'
                                            ),
                              Abbreviation=c('chl','nap','sd','NOx'),
@@ -368,13 +410,13 @@ addtorow$command = c(paste(
     "\\setlength\\aboverulesep{0pt}\\setlength\\belowrulesep{0pt}\n",
     "\\setlength\\cmidrulekern{1pt}\\setlength\\cmidrulewidth{1pt}\n",
     "\\renewcommand\\arraystretch{1.2}\\setlength\\tabcolsep{5pt}\n",
-    "\\begin{table}[h]\\caption{Measures collected from eReefs assimilated model. Data used are daily means per pixel. Variable and Description pertain to the eReefs source.  Conversion indicates the conversion applied on data to conform to threshold Units.  Abbreviation provides a consistent key accross data.}\\label{tab:ereefs.measures}\n",
+    "\\begin{table}[h]\\caption{Measures collected from eReefs assimilated model. Data used are daily means per pixel. Variable and Description pertain to the eReefs source.  Conversion indicates the conversion applied on data to conform to threshold Units.  Abbreviation provides a consistent key accross data. }\\label{tab:ereefs.measures}\n",
     "%\\begin{center}\n",
     "\\scriptsize\n",
     "\\begin{tabular}{\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\VRule[1pt]} p{10em}\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\vline} l\n",
-    "!{\\color[rgb]{0.06,0.25,0.49}\\vline} p{15em}\n",
+    "!{\\color[rgb]{0.06,0.25,0.49}\\vline} p{20em}\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\vline} l\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\vline} l\n",
     "!{\\color[rgb]{0.06,0.25,0.49}\\vline} l\n",
@@ -402,6 +444,11 @@ ereefs.measures %>%
 xtable %>% print(include.rownames=FALSE, add.to.row=addtorow,only.contents=TRUE,include.colnames=FALSE,
                  sanitize.text.function=function(x) gsub('\\_[^0-9]','\\\\_',x), comment=FALSE, hline.after=-1),
 con='tables/ereefs.measures.tex')
+
+
+
+
+
 
 
 
@@ -623,7 +670,7 @@ full.lookup = expand.grid(src=c('niskin','flntu','','eReefs','eReefs926'),
            Include=ifelse(src %in% c('flntu','') & measure=='NOx',0,Include),
            Include=ifelse(src %in% c('niskin','flntu') & region %in% c('Cape York','Fitzroy','Burnett Mary'),0,Include),
            Include=ifelse(src %in% c('niskin','flntu') & waterbody %in% c('Offshore'),0,Include),
-           Include=ifelse(src %in% c('niskin','flntu') & region %in% c('Mackay Whitsunday') & waterbody %in% c('Enclosed Coastal','Midshelf'),0,Include),
+           Include=ifelse(src %in% c('niskin','flntu') & region %in% c('Mackay Whitsunday') & waterbody %in% c('Enclosed Coastal','Midshelf'),0,Include)
            )
 full.lookup %>% head(20)
 ## Temporal Exploratory data analysis violin plots
@@ -645,6 +692,7 @@ for (i in which(ii)) {
         print(paste0(inPath,inFile))
         if (full.lookup$Include[i]==1) {
             system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.4 -dNOPAUSE -dQUIET -dBATCH -r300 -sOutputFile="',outPath,inFile,'_small.png" "',inPath,inFile,'.pdf"'))
+            #system(paste0('convert -resize 100% "',inPath,inFile,'.pdf" "',outPath,inFile,'_small.pdf"'))
         }
 }
 i = i +1
@@ -654,18 +702,20 @@ full.lookup$Include[i]
 for (s in 1:nrow(lookup)) {
     for (m in c('chl','nap','sd','NOx')) {
         if (!(s %in% c(2,3) & m=='NOx')){
-            system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf"'))
-            system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.month.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.month.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf"'))
+            ##system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf"'))
+            ##system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.month.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.month.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_log.pdf"'))
 
-            system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_log.pdf"'))
-            system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.month.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.month.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_log.pdf"'))
-            ##system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA_small.png"'))
-            ##system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA_small.png"'))
-            #system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA_small.png" "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf"'))
-            #system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA_small.png" "../data/eda/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA.pdf"'))
-            system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logB_small.png" "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logB.pdf"'))
-            system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logB_small.png" "../data/eda/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logB.pdf"'))
-            
+            ##system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_log.pdf"'))
+            ##system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.year.month.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_log_small.pdf" "../data/eda/eda.year.month.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_log.pdf"'))
+            ####system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA_small.png"'))
+            ####system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA_small.png"'))
+            ###system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA_small.png" "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logA.pdf"'))
+            ###system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA_small.png" "../data/eda/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logA.pdf"'))
+            ##system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logB_small.png" "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logB.pdf"'))
+            ##system(paste0('gs -sDEVICE=pngalpha -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -r200 -sOutputFile="figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logB_small.png" "../data/eda/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logB.pdf"'))
+
+            system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logB.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Wet Tropics__Open Coastal_',lookup$src[s],'_logB_small.png"'))
+            system(paste0('convert -resize 100% "../data/eda/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logB.pdf" "figures/Exploratory_Data_Analysis/',lookup$path[s],'/eda.spatial.year.',m,'_Dry Tropics__Midshelf_',lookup$src[s],'_logB_small.png"'))
         }
     }
 }
@@ -683,7 +733,7 @@ for (m in c('chl','nap','sd','NOx')) {
 }
 
 
-for (i in c('GL_10.R_1000','GL_100.R_1000','GL_1.R_10','GL_10.R_10')) {
+for (i in c('GL_0.1.R_1000','GL_10.R_1000','GL_100.R_1000','GL_1.R_10','GL_10.R_10')) {
     #system(paste0("cp 'Figures/sensitivity.Group_1.",i,".pdf' 'figures/Sensitivity of indices/sensitivity.Group_1.",i,"_small.pdf'"))
     system(paste0('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.3 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile="figures/Sensitivity of indices/sensitivity.Group_1.',i,'_small.pdf"  "Figures/sensitivity.Group_1.',i,'.pdf"'))
 }
@@ -735,6 +785,10 @@ for (idx in c('fsMAMP')) {
         system(paste0('cp "Figures/All_indicies_',idx,'.Annual_measure.',m,'_zone.pdf" "figures/Indices/Compare sources/All_indicies_',idx,'.Annual_measure.',m,'_zone_small.pdf"'))    
     }
 }
+
+
+## Generate a zip of spatial EDA figures
+
 
 
 system(paste0('cp "Figures/simple_eReefs_fsMAMP.Annual_measure.zone_Grade_Uniform.pdf" "figures/Indices/Compare measures/simple_eReefs_fsMAMP.Annual_measure.zone_Grade_Uniform_small.pdf"'))

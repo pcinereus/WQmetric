@@ -1,0 +1,122 @@
+\documentclass{elsart}
+\usepackage{graphicx,natbib,marvosym,wasysym}
+\usepackage{lscape,setspace,lineno,indentfirst}
+\journal{Environmental Modelling and Software}
+
+\usepackage{floatrow}
+\usepackage{epstopdf}
+\floatsetup[table]{capposition=top}
+
+\setlength{\parindent}{8pt} 
+\begin{document}
+
+\section{eReefs coupled hydrodynamic -- biogeochemical model}
+
+The eReefs coupled hydrodynamic, sediment and BGC modelling system involves the application of a range of physical, chemical and biological process descriptions to quantify the rate of change of physical and biological variables (Fig.~\ref{fig:bgc}, \citet{Schiller14}). The processes descriptions are generally based either on a fundamental understanding of the process (such as the effect of gravity on circulation) or measurements when the process is isolated (such as the maximum division rate of phytoplankton cells at 25$^{\circ}$C in a laboratory mono-culture). The model also requires as inputs external forcings, such as observed river flows and pollutant loads. Thus, the model can be run without observations from the marine environment and in this mode is quite skilful (\citet{Skerratt18} and below). This mode which does not use observations from the marine environment as the simulation is undertaken is referred to as the non-assimilating simulation. Most of the eReefs marine biogeochemical simulations are non-assimilating.
+
+\begin{figure}[thb]
+\begin{center}
+\resizebox{5in}{!}{\includegraphics{../EMSmanual/ereefsbgcdiagram4emlyn.png}}
+\caption{Schematic showing eReefs coupled hydrodynamic biogeochemical model.}
+\label{fig:bgc}
+\end{center}
+\end{figure}
+
+\begin{figure}[thb]
+\begin{center}
+\resizebox{5in}{!}{\includegraphics{EnKFschematic.pdf}}
+\caption{Schematic showing the evolution of the model ensemble over 6 assimilation cycles using the Ensemble Karman Filter (EnKF) system. The non-assimilating control run (black line) is capturing the gross cycle in the observations (blue stars), but errors remain that observations can constrain. At the initial time, all ensemble members, and the control run, have similar values.  In the first five days the 108 members develop a spread, with the control run being different to the ensemble mean, but within the ensemble spread. At 5 days, the first state updating occurs. In the first 5 days there was only one observations, being above the ensemble mean. At day 5, a new state for the entire ensemble is calculated (the analysis being the mean of the updated ensemble) based on the mismatch between the ensemble members and observations. The updated state is closer to the model if the ensemble spread is small, or to the observations if they are dense with few errors. At day 5, because of the small positive mismatch, the ensemble spread is only slightly narrowed, and the mean increased. The ensemble members all restart from these new updated states. The next four analysis steps proceed much like the first. For the fifth analysis step, high density observation were available over the previous 5 days, so the analysis is weighted heavily toward the observations, and the model spread is constrained significantly. Looking at the error between the ensemble mean and the observations over the entire period we see that the data assimilation system has provided an improved estimate of the state (the mean of the ensemble) relative to the control run, and achieved this using the model that contains the processes we understanding to describe system.}
+\label{fig:da}
+\end{center}
+\end{figure}
+
+Despite being already skilful, the predictive skill of the model can be improved by assimilating marine observations into an ensemble (i.e. a large number (108) of similar but not identical) of model simulations. The form of data assimilation we chose, and that is commonly used in weather forecasting, involves updating of the state of the model as the simulation progresses (Fig.~\ref{fig:da}). State updating involves first looking for a mismatch between the state of the ensemble members and the observations over the previous 5 days. Ocean colour, the observation of water-leaving irradiance at 8 individual wavebands, provides the only data set with sufficient temporal (daily) and spatial (1 km) resolution, providing upwards of 13 million pixels on a cloud-free day. For this comparison, we have chosen to use the mismatch between the model's prediction of the ratio of the water-leaving irradiance at 443 nm (blue) and 551 nm (green) and the observation of the same quantities from the MODIS sensor on NASA's Aqua satellite. The eReefs biogeochemical model is the first published model to assimilate raw ocean colour observations \citep{Jones16}. The data assimilation algorithm uses the model-observation mismatch, as well as statistically-quantified dynamical properties of model, to periodically alter the values in the 108 member ensemble, resulting the ensemble mean gaining a closer match to the observations. The outcome of this modelling system is referred to in the field of data assimilation as a reanalysis.
+
+Below we describe the model itself, and then particular data assimilation system.  
+
+\subsection{eReefs coupled model description and forcing}
+
+The hydrodynamic model is a fully 3-D finite-difference baroclinic model based on the 3-D equations of momentum, continuity and conservation of heat and salt, employing the hydrostatic and Boussinesq assumptions \citep{Herzfeld06,Herzfeld15a}. The sediment transport model adds a multilayer sediment bed to the hydrodynamic model grid and simulates sinking, deposition and resuspension of multiple size classes of suspended sediment \citep{Margvelashvili09,Margvelashvili16}. The complex BGC model simulates optical, nutrient, plankton, benthic organisms (seagrass, macroalgae and coral), detritus, chemical and sediment dynamics across the whole GBR region, spanning estuarine systems to oligotrophic offshore reefs (Fig.~\ref{fig:bgc}, \citet{Baird16a}). An expanded description of the BGC model is given in Appendix A, with a brief description of the optical model in Appendix B. Briefly, the BGC model considers four groups of microalgae (small and large phytoplankton, Trichodesmium and microphytobenthos), two zooplankton groups, three macrophytes types (seagrass types corresponding to Zostera and Halophila, macroalgae) and coral communities.
+
+Photosynthetic growth is determined by concentrations of dissolved nutrients (nitrogen and phosphorous) and photosynthetically active radiation. Microalgae contain two pigments (chlorophyll a and an accessory pigment) and have variable carbon : pigment ratios determined using a photoadaptation model (described in \citet{Baird13}. Overall, the model contains 23 optically active constituents (\citet{Baird16a}; and Appendix A).
+
+The model is forced with freshwater inputs at 21 rivers along the GBR and the Fly River in southwest Papua New Guinea. River flows are obtained from the DERM (Department of Environment and Resource Management) gauging network. Nutrient concentrations flowing in from the ocean boundaries were obtained from the CSIRO Atlas of Regional Seas (CARS) 2009 climatology \citep{Ridgway02}. 
+
+The nutrient loads (TSS, PN, PP, DIN,DIP) for the 21 rivers were obtained from the process-based Source models used for Paddock 2 Reef (P2R) load reduction estimates \citep{Waters14}. The P2R represenst land uses and landscape processes in a variety of ways, often based upon spatially explicit farm-scale models that are included through a system of bespoke pre-processing and transfer tools. These P2R Source models also include flow related in-stream processing of pollutants, thus altering loads as fluxes transfer throughout the network. P2R modelling includes scenarios designed to represent ‘baseline’ (or ‘current condition’) and ‘pre-development’ catchment loads. In this report we only use 'baseline' condition. The reliance of the base P2R Source models on external, farm scale sub-models, means that they cannot be easily modified to extend the period covered by the report card. Thus we only use the P2R outputs from Jan 2011 - July 2014. 
+
+In order to provide daily timeseries predictions of pollutant loads past July 2014, the reliance on external sub-models was replaced by pollutant generation models that estimate daily loads through monthly varying concentrations (‘EMC/DWC’). The particular concentration values for each pollutant for each Functional Unit (FU) within each subcatchment have been calculated by analysing the monthly runoff volumes and pollutant loads from the P2R Source models defined in \citet{Waters14}. The network transport and in-stream processing mechanisms are unaltered from the base P2R Source models. These monthly concentration pollutant generation models allow the model predictions to be extended by providing updated rainfall runoff model inputs (i.e. the runoff of the day), without the need to also update many thousands of farm scale sub-models. Simple comparisons of predicted loads indicates that the monthly varying concentration approach works reasonably well for sediment and associated particulate nutrient, and less well for pollutants that are usually reliant on farm scale representation of management inputs.
+
+\subsection{Assimilation system}
+
+\subsubsection{Assimilation of ocean colour}
+
+Ocean colour was chosen as the data set to assimilate due to its availability over the entire GBR at high temporal and spatial density. Ocean colour has often been used for biogeochemical data assimilation \citep{Kidston13}. In global biogeochemical data assimilation applications, the observation - model mismatch used has often been satellite estimates of \textit{in situ} chlorophyll concentration versus model predicted chlorophyll concentration \citep{Ford12}. This approach is problematic in coastal waters such as the GBR, where chlorophyll concentration is often overestimated by satellite algorithms due to bottom reflectance or absorption by non-phytoplankton components \citep{Schroeder12b}. So it is not possible in this application to base the data assimilation system on the mismatch of model chlorophyll against satellite estimates of \textit{in situ} chlorophyll. Instead, we have pioneered the use of remote-sensing reflectance as the variable to determine the mismatch between the observed and modelled quantities \citep{Jones16}. 
+
+Remote-sensing reflectance, $R_{rs}$, is the ratio of the water-leaving irradiance in the direction of a satellite to the water entering radiance. In this sense it is a 'raw' satellite observation. The value of  $R_{rs}$ varies with wavelength and is measured in sr$^{-1}$ (sr = steradians, the SI unit of solid angle, where the solid angle in all direction on a spherical surface is $4 \pi$ sr). In the open ocean at blue wavelengths the value is around 0.03 sr$^{-1}$ \citep{Baird16a}. That is, 3 \% of the light that entered the ocean within 1 m$^{2}$ emerged travelling in the direction within a solid angle of 1 sr (i.e. $1 / 4 \pi$ of a sphere).
+
+The model contains 23 optically active constituents (shaded orange in Fig.~\ref{fig:bgc}, see also \citet{Baird16a}). For each of these constituents the optical model calculates the rate of absorption, scattering and backscattering. To calculate $R_{rs}$ at the surface, we need to consider the light returning from multiple depths, and from the bottom. Rather than using a computationally expensive radiative transfer model, we approximate $R_{rs}$ based on an optical-depth weighted scheme \citep{Baird16a}. The model sums the return from each depth (and the bottom) to give the surface $R_{rs}$. As shown in \citet{Baird16a}, this calculation is sufficiently accurate that the primary reason for the mismatch between observed and modelled $R_{rs}$ is errors in the coupled hydrodynamic-biogeochemical model prediction of optically-active constituents. This is, of course, the result we wanted - it means that when the assimilation system updates the optically-active biogeochemical constituents in order to minimise the mismatch between observed and modelled $R_{rs}$, it is changing the components of the model that have the greatest errors, and in doing so improving the solution of those parts that we most care about - the optically-active components that determine water clarity.
+
+When testing the data assimilation system, we found that the best quantity to assimilate was the ratio of the remote-sensing reflectance at 443 and 551 nm. In fact, this ratio is the same one used in the NASA OC3M algorithm that we mentioned above is NOT a good measure of \textit{in situ} chlorophyll in coastal waters! So how can it be that OC3M is a poor predictor of \textit{in situ} chlorophyll in coastal waters, yet assimilating the mismatch between simulated OC3M and satellite-observed OC3M achieves the best skill for \textit{in situ} chlorophyll when compared against independent \textit{in situ} observations? The answer lies in that simulated OC3M is calculated using the ratio of two simulated $R_{rs}$, in the same manner in which observed OC3M is calculated using the ratio of two observed $R_{rs}$. Fig.~\ref{fig:OC3M} shows the \textit{in situ} chlorophyll concentration, the simulated OC3M and the NASA observed OC3M for the Cape York region on a relatively clear day. 
+The \textit{in situ} chlorophyll concentration in coastal regions along this coast is $\sim 0.5$ mg m$^{-3}$ (Fig.~\ref{fig:OC3M} left). The simulated OC3M, calculated from simulated $R_{rs}$, is greater along the coastal fringe due to the absorption of blue light from CDOM, and addition bottom reflection of green light (Fig.~\ref{fig:OC3M} centre). The observed OC3M, also affected by CDOM absorption and the bottom, looks more like the simulated OC3M than the \textit{in situ} chlorophyll concentration  (Fig.~\ref{fig:OC3M} right). Further, where there are differences, the primary cause is the error in the simulated water-column optically-active constituents like chlorophyll. Thus by producing the same simulated and observed quantity, we have improved the ability of the assimilation system to update the optically-active model constituent that is in error.
+
+\begin{figure}[thb]
+\begin{center}
+\resizebox{5in}{!}{\includegraphics{OC3M4reanalysis.png}}
+\caption{Example of the estimates of OC3M in the Cape York region on the 29 March 2016 using the 1 km GBR1 model and the NASA Aqua MODIS sensor: \textit{in situ} chlorophyll concentration (left), the simulated OC3M (centre) and the NASA observed OC3M (right).}
+\label{fig:OC3M}
+\end{center}
+\end{figure}
+
+OC3M uses the ratio of above-surface remote-sensing reflectance as a combination of three wavelengths, $R'$, which is given by:
+\begin{equation}
+R' = \log_{10} \left( \mathrm{max} \left[ R_{rs,443}, R_{rs,488} \right] / R_{rs,551} \right)
+\end{equation}
+The ratio $R'$ is used in the OC3M algorithm to estimate surface chlorophyll, $\mathrm{Chl}_{OC3}$, with coefficients from the 18 March 2010 reprocessing:
+\begin{equation}
+\mathrm{Chl}_{OC3} = 10^{0.283 + R' \left(-2.753 + R' \left( 1.457 + R' \left(0.659 - 1.403 R' \right) \right) \right)}
+\end{equation}
+obtained from \texttt{oceancolor.gsfc.nasa.gov/REPROCESSING/R2009/ocv6/}. Using, OC3M we gain the benefit of assimilating directly the mismatch between the simulated OC3M (based on simulated remote-sensing reflectance) and the observed remote-sensing reflectance; and we use a quantity that has meaning in the water quality community (mass concentration of chlorophyll). To re-state, because we use the simulated remote-sensing reflectance to calculate OC3M, the system is not affected by the  inaccuracies in the relationship between in situ chlorophyll and satellite-derived OC3M. And our assimilation system's prediction of chlorophyll is the simulated \textit{in situ} chlorophyll concentration (and not OC3M).
+
+The accuracy of the modelling systems also requires that the model and observations are closely matched in space and time. This is because remote-sensing reflectance is a function of solar angle (and therefore time of day), and because the optical properties of coastal waters can vary quickly due to a range of processes such as phytoplankton chlorophyll synthesis, movement of fronts, wind driven-upwelling, river plume structure changes etc. We used the flexible outputting time of the model, and the asynchronous assimilation routines in the EnKF-C package \citep{Sakov17}, to closely align the observations and models. In doing so we were able to meet the $\pm 30$ minutes matching requirements used for the calibration / validation of ocean colour satellite products.
+
+The Aqua satellite overpasses the GBR between 1130 and 1530 locally. In order to match the model output to within 30 minutes of the overpass, the model remote-sensing reflectance was output at 1200, 1300, 1400 and 1500 daily. For the calculations of remote-sensing reflectance, the water column calculations of the light field (and $R_{rs}$) was redone on the output time assuming the entire grid is at 150$^{\circ}$E, while infact it varies from 142$^{\circ}$31'E to 156$^{\circ}$51'E. Thus the maximum error in calculating solar angle for the purposes of outputting $R_{rs}$, in the Torres Strait, is about 30 minutes (this small error will be corrected in the next phase of eReefs). The light field calculation was also done at wavelengths at the centre of the MODIS ocean colour bands to avoid any small interpolations from the spectrally-resolved model that has a 20 nm resolution.
+
+The observations also need to be spatially aligned. The observations are at approximately $\sim$1 km resolution (up to 2 km on the edges of the swath), with location varying spatially with each different satellite swath. Meanwhile the model cells are stationary, are $\sim$ 16 km$^2$, and are defined on the curvilinear grid. The observations are grouped into a "superobservation" for each model cell. The superobservation contains all observations that were closer to a particular cell centre than any other cell centre. The position of the superobservation is the mean of the observations it is composed of, and will be close to, but not exactly the same, as the location of the cell centre. The assimilation system then accounts for the now small  misalignment in time and space when considering the mismatch between the model and observation.
+
+\subsubsection{Ensemble member design} 
+
+The assimilation system used in this study is the Determininstic Ensemble Kalman Filter (DEnKF) that requires an ensemble of model runs that approximate the uncertainty in the model solution.  The uncertainty in the model solution arises from uncertainty in the model initial conditions, boundary conditions, surface forcing and model parameterisations. 
+The ensemble members differ in the values of the quadratic mortality rate coefficient of small zooplankton, in the loads of nutrients delivered in the rivers (as a multiple of the SOURCE catchments specified loads), and in the PAR light forcing (again as a multiple of the Bureau of Meteorology short wave radiation prediction). These relatively small differences, which are undertaken on the most uncertain biological parameter, and most sensitive forcing paramaters, provide a spread of ensemble members that the Karman Filter can operate on.
+
+For a further description of the numerical schemes in the assimilation system see \citep{Jones16}. A number of modifications have been made to improve the accuracy and efficiency of the system, including transferring the the EnKF-C software.
+
+\subsection{Summary results} 
+
+The non-assimilating version of the model has been compared to observations previously (ereefs.info, \citet{Baird16a} and \citet{Skerratt18}). The results produced in the reanalysis are compared directly to observations in the attached 100 page appendix showing comparisons to hundreds of time-series. Further, later components of this document compare the metric calculated using the non-assimilating model, the assimilating model, satellite observations and \textit{in situ} observations. Here we will just show a few snapshot results to aid in the understanding of the performance of the data assimilation relative to the non-assimilating run.
+
+\subsubsection{Assessment of chlorophyll concentration at MMP sites}
+
+In our assessment of the skill of the eReefs biogeochemical models, we have considered the most important property to be the prediction of \textit{in situ} chlorophyll concentration at the MMP sites. For this there are two measures - the chlorophyll extractions at the sampling sites, and the calibrated chlorophyll fluorescence on the moorings.  While the extractions are considered the most accurate, the fluorescence time-series is continuous. When the two are lined up in time (they are slightly separated in space), the mismatch between the observed chlorophyll extractions and the observed chlorophyll fluorescence is 0.2 mg m$^{-3}$. We use this 0.2 mg m$^{-3}$ as indicative of the error of the observations. 
+
+It is important to note that the \textit{in situ} chlorophyll concentration observations were not assimilated into the model. That is, they were observation withheld just for the model assessment. In fact, the mismatch between observed and modelled quantities used in the assimilation system is neither an \textit{in situ} measurement, nor a chlorophyll concentration. The assimilated quantity was the ratio of remote-sensing reflectance at blue and green wavelengths. Thus, we can be confident that if the assimilation system has improved the prediction of \textit{in situ} chlorophyll concentration then it has improved the overall biogeochemical model.
+
+At 13 of the 14 MMP site, the assimilation of satellite-observed remote-sensing reflectance improved the prediction \textit{in situ} chlorophyll concentration (Fig.~\ref{fig:RMSerror}, top). On average the assimilation reduced the error from 0.34 to 0.29 mg m$^{-3}$, bring it 30 \% closer to the observation error (the limit of our ability to quantify an improvement in the model). The worst two site remained the most coastal sites, Geoffrey Bay and Dunk Island, for which the 4 km model poorly resolves local processes, and for which the assimilation system would provide little information to water column due to the optically-shallow and complex waters. The best site was Double Cone Island off Airlie Beach. At Double Cone Island, a time-series shows the improvement in the chlorophyll fluorescence due to the assimilation (Fig.~\ref{fig:RMSerror}, bottom). During a particularly cloud-free period in the second half of 2015, the assimilation system does a remarkable job of both removing model bias and capturing variability in the model.
+
+\begin{figure}[thb]
+\begin{center}
+\resizebox{5in}{!}{\includegraphics{reanalysisRMSerror.png}}
+\caption{Comparison of the non-assimilating (blue) and assimilating (pink) runs at the MMP sites. The instantaneous state root mean square error at the 14 MMP sites (top). The approximate error in the observations is 0.2 mg m$^{-3}$. At Double Cone Island in the Whitsundays (off Airlie Beach), a time-series of the observations (black dots) and simulations is shown for the whole simulations (centre) and the a 1 year period (bottom).}
+\label{fig:RMSerror}
+\end{center}
+\end{figure}
+
+\clearpage
+
+\section{Acknowledgements} 
+
+The model simulations were developed as part of the eReefs project, a public-private collaboration between Australia's leading operational and scientific research agencies, government, and corporate Australia. Atmospherically-corrected MODIS products were sourced from the Integrated Marine Observing System (IMOS) - IMOS is supported by the Australian Government through the National Collaborative Research Infrastructure Strategy and the Super Science Initiative.” 
+
+\bibliography{../suptex/markbib15}
+\bibliographystyle{elsart-harv} 
+
+\end{document}

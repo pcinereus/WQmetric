@@ -20,6 +20,11 @@
 \usepackage{booktabs}
 \usepackage[lmargin=2.54cm,rmargin=2.54cm, tmargin=2.54cm,bmargin=2.54cm,headsep=1.52cm,a4paper]{geometry}
 
+\usepackage{caption}
+\captionsetup[table]{justification=raggedright,singlelinecheck=off,belowskip=0pt,aboveskip=0pt,textfont=it,labelfont=it}
+\captionsetup[figure]{justification=raggedright,singlelinecheck=off,belowskip=0pt,aboveskip=0pt,textfont=it,labelfont=it}
+ 
+
 %% Some choices of math font
 %\usepackage{sfmath} %redefines math font into sf
 %\usepackage{MnSymbol}

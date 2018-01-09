@@ -365,7 +365,7 @@ Grp & Mean & SD & Grp & Mean & SD & Grp & Mean & SD & Grp & Mean & SD\\
 \end{table}
 
 
-
+ 
 \begin{figure}[h]
   \includegraphics[width=0.9\linewidth]{{figures/Sensitivity of indices/sensitivity.Group_1.GL_0.1.R_1000\res}.pdf}
   \caption{Simulated data and associated indices for threshold of 0.1 and very large sample sizes (R=1000).  Samples represent high variability relative to threshold.}\label{fig:sensitivity_0.1_1000a}
@@ -394,17 +394,17 @@ context.  Testing the responses of indices to various combinations allowed the i
 most appropriate and robust index calculation method.
 
 When the number of samples and the relative sample variability is very large
-(e.g. fig.~\ref{fig:sensitivity_0.1_1000a}), with the exception of the the maximum duration of
+(e.g. Figure~\ref{fig:sensitivity_0.1_1000a}), with the exception of the the maximum duration of
 exceedance and the uncapped and unscaled modified amplitude (MAMP) methods, the different index
 calculation methods behave very similarly.  However, as the variability of the samples declines
-relative to the threshold (e.g. compare figs.~\ref{fig:sensitivity_0.1_1000a},
+relative to the threshold (e.g. compare Figures~\ref{fig:sensitivity_0.1_1000a},
 ~\ref{fig:sensitivity_10_1000a} and ~\ref{fig:sensitivity_100_1000a}), such that observations are
 predominantly within twice/half the threshold value, %However, when the number of samples is small
 and data is predominantly distributed between the threshold value %and twice/half this value, the
 binary or frequency of exceedance methods both increasingly become simultaneously overly and under
 sensitive.  The response curve of these metrics becomes less linear, whereas the linearity of the
 other metrics is maintained for a greater span of observation means.  This is further exacerbated by
-small sample sizes (see fig.\ref{fig:sensitivity_10_10a}).
+small sample sizes (see Figure~\ref{fig:sensitivity_10_10a}).
 
 Over all of the scenarios, the fsMAMP4 (Modified Amplitude capped at four times/quarter of threshold
 values) appears to be as linear or more linear than the fsMAMP (Modified Amplitude capped at
@@ -658,59 +658,67 @@ index consistently manifests between the Binary and fsMAMP4 formulations.
       b) eReefs926 Binary\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_Binary_spatial.year.chl_Wet Tropics__Open Coastal_eReefs926_naturalA\res.png}}\\[1em]
       d) eReefs926 fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_fsMAMP4_spatial.year.chl_Wet Tropics__Open Coastal_eReefs926_naturalA\res.png}}\\[1em]
     \end{minipage}
-  %b) AIMS FLNTU\\\includegraphics[align=t,width=0.95\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.spatial.year.chl_Wet Tropics__Open Coastal_flntu_logA\res.png}}\\[1em]
-  \caption[Spatial distribution of eReefs926 Chlorophyll-a and associated indices for the Wet Tropics Open Coastal zone][Spatial distribution of AIMS in situ Chlorophyll-a and associated indices for the Wet Tropics Open Coastal zone]{Spatial distribution of eReefs926 Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone.
+    \caption[Spatial distribution of eReefs926 Chlorophyll-a and associated indices for the Wet Tropics Open Coastal zone]{Spatial distribution of eReefs926 Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Wet Tropics Open Coastal zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_oc_s_eReefs926}
 \end{figure}
 \end{landscape}
 
 %% Dry Tropics Midshelf
-
+ 
+\begin{landscape}
 \begin{figure}[ptbh]
-  a) AIMS insitu raw data\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.chl_Dry Tropics__Midshelf_niskin_logB\res.png}}\\[1em]
-  b) AIMS insitu Binary\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf_niskin_naturalA\res.png}}\\[1em]
-  c) AIMS insitu fsMAMP\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf_niskin_naturalA\res.png}}\\[1em]
-  d) AIMS insitu fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf_niskin_naturalA\res.png}}\\[1em]
+  a) AIMS insitu raw data\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.spatial.year.chl_Dry Tropics__Midshelf_niskin_logB\res.png}}\\[1em]
+  b) AIMS insitu Binary\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf_niskin_naturalA\res.png}}\\[1em]
+  c) AIMS insitu fsMAMP\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf_niskin_naturalA\res.png}}\\[1em]
+  d) AIMS insitu fsMAMP4\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Insitu/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf_niskin_naturalA\res.png}}\\[1em]
   \caption[Spatial distribution of AIMS in situ Chlorophyll-a and associated indices for the Dry Tropics Midshelf zone]{Spatial distribution of AIMS insitu Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_m_s_niskin}
 \end{figure}
+\end{landscape}
 
-
+\begin{landscape}
 \begin{figure}[ptbh]
-  a) AIMS FLNTU raw data\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.spatial.year.chl_Dry Tropics__Midshelf_flntu_logB\res.png}}\\[1em]
-  b) AIMS FLNTU Binary\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf_flntu_naturalA\res.png}}\\[1em]
-  c) AIMS FLNTU fsMAMP\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf_flntu_naturalA\res.png}}\\[1em]
-  d) AIMS FLNTU fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf_flntu_naturalA\res.png}}\\[1em]
+  a) AIMS FLNTU raw data\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.spatial.year.chl_Dry Tropics__Midshelf_flntu_logB\res.png}}\\[1em]
+  b) AIMS FLNTU Binary\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf_flntu_naturalA\res.png}}\\[1em]
+  c) AIMS FLNTU fsMAMP\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf_flntu_naturalA\res.png}}\\[1em]
+  d) AIMS FLNTU fsMAMP4\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/FLNTU/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf_flntu_naturalA\res.png}}\\[1em]
   \caption[Spatial distribution of AIMS FLNTU Chlorophyll-a and associated indices for the Dry Tropics Midshelf zone]{Spatial distribution of AIMS FLNTU Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_m_s_flntu}
 \end{figure}
+\end{landscape}
 
+\begin{landscape}
 \begin{figure}[ptbh]
-  a) Satellite raw data\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.spatial.year.chl_Dry Tropics__Midshelf__logB\res.png}}\\[1em]
-  b) Satellite Binary\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf__naturalA\res.png}}\\[1em]
-  c) Satellite fsMAMP\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf__naturalA\res.png}}\\[1em]
-  d) Satellite fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf__naturalA\res.png}}\\[1em]
+  a) Satellite raw data\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.spatial.year.chl_Dry Tropics__Midshelf__logB\res.png}}\\[1em]
+  b) Satellite Binary\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf__naturalA\res.png}}\\[1em]
+  c) Satellite fsMAMP\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf__naturalA\res.png}}\\[1em]
+  d) Satellite fsMAMP4\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/Satellite/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf__naturalA\res.png}}\\[1em]
   \caption[Spatial distribution of Satellite Chlorophyll-a and associated indices for the Dry Tropics Midshelf zone]{Spatial distribution of Satellite Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_m_s_satellite}
 \end{figure}
+\end{landscape}
 
+\begin{landscape}
 \begin{figure}[ptbh]
-  a) eReefs raw data\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.chl_Dry Tropics__Midshelf_eReefs_logB\res.png}}\\[1em]
-  b) eReefs Binary\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf_eReefs_naturalA\res.png}}\\[1em]
-  c) eReefs fsMAMP\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf_eReefs_naturalA\res.png}}\\[1em]
-  d) eReefs fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf_eReefs_naturalA\res.png}}\\[1em]
+  a) eReefs raw data\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.spatial.year.chl_Dry Tropics__Midshelf_eReefs_logB\res.png}}\\[1em]
+  b) eReefs Binary\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf_eReefs_naturalA\res.png}}\\[1em]
+  c) eReefs fsMAMP\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf_eReefs_naturalA\res.png}}\\[1em]
+  d) eReefs fsMAMP4\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf_eReefs_naturalA\res.png}}\\[1em]
   \caption[Spatial distribution of eReefs Chlorophyll-a and associated indices for the Dry Tropics Midshelf zone]{Spatial distribution of eReefs Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_m_s_eReefs}
 \end{figure}
+\end{landscape}
 
+\begin{landscape}
 \begin{figure}[ptbh]
-  a) eReefs926 raw data\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.chl_Dry Tropics__Midshelf_eReefs926_logB\res.png}}\\[1em]
-  b) eReefs926 Binary\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf_eReefs926_naturalA\res.png}}\\[1em]
-  c) eReefs926 fsMAMP\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf_eReefs926_naturalA\res.png}}\\[1em]
-  d) eReefs926 fsMAMP4\\\includegraphics[align=t,width=1\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf_eReefs926_naturalA\res.png}}\\[1em]
+  a) eReefs926 raw data\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.spatial.year.chl_Dry Tropics__Midshelf_eReefs926_logB\res.png}}\\[1em]
+  b) eReefs926 Binary\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_Binary_spatial.year.chl_Dry Tropics__Midshelf_eReefs926_naturalA\res.png}}\\[1em]
+  c) eReefs926 fsMAMP\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_fsMAMP_spatial.year.chl_Dry Tropics__Midshelf_eReefs926_naturalA\res.png}}\\[1em]
+  d) eReefs926 fsMAMP4\\\includegraphics[align=t,width=0.8\linewidth]{{figures/Exploratory_Data_Analysis/eReefs926/eda.idx_fsMAMP4_spatial.year.chl_Dry Tropics__Midshelf_eReefs926_naturalA\res.png}}\\[1em]
   \caption[Spatial distribution of eReefs926 Chlorophyll-a and associated indices for the Dry Tropics Midshelf zone]{Spatial distribution of eReefs926 Chlorophyll-a a) samples and associated b) Binary, c) fsMAMP and d) fsMAMP4 index formulations for the Dry Tropics Midshelf zone.
     Color bars scaled to half (green) and twice (red) threshold value for raw data and 1 (green) and 0 (red) for Binary, fsMAMP and fsMAMP4.}\label{fig:eda.idx.spatial_chl_m_s_eReefs926}
 \end{figure}
+\end{landscape}
 
 
 

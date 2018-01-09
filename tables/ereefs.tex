@@ -3,28 +3,32 @@
 \setlength\aboverulesep{0pt}\setlength\belowrulesep{0pt}
 \setlength\cmidrulekern{1pt}\setlength\cmidrulewidth{1pt}
 \renewcommand\arraystretch{1.2}\setlength\tabcolsep{5pt}
-\begin{table}[ht]\caption{eReefs regional biogeochemical simulation catalog.}\label{tab:ereefs}
+\begin{table}[ht]\caption{eReefs regional biogeochemical simulation catalog.}\label{tab:ereefsModels}
   \scriptsize
   \begin{tabular}{
     !{\color[rgb]{0.06,0.25,0.49}\VRule[1pt]} p{15em}
-    !{\color[rgb]{0.06,0.25,0.49}\vline}l
-    !{\color[rgb]{0.06,0.25,0.49}\vline}l
-    !{\color[rgb]{0.06,0.25,0.49}\vline}l
-    !{\color[rgb]{0.06,0.25,0.49}\vline}l
-    !{\color[rgb]{0.06,0.25,0.49}\vline}l
+    !{\color[rgb]{0.06,0.25,0.49}\vline} l
+    !{\color[rgb]{0.06,0.25,0.49}\vline} l
+    %!{\color[rgb]{0.06,0.25,0.49}\vline}l
+    !{\color[rgb]{0.06,0.25,0.49}\vline} l
+    !{\color[rgb]{0.06,0.25,0.49}\vline} p{16em}
     !{\color[rgb]{0.06,0.25,0.49}\VRule[1pt]}
     }
     \arrayrulecolor[rgb]{0.06,0.25,0.49}\specialrule{1pt}{0pt}{0pt} %top border
     \rowcolor[rgb]{0.53,0.62,0.74}
-    \multicolumn{1}{!{\color[rgb]{0.06,0.25,0.49}\VRule[1pt]} p{15em}}{\whiteHeader{{Simulation name}}} & 
-    \multicolumn{1}{l}{\whiteHeader{{Projects}}}&
+    \multicolumn{1}{!{\color[rgb]{0.06,0.25,0.49}\VRule[1pt]} l}{\whiteHeader{{Simulation name}}} & 
+    % \multicolumn{1}{l}{\whiteHeader{{Projects}}}&
+    \multicolumn{1}{l}{\whiteHeader{{Herein name}}}&
     \multicolumn{1}{l}{\whiteHeader{{Date range}}}&
-                                                    \multicolumn{1}{l}{\whiteHeader{{Delivery}}}&
-                                                                                                  \whiteHeader{{Notes/Improvements}}\\
+    \multicolumn{1}{l}{\whiteHeader{{Delivery}}}&
+    \multicolumn{1}{l}{\whiteHeader{{Notes/Improvements}}}\\
     \cmidrule{1-5}
-    GBR4\_H1p85\_B1p0\_Cbas\_Dhnd & SIEF & Jan 1, 2011 -- Jun 30, 2014 & Available on NCI & Simulation delivered as part of SIEF project (previously known as 926). Skill assessment available in SIEF report.\\
-    \cline{1-5}& & & &\\
-    \cline{1-5}& & & &\\
+    %GBR4\_H1p85\_B1p0\_Cbas\_Dhnd & SIEF & Jan 1, 2011 -- Jun 30, 2014 & Available on NCI & Simulation delivered as part of SIEF project (previously known as 926). Skill assessment available in SIEF report.\\
+    GBR4\_H1p85\_B1p0\_Cbas\_Dhnd & eReefs926 & Jan 1, 2011 -- Jun 30, 2014 & Available on NCI & Simulation delivered as part of SIEF project (previously known as 926). Skill assessment available in SIEF report.\\
+    \cline{1-5}
+    GBR4\_H2p0\_B2p0\_Chyd\_Dhnd &  & Jan 1, 2011 -- present, 2014 & &Second publicly-release (mid 2017) long run being used for GBRF resilience and NESP TWQ Hub projects.\\
+    \cline{1-5}
+    GBR4\_H2p0\_B1p9\_Chyd\_Dran & eReefs & May 1, 2013 -- Oct 1, 2016 & &First application of BGC data assimilation that is being used for GBR report card 7.\\
     \bottomrule
   \end{tabular}
 \end{table}

@@ -3,13 +3,13 @@
  \setlength\aboverulesep{0pt}\setlength\belowrulesep{0pt}
  \setlength\cmidrulekern{1pt}\setlength\cmidrulewidth{1pt}
  \renewcommand\arraystretch{1.2}\setlength\tabcolsep{5pt}
- \begin{table}[h]\caption{Measures collected from eReefs assimilated model. Data used are daily means per pixel. Variable and Description pertain to the eReefs source.  Conversion indicates the conversion applied on data to conform to threshold Units.  Abbreviation provides a consistent key accross data.}\label{tab:ereefs.measures}
+ \begin{table}[h]\caption{Measures collected from eReefs assimilated model. Data used are daily means per pixel. Variable and Description pertain to the eReefs source.  Conversion indicates the conversion applied on data to conform to threshold Units.  Abbreviation provides a consistent key accross data. }\label{tab:ereefs.measures}
  %\begin{center}
  \scriptsize
  \begin{tabular}{
  !{\color[rgb]{0.06,0.25,0.49}\VRule[1pt]} p{10em}
  !{\color[rgb]{0.06,0.25,0.49}\vline} l
- !{\color[rgb]{0.06,0.25,0.49}\vline} p{15em}
+ !{\color[rgb]{0.06,0.25,0.49}\vline} p{20em}
  !{\color[rgb]{0.06,0.25,0.49}\vline} l
  !{\color[rgb]{0.06,0.25,0.49}\vline} l
  !{\color[rgb]{0.06,0.25,0.49}\vline} l
@@ -25,8 +25,8 @@
  \whiteHeader{{Units}}\\ 
  \cmidrule{1-6} 
 Chlorophyll-a & Chl\_a}\_um & Sum of Chlorophyll concentration of four microalgae types ($mg/m^3$) & chl & Chl\_a}\_um x1 & µgL^{-1} \\ 
-   \cline{1-6}Non-Algal Particles & EFI & ?? & nap & EFI x1000 & mgL^{-1} \\ 
-   \cline{1-6}Secchi Depth & Kd\_490} & ?? & sd & 1/Kd\_490} & m \\ 
+   \cline{1-6}Non-Algal Particles & EFI & EFI = NAP and is the sum of Mud and Fine Sediment & nap & EFI x1000 & mgL^{-1} \\ 
+   \cline{1-6}Secchi Depth & Kd\_490} & Kd\_490 is calculated from the scattering and absorbing properties of all optical-active constituents, and includes the cosine zenith angle on vertical attenuation. & sd & 1/Kd\_490} & m \\ 
    \cline{1-6}NOx & NO3 & Concentration of Nitrate. As Nitrite is not represented in the model, NO3 = $[NO^-_3] + [NO^-_2]$ ($mg/m^3$) & NOx & NO3 x1 & µgL^{-1} \\ 
    \bottomrule
  \end{tabular}

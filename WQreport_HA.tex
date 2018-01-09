@@ -435,24 +435,27 @@ The aggregation schedule can be summarized as:
 \begin{minipage}[t]{\textwidth}
 \textbf{A. Calculation of Zone level Score and Grades}
 \begin{enumerate}
-\item Collect raw data (= \textbf{Measures}) at each fixed monitoring site and compare individual observations to associated threshold/benchmark/reference or set of expectation ranges
-\item Create indexed data as an expression of degree of difference (\textit{scaled modified amplitude method}) to yield a \textbf{Score} for each \textbf{Measure} per sampling location (e.g. Site)
-(applies to \textit{Measures} in all \textit{Indicators}, Water Quality).  In the absence of thresholds (e.g. Measures within Plankton), observed data are rescaled to a range defined by historical quantiles (20th and 80th percentiles) for each Measure.
-\item Apply any expert opinion interventions
-\item Combine \textbf{Measure} Scores into \textbf{Site}-level \textbf{Sub-indicator} Scores by averaging taking into account any weightings, i.e. aggregate into observation-level Sub-indicator Scores.  This step involves \textbf{Bootstrapping} each input to distributions of 10,000 re-samples (or fewer if weighted), 
+\item Collect raw data (= \textit{Measures}) at each fixed monitoring \textit{Site} and compare individual observations to associated \textit{Threshold}
+\item Create \textbf{indexed} data as an expression of degree of difference with associated \textit{Threshold} values (\textbf{fixed capped scaled modified amplitude method}) to yield a \textit{Score} for each \textit{Measure} per sampling location (e.g. \textit{Site})
+(applies to \textit{Measures} in all \textit{Indicators}, Water Quality).  
+\item Apply any expert opinion interventions (if appropriate - not employed in the current version).
+\item Combine \textit{Measure} Scores into \textit{Site}-level \textit{Sub-indicator} Scores by \textbf{averaging} taking into account any weightings, i.e. aggregate into observation-level Sub-indicator Scores.  This step involves \textbf{Bootstrapping} each input to distributions of 10,000 re-samples (or fewer if weighted), 
 combining distributions and finally Bootstrapping again into a single 10,000 size distribution. 
-\item Combine \textbf{Sub-indicator} Scores into \textbf{Site}-level \textbf{Indicator} Scores by averaging, i.e. aggregate into Site-level Indicator Scores.
-\item Convert Scores into coloured \textbf{Grades} (A-E) for visual presentation in report card
+\item Combine \textit{Sub-indicator} \textit{Scores} into \textit{Site}-level \textit{Indicator} \textit{Scores} by \textbf{averaging} (bootstrapping), i.e. aggregate into \textit{Site}-level \textit{Indicator} \textit{Scores}.
+\item Convert \textit{Scores} into coloured \textit{Grades} (A-E) for visual presentation in report card using a \textbf{Uniform} control chart
 \end{enumerate}
 \textbf{B.     Calculation of Zone level Grades}
 \begin{enumerate}
-\item Aggregate \textbf{Site}-level \textit{Indicator} Scores from step A.5 into \textbf{Zone}-level \textit{Indicator} Scores by averaging (incorporating spatial weights)
-\item Aggregate \textbf{Zone}-level \textit{Indicator} Scores into \textbf{Zone}-level \textit{Component} Scores by averaging (incorporating weights)
+\item Aggregate \textit{Site}-level \textit{Measure} Scores from step A.4 into \textit{Zone}-level \textit{Measure} \textit{Scores} by \textbf{averaging} (bootstrapping incorporating any weights)
+\item Aggregate \textit{Zone}-level \textit{Sub-indicator} \textit{Scores} into \textit{Zone}-level \textit{Indicator} \textit{Scores} by \textbf{averaging} (bootstrapping incorporating any weights)
+\item Convert \textit{Scores} into coloured \textit{Grades} (A-E) for visual presentation in report card using a \textbf{Uniform} control chart
 \end{enumerate}
 \textbf{C.     Calculation of Whole GBR Grades}
 \begin{enumerate}
-\item Aggregate \textbf{Zone}-level \textit{Indicator} Scores from step B.1 into \textbf{Whole GBR}-level \textit{Indicator} Scores by averaging (incorporating spatial weights)
-\item Aggregate \textbf{Whole GBR}-level \textit{Indicator} Scores into \textbf{Whole GBR}-level \textit{Component} Scores by averaging (incorporating weights) 
+\item Establish spatial weights as proportional Open Coastal Zone geographic areas  
+\item Aggregate Open Coastal \textit{Zone}-level \textit{Measure} \textit{Scores} from step B.1 into Open Coastal \textit{GBR}-level \textit{Sub-indicator} \textit{Scores} by \textbf{averaging }(bootstrapping incorporating spatial weights)
+\item Aggregate Open Coastal \textit{GBR}-level \textit{Sub-indicator} \textit{Scores} into Open Coastal \textit{GBR}-level \textit{Indicator} \textit{Scores} by \textbf{averaging} (bootstrapping)
+  \item Convert \textit{Scores} into coloured \textit{Grades} (A-E) for visual presentation in report card using a \textbf{Uniform} control chart
 \end{enumerate}
 \end{minipage}
 };
@@ -460,10 +463,13 @@ combining distributions and finally Bootstrapping again into a single 10,000 siz
 
 \begin{figure}[h]
 \includegraphics[width=\linewidth]{figures/Diagrams/schematic.pdf}
-\caption{Schematic illustrating the major steps of the GBR Report Card. In this fabricated example,
+\caption[Schematic illustrating the major steps of the GBR Water Quality Report Card]{Schematic illustrating the major steps of the GBR Water Quality Report Card. In this fabricated example,
 there are three Measures (Red, Green and Blue).  Each of the Blue and Green Measures are represented by a single
 discrete observation, whereas the Red Measure is represented by a large collection of observations.
-Expert option intervened to lower the blue Measure distribution from observed values at 0.8 to 0.6.}\label{fig:schematic}
+Expert option (top right panel) intervened to lower the blue Measure distribution from observed values at 0.8 to 0.6. Bootstrap aggregations (bottom left panel)
+are used to combine data together proportionally.  Aggregation follows a specific pathway through the aggregation hierarchy depicted in the bottom right panel.
+Great Barrier Reef (GBR) level aggregations utilize Open Coastal data only and aggregations are weighted according to proportional geographic areas of the Zones.
+}\label{fig:schematic}
 \end{figure}
 
 \clearpage

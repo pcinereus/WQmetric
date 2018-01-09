@@ -1,5 +1,9 @@
 \LTcapwidth=\textwidth
- 
+
+\setlength\aboverulesep{2pt}\setlength\belowrulesep{2pt}
+\setlength\cmidrulekern{1pt}\setlength\cmidrulewidth{1pt}
+\renewcommand\arraystretch{1.2}\setlength\tabcolsep{5pt}
+
 \begin{longtable}{lll} 
 \caption{Formulations and example response curves for a variety of indicator scoring methods that compare
 observed values ($x_i$) to associated benchmark, thresholds or references values ($B_i$ and
@@ -9,12 +13,12 @@ generation, II. Score capping (two alternatives are provided) and III. Scaling t
 $log_2$ scale), whereas the second formulation (Quantile based, where $Q1$ and $Q2$ are quantiles) allows thresholds quantiles to be used
 for capping purposes.  Dotted lines represent capping boundaries.
 In the Logistic Scaled Amplitude method, $T$ is a tuning parameter that controls the logistic rate (steepness at the inflection point).
-For the purpose of example, the benchmark was set to 50.}\label{tab:indexMethods}\\[-1em]
+For the purpose of example, the benchmark was set to 50.}\label{tab:indexMethods}\\[0em]
 \toprule
 \textbf{Method}&\textbf{Formulation}&\textbf{Response curve}\\
 \midrule
 \endfirsthead
-\multicolumn{3}{l}{Table \ref{tab:indexMethods}: Report Card indexing methods, continued}\\[1ex]
+\multicolumn{3}{l}{\textit{Table \ref{tab:indexMethods}: Report Card indexing methods, continued}}\\
 \toprule
 \textbf{Method}&\textbf{Formulation}&\textbf{Response curve}\\
 \midrule
