@@ -5,9 +5,10 @@
     
     
     \graphicspath{{\string~/Work/Resources/Images/}}
-    \begin{picture}(100,60)(2.54cm,0cm)
+    \begin{picture}(100,140)(2.54cm,0cm)
       \parbox[b]{\paperwidth}{%
-        \centering\includegraphics[width=186.2mm, height=36.1mm]{AIMSbanner.png}%
+        \centering\includegraphics[width=186.2mm, height=36.1mm]{AIMSbanner.png}\\%
+        \centering\includegraphics[width=50mm]{GBRMPA_stacked_Mono.jpg}\includegraphics[width=40mm]{CSIRO_Mono.png}\includegraphics[width=60mm]{A.png}%
       }
     \end{picture}
     
@@ -28,9 +29,19 @@
         \centering\includegraphics[width=186.2mm, height=1.3mm]{AIMSline.png}%
       }
     \end{picture} \\[1em]
-    
-    \hfill{\fontsize{14}{14}\titlefont{Author: }\textsc{Cedric Robillot, Britta Shaffelke, Murray Logan,\\Mark Baird, Jane Waterhouse, Katharine Martin}} % Your name
-    ~\\[25em]
+
+    %\let\thempfootnote\thefootnote
+    %\begin{minipage}{\linewidth}  
+    \hspace{1cm}{\fontsize{14}{14}\begin{minipage}[t]{0.15\linewidth}\titlefont{Author: }\end{minipage}\begin{minipage}[t]{0.95\linewidth}\textsc{Cedric Robillot\footnote{Great Barrier Reef Foundation (GBRF)},
+          Britta Shaffelke\footnote{\label{AIMS}Australian Institute of Marine Science (AIMS)},
+          Murray Logan\footref{AIMS},
+          Mark Baird\footnote{Commonwealth Scientific and Industrial Research (CSIRO)},
+          \\Jane Waterhouse\footnote{James Cook University (JCU)},
+          Katharine Martin\footnote{Great Barrier Reef Marine Park Authority (GBRMPA)}\end{minipage}} % Your name
+    %\footnotetext[1]{Barrier Reef}
+    %\footnotetext[2]{Australian Institute of Marine Science}
+    %\end{minipage}
+    ~\\[16em]
     
     {\hfill\fontsize{14}{14}\color{AIMSblue}\titlefont{AIMS: Australia's tropical marine research agency}}\\ % Your name
     

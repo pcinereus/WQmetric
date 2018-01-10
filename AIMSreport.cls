@@ -3,6 +3,8 @@
 
 \LoadClass[a4paper,10pt]{extarticle}
 
+\usepackage{scrextend}
+
 \usepackage{fancyhdr}
 \usepackage{xcolor}
 \usepackage{color,colortbl}
