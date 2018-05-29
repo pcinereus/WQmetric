@@ -48,8 +48,9 @@
 \usepackage{mathtools} %recently added to fix an issue with pmatrix, matrix, bmatrix, align etc
 \usepackage{enumitem}% http://ctan.org/pkg/enumitem
 \usepackage{tikz}
-\usetikzlibrary{backgrounds}
-\usetikzlibrary{shadows}
+%\usetikzlibrary{backgrounds}
+%\usetikzlibrary{shadows}
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric, shapes.multipart,patterns,matrix}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines

@@ -9,7 +9,7 @@
 observed values ($x_i$) to associated benchmark, thresholds or references values ($B_i$ and
 dashed line). The Scaled Modified Amplitude Method can be viewed as three Steps: I. Initial Score
 generation, II. Score capping (two alternatives are provided) and III. Scaling to the range
-[0,1]. The first of the alternative capping formulations simply caps the Scores to set values (on a
+[0,1]. A schematic within the table illustrates the different combination of Modified Amplitude forumations. The first of the alternative capping formulations simply caps the Scores to set values (on a
 $log_2$ scale), whereas the second formulation (Quantile based, where $Q1$ and $Q2$ are quantiles) allows thresholds quantiles to be used
 for capping purposes.  Dotted lines represent capping boundaries.
 In the Logistic Scaled Amplitude method, $T$ is a tuning parameter that controls the logistic rate (steepness at the inflection point).
@@ -90,7 +90,7 @@ $$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \parbox[c][10em][t]{5em}{}&
 \parbox[c][10em][t]{23em}{
-II. Fixed caps (Fold=2; [0.5,2]) \textcolor{gray}{(Fold=4; [0.25,4])}\\
+IIa. Fixed caps (Fold=2; [0.5,2]) \textcolor{gray}{(Fold=4; [0.25,4])}\\
 \left$$
 Score_i = \left\{
 \begin{array}{l l}
@@ -107,7 +107,7 @@ $$
 
 \parbox[c][10em][t]{5em}{}&
 \parbox[c][10em][t]{23em}{
-II. Quantile/extremes based caps ([15,170])\\
+IIb. Quantile/extremes based caps ([15,170])\\
 \left$$
 Score_i = \left\{
 \begin{array}{l l}
@@ -122,13 +122,47 @@ $$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \parbox[c][10em][t]{5em}{}&
 \parbox[c][10em][t]{23em}{
-III. Scaled (Fixed: Fold=2)\\
+III. Scaled ([0,1])\\
 $$
 Score_i = \frac{Score_i - min(Score_i)}{max(Score_i) - min(Score_i)}
 $$
 }
 &
 \parbox[c][10em][t]{10em}{\includegraphics[]{figures/Indices/fsmamp.pdf}}\\
+
+&\multicolumn{2}{l}{
+\begin{tikzpicture}[scale=2] 
+\node (I) {I.};
+\node [anchor=west] at ($(I.east) + (2.5,0)$)  (MAMP) {MAMP};
+\draw [->] (I.east) -- (MAMP.west);
+
+\node [anchor=west] at ($(I.east) + (0.25,-0.25)$) (IIa) {IIa.};
+\node [anchor=west] at ($(I.east) + (0.25,-0.75)$) (IIb) {IIb.};
+\node [anchor=west] at ($({MAMP.west} |- {$(IIa) !0.5! (IIb)$})$)  (fMAMP) {fMAMP};
+\draw [->] ($(IIa.east) !0.5! (IIb.east)$) -- (fMAMP.west);
+
+\coordinate (A1_1) at (I |- {$(IIa.east) !0.5! (IIb.east)$});
+\coordinate (A1_2) at ($({$(IIa.west) + (-0.2,0)$} |- {$(IIa.east) !0.5! (IIb.east)$})$); 
+\coordinate (A1_3) at ($({$(IIa.west) + (-0.2,0)$} |- {$(IIa.east) $})$); 
+\coordinate (A1_4) at ($({$(IIa.west) + (-0.2,0)$} |- {$(IIb.east) $})$); 
+\draw[-] (I) -- (A1_1) -- (A1_2);
+\draw[->] (A1_2) -- (A1_3) -- (IIa.west);
+\draw[->] (A1_2) -- (A1_4) -- (IIb.west);
+
+\node [anchor=west] at ($(IIb.east) + (0.5,-0.25)$) (III) {III.};
+\coordinate (A2_1) at ($($(IIa.east) !0.5! (IIb.east)$) +(0.2,0)$);
+\coordinate (A2_2) at ($(A2_1 |- III.west)$); 
+\draw[->] (A2_1) -- (A2_2) -- (III.west);
+\node [anchor=west] at ($(MAMP.west |- III.east)$)  (fsMAMP) {fsAMP};
+\draw[->] (III.east) -- (fsMAMP.west);
+
+\node [anchor=west] at ($(I.east) + (0.5,-1.5)$) (IIIb) {III.};
+\draw [->] (I) -- ($(I |- IIIb.west)$) -- (IIIb.west);
+\node [anchor=west] at ($(MAMP.west |- IIIb.west)$)  (sMAMP) {sMAMP};
+\draw [->] (IIIb) -- (sMAMP);
+\end{tikzpicture}
+}\\
+
 \midrule
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \parbox[c][10em][t]{5em}{Logistic Scaled Modified Amplitude}&
